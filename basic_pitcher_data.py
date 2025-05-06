@@ -153,13 +153,13 @@ def get_names_and_strikeouts():
 
 
 
-def add_adv_stats(total_stats):
+def add_adv_pitcher_stats(total_stats):
         
     
     # Print the total stats
     # print(f"\n\n\n\ntotal_stats = {total_stats}")
     
-    file_path = f"raw_betting_data/adv_pitcher_stats_5-5-25.csv"
+    file_path = f"raw_betting_data/historical_adv_pitcher_stats_5-5-25.csv"
 
     
 
@@ -196,22 +196,13 @@ def add_adv_stats(total_stats):
 
 
                 if pitcher_name == last_name and pitcher_year == int(chart_year):
-                    print(f"\npitcher_name = {pitcher_name} found")
-                    #print(f"last_name = {last_name}")
-                    #print(f"chart_year = {chart_year}")
-                    #print(f"pitcher_year = {pitcher_year}")
-                    #print(f"same name == {pitcher_name == last_name}")
-                    #print(f"same year == {pitcher_year == chart_year}")
                     same_name_counter += 1
 
-            print(f"same_name_counter = {same_name_counter}")
             if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
                 adv_pitcher_data = row[5:29] # MIGHT WANT TO GET THE OTHER ADVANCED STATS TOO
-                print(f"name = {pitcher_name}")
-                print(f"year = {pitcher_year}")
-                print(f"adv_pitcher_data = {adv_pitcher_data}")
 
-                # new format is [pitcher_name, strikeouts, opposing player names, adv_pitcher_data]
+
+                # new format is [pitcher_name, strikeouts, opposing batter names, year, adv_pitcher_data]
                 pitcher_data.append(adv_pitcher_data)
                 
 
@@ -224,6 +215,72 @@ def add_adv_stats(total_stats):
             # print(f"last_name = {last_name}\n\n")
 
     return new_total_stats           
+
+
+
+def add_adv_batter_stats(total_stats):
+        
+    
+    # Print the total stats
+    # print(f"\n\n\n\ntotal_stats = {total_stats}")
+    
+    file_path = f"raw_betting_data/historical_adv_batter_stats_5-6-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
+
+    new_total_stats = []
+    
+
+    for pitcher_data in total_stats:
+
+        batter_names = pitcher_data[2]
+        batter_year = pitcher_data[3]
+
+        new_batter_data = []
+
+        for batter_name in batter_names:
+
+            #print(f"batter_name = {batter_name}")
+            #print(f"batter_strikeouts = {batter_strikeouts}")
+            #print(f"opposing_batter_names = {opposing_batter_names}")
+
+            same_name_counter = 0 # Keeps track of how many times the same name is found in the csv file
+
+            with open(file_path, "r") as adv_batter_stats_file:
+                adv_batter_stats_data = csv.reader(adv_batter_stats_file, delimiter=',')    # assigns csv to a variable
+                next(adv_batter_stats_data)  # Skips the headers
+
+                for row in adv_batter_stats_data:
+                    
+                    chart_year = row[2]
+                    full_name = row[0]
+                    last_name = full_name.split(", ")[0] # Get the last name from the full name
+
+
+                    if batter_name == last_name and batter_year == int(chart_year): # If the batter name and year match the csv file
+                        same_name_counter += 1
+
+                if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
+                    adv_batter_data = row[3:91]+row[99:] 
+
+                    batter_info = [batter_name, adv_batter_data] # Create a list of the batter's name and advanced stats
+                    new_batter_data.append(batter_info) # Add the batter name and year to the list
+
+                    # new format is [pitcher_name, strikeouts, year, adv_pitcher_data, opposing batter info]
+                    # opposing_batter_data = [batter_name, batter_stats]
+
+                    
+        new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[4], new_batter_data]) # Move the batter names and data to the back of the list
+        
+                
+    '''
+    new_total_stats = []
+    
+    for pitcher_data in total_stats:
+        if len(pitcher_data) > 4:
+            new_total_stats.append(pitcher_data)  # Remove the pitcher data if it doesn't have advanced stats
+        
+            # print(f"last_name = {last_name}\n\n")
+    '''
+    return new_total_stats
                 
             
 
@@ -231,13 +288,17 @@ def add_adv_stats(total_stats):
 
 def main():
 
-    total_stats = get_names_and_strikeouts()
-    total_stats = add_adv_stats(total_stats)
+    total_stats = get_names_and_strikeouts()  # Gets names and strikouts from pitchers, and names from batters
+    total_stats = add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
+    total_stats = add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
 
+    # format is [pitcher_name, strikeouts, year, adv_pitcher_data, batter_info]
+    
     # Print the total stats
     print(f"\n\n\n\n")
     for i in range(len(total_stats)):
         print(f"pitcher {i} = {total_stats[i]}")
+        break
 
 main()
 
