@@ -33,7 +33,6 @@ def get_batter_names(game_array):
                     batter_name = batter_name[:-1]
                 
                 team1_batter_names.append(batter_name) # Add the batter name to the list
-                # print(f"batter name = {batter_name}")
             except ValueError:
                 continue
 
@@ -46,7 +45,6 @@ def get_batter_names(game_array):
                     batter_name = batter_name[:-1]
                 
                 team2_batter_names.append(batter_name) # Add the batter name to the list
-                # print(f"batter name = {batter_name}")
             except ValueError:
                 continue
 
@@ -71,19 +69,16 @@ def get_pitcher_data(game_array):
             halfway_index = line.find("|")
 
             pitcher_1_name = line.split(' ')[0] # Get the 1st pitcher's name from the line
-            # print(f"pitcher_1_name = {pitcher_1_name}")
             if pitcher_1_name == "":
                 continue
             if pitcher_1_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
                     pitcher_1_name = pitcher_1_name[:-1]
             pitcher_1_strikeouts = line[66] # Get the pitcher strikeouts from the line
-            # print(f"pitcher_1_strikeouts = {pitcher_1_strikeouts}")
             single_pitcher_data_1 = [pitcher_1_name, pitcher_1_strikeouts] # Create a list of the pitcher's name and strikeouts
             
 
             half_line = line[halfway_index+2:] # Reset the line to the second half of the line
             pitcher_2_name = half_line.split(' ')[0] # Get the 2nd pitcher's name from the line
-            # print(f"pitcher_2_name = {pitcher_2_name}")
             if pitcher_2_name == "":
                 continue
             if pitcher_2_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
@@ -95,8 +90,6 @@ def get_pitcher_data(game_array):
 
             return [single_pitcher_data_1, single_pitcher_data_2] # Return the list of the pitcher's name and strikeouts
             
-            # total_pitcher_data.append(single_pitcher_data) 
-
 
             
     
@@ -125,7 +118,6 @@ def get_names_and_strikeouts():
             # Print the game array
             for i in range(len(game_array)):
                 print(f"line[{i}] = {game_array[i]}")
-                #print(f"game_array[{i}] = {game_array[i]}")
 
 
             batter_names = get_batter_names(game_array)
@@ -136,21 +128,15 @@ def get_names_and_strikeouts():
         
             pitcher_1_data, pitcher_2_data = pitcher_data[0], pitcher_data[1] # Get the pitcher data from the list
 
-            # format is [pitcher_name, strikeouts, opposing player names, year]
+            # format here is [pitcher_name, strikeouts, opposing player names, year]
 
             pitcher_1_total_data = [pitcher_1_data[0], pitcher_1_data[1], team2_batter_names, year]
             pitcher_2_total_data = [pitcher_2_data[0], pitcher_2_data[1], team1_batter_names, year]
 
-            #print(F"pitcher_1_total_data = {pitcher_1_total_data}")
-            #print(F"pitcher_2_total_data = {pitcher_2_total_data}")
 
             total_stats.append(pitcher_1_total_data)
             total_stats.append(pitcher_2_total_data)
 
-            # print(f"\n\n")
-
-        # Print the total stats
-        # print(f"\n\n\n\ntotal_stats = {total_stats}")
 
     return total_stats
 
@@ -161,9 +147,6 @@ def get_names_and_strikeouts():
 
 def add_adv_pitcher_stats(total_stats):
         
-    
-    # Print the total stats
-    # print(f"\n\n\n\ntotal_stats = {total_stats}")
     
     file_path = f"raw_betting_data/historical_adv_pitcher_stats_5-5-25.csv"
 
@@ -176,9 +159,6 @@ def add_adv_pitcher_stats(total_stats):
         opposing_batter_names = pitcher_data[2]
         pitcher_year = pitcher_data[3]
 
-        #print(f"pitcher_name = {pitcher_name}")
-        #print(f"pitcher_strikeouts = {pitcher_strikeouts}")
-        #print(f"opposing_batter_names = {opposing_batter_names}")
 
         same_name_counter = 0 # Keeps track of how many times the same name is found in the csv file
 
@@ -188,17 +168,9 @@ def add_adv_pitcher_stats(total_stats):
 
             for row in adv_pitcher_stats_data:
                 chart_year = row[2]
-                # print(f"row = {row}")
 
                 full_name = row[0]
                 last_name = full_name.split(", ")[0] # Get the last name from the full name
-
-                #print(f"\npitcher_name = {pitcher_name}")
-                #print(f"last_name = {last_name}")
-                #print(f"chart_year = {chart_year}")
-                #print(f"pitcher_year = {pitcher_year}")
-                #print(f"same name == {pitcher_name == last_name}")
-                #print(f"same year == {pitcher_year == chart_year}")
 
 
                 if pitcher_name == last_name and pitcher_year == int(chart_year):
@@ -218,17 +190,13 @@ def add_adv_pitcher_stats(total_stats):
         if len(pitcher_data) > 4:
             new_total_stats.append(pitcher_data)  # Remove the pitcher data if it doesn't have advanced stats
         
-            # print(f"last_name = {last_name}\n\n")
 
     return new_total_stats           
 
 
 
 def add_adv_batter_stats(total_stats):
-        
-    
-    # Print the total stats
-    # print(f"\n\n\n\ntotal_stats = {total_stats}")
+
     
     file_path = f"raw_betting_data/historical_adv_batter_stats_5-6-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
 
@@ -244,9 +212,6 @@ def add_adv_batter_stats(total_stats):
 
         for batter_name in batter_names:
 
-            #print(f"batter_name = {batter_name}")
-            #print(f"batter_strikeouts = {batter_strikeouts}")
-            #print(f"opposing_batter_names = {opposing_batter_names}")
 
             same_name_counter = 0 # Keeps track of how many times the same name is found in the csv file
 
@@ -275,16 +240,7 @@ def add_adv_batter_stats(total_stats):
                     
         new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[4], new_batter_data]) # Move the batter names and data to the back of the list
         
-                
-    '''
-    new_total_stats = []
-    
-    for pitcher_data in total_stats:
-        if len(pitcher_data) > 4:
-            new_total_stats.append(pitcher_data)  # Remove the pitcher data if it doesn't have advanced stats
-        
-            # print(f"last_name = {last_name}\n\n")
-    '''
+
     return new_total_stats
 
 
@@ -303,7 +259,6 @@ def convert_to_float(total_stats):
             batter_info = pitcher_data[4][j]
 
             batter_data = batter_info[1]
-            # print(f"batter_data = {batter_data}")
             rem_counter = 0 # Keeps track of how many times an item is removed from the list
             for l in range(len(batter_data)):
                 l -= rem_counter # Adjust the index to account for the removed items
@@ -322,31 +277,6 @@ def convert_to_float(total_stats):
                     break
 
 
-                # batter_data = float(batter_data)
-
-                #if pitcher_data[4][j][1][l] == "":
-
-
-
-
-    '''for pitcher_data in total_stats:
-        pitcher_data[1] = float(pitcher_data[1])
-        pitcher_data[2] = int(pitcher_data[2])
-
-        for stat in pitcher_data[3]:
-            stat = [float(stat)]
-        
-        total_batter_data = pitcher_data[4]
-
-        for total_batter_data in pitcher_data[4]:
-            print(f"name = {total_batter_data[0]}")
-            for stat in total_batter_data[1]:
-                if stat == "":  # skip and remove empty stats
-
-                    continue
-                stat = float(stat)
-                print(f"stat = {stat}")
-                # print(f"batter_data = {batter_data[i]}")'''
     
     return total_stats
 
@@ -383,7 +313,6 @@ def calculate_avg_batter_stats(total_stats):
 
             for ind_batter_info in total_batter_info:
                 ind_batter_data = ind_batter_info[1]
-                # print(f"ind_batter_data = {ind_batter_data}")
                 ind_batter_data = ind_batter_data[i]
                 new_batter_data.append(ind_batter_data)
 
@@ -400,9 +329,6 @@ def calculate_avg_batter_stats(total_stats):
 
         break
 
-    '''for pitcher in new_total_stats:
-        print(f"pitcher in new_total_stats = {pitcher}")
-        break'''
 
     return new_total_stats
     
@@ -429,21 +355,6 @@ def main():
     # Print the total stats
     print(f"\n\n\n\n")
 
-    # Get the first stat of every batter, calculate the average, and add it to a new list
-    # Repeat for every stat
-
-
-
-    '''for i in range(len(total_stats)):
-        pitcher_data = total_stats[i]
-        
-        batter_data = pitcher_data[4]
-        print(f"batter_data = {batter_data[0][1]}")
-        print(f"batter_data len = {len(batter_data[0][1])}")
-                
-
-        # print(f"pitcher {i} = {pitcher_data}")
-        break'''
     
     for pitcher_data in total_stats:
         #batter_data = pitcher_data[4]
