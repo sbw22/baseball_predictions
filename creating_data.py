@@ -303,16 +303,23 @@ def convert_to_float(total_stats):
             batter_info = pitcher_data[4][j]
 
             batter_data = batter_info[1]
-            print(f"batter_data = {batter_data}")
+            # print(f"batter_data = {batter_data}")
+            rem_counter = 0 # Keeps track of how many times an item is removed from the list
             for l in range(len(batter_data)):
+                l -= rem_counter # Adjust the index to account for the removed items
+                
+                try: # If the index is out of range, break the loop (because we are removing from the list INSIDE the list)
 
-                print(f"batter_stats = {total_stats[i][4][j][1][l]}")
-
-                #batter_stat = batter_data[l]
-                if total_stats[i][4][j][1][l] == "":  # skip empty stats
-                    continue
-                print(f"batter_stat = {total_stats[i][4][j][1][l]}")
-                total_stats[i][4][j][1][l] = float(total_stats[i][4][j][1][l])
+                    #batter_stat = batter_data[l]
+                    if total_stats[i][4][j][1][l] == "":  # skip and remove empty stats
+                        total_stats[i][4][j][1].remove(total_stats[i][4][j][1][l])
+                        rem_counter += 1
+                        continue
+                        
+                    # print(f"batter_stat = {total_stats[i][4][j][1][l]}")
+                    total_stats[i][4][j][1][l] = float(total_stats[i][4][j][1][l])
+                except IndexError:
+                    break
 
 
                 # batter_data = float(batter_data)
@@ -322,7 +329,7 @@ def convert_to_float(total_stats):
 
 
 
-    for pitcher_data in total_stats:
+    '''for pitcher_data in total_stats:
         pitcher_data[1] = float(pitcher_data[1])
         pitcher_data[2] = int(pitcher_data[2])
 
@@ -334,11 +341,12 @@ def convert_to_float(total_stats):
         for total_batter_data in pitcher_data[4]:
             print(f"name = {total_batter_data[0]}")
             for stat in total_batter_data[1]:
-                if stat == "":  # skip empty stats
+                if stat == "":  # skip and remove empty stats
+
                     continue
                 stat = float(stat)
                 print(f"stat = {stat}")
-                # print(f"batter_data = {batter_data[i]}")
+                # print(f"batter_data = {batter_data[i]}")'''
     
     return total_stats
 
@@ -351,9 +359,56 @@ def convert_to_float(total_stats):
 def calculate_avg_batter_stats(total_stats):
     # Calculate the average batter stats for each pitcher
     # This function is not implemented yet
-    pass
-    # for i in range(102):
-                
+
+    # Get the first stat of every batter, calculate the average, and add it to a new list
+    # Repeat for every stat
+    # New list will replace the entire batter data list (no more batter names, just the stats)
+
+    new_total_stats = []
+
+    for pitcher_info in total_stats:
+
+        total_batter_info = pitcher_info[4]
+
+        new_total_batter_info = []
+
+        for i in range(len(total_batter_info[0][1])): # Uses the length of the first batter's stats to determine how many stats there are
+            new_batter_data = []
+
+            summed_batter_data = 0
+            # Get the first stat of every batter, calculate the average, and add it to a new list
+            # Repeat for every stat
+
+            summed_batter_data = 0.0
+
+            for ind_batter_info in total_batter_info:
+                ind_batter_data = ind_batter_info[1]
+                # print(f"ind_batter_data = {ind_batter_data}")
+                ind_batter_data = ind_batter_data[i]
+                new_batter_data.append(ind_batter_data)
+
+            for stat in new_batter_data:
+                summed_batter_data = summed_batter_data + stat 
+
+            new_batter_data = summed_batter_data / len(new_batter_data)
+
+            new_total_batter_info.append(new_batter_data)
+        
+
+        new_total_stats.append(pitcher_info[0:4] + new_total_batter_info) # Add the new batter data to the pitcher data, while removing old data
+
+
+        break
+
+    '''for pitcher in new_total_stats:
+        print(f"pitcher in new_total_stats = {pitcher}")
+        break'''
+
+    return new_total_stats
+    
+        
+
+    
             
 
 
@@ -366,7 +421,7 @@ def main():
     total_stats = add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
     total_stats = add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
     total_stats = convert_to_float(total_stats)  # Converts the stats to float
-    # total_stats = calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
+    total_stats = calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
 
     # format is [pitcher_name, strikeouts, year, adv_pitcher_data, batter_info]
 
@@ -378,16 +433,26 @@ def main():
     # Repeat for every stat
 
 
-    for i in range(len(total_stats)):
+
+    '''for i in range(len(total_stats)):
         pitcher_data = total_stats[i]
         
         batter_data = pitcher_data[4]
         print(f"batter_data = {batter_data[0][1]}")
         print(f"batter_data len = {len(batter_data[0][1])}")
-        
+                
 
-        print(f"pitcher {i} = {pitcher_data}")
+        # print(f"pitcher {i} = {pitcher_data}")
+        break'''
+    
+    for pitcher_data in total_stats:
+        #batter_data = pitcher_data[4]
+        print(f"pitcher_data = {pitcher_data}")
+                
+        # print(f"pitcher {i} = {pitcher_data}")
         break
+
+    #print(f"\n\n\n\n {total_stats}")
 
     player_data.set_player_data(total_stats)  # Set the player data in the class
 
