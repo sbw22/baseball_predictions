@@ -4,6 +4,12 @@ from pybaseball import team_ids
 from pybaseball import schedule_and_record
 import csv
 
+class baseball_player_data:
+    def __init__(self):
+        player_data = []
+    def set_player_data(self, total_stats):
+        self.player_data = total_stats
+
 
 def get_batter_names(game_array):
     # Extract batter data from the game array
@@ -288,6 +294,8 @@ def add_adv_batter_stats(total_stats):
 
 def main():
 
+    player_data = baseball_player_data()  # Create an instance of the baseball_player_data class
+
     total_stats = get_names_and_strikeouts()  # Gets names and strikouts from pitchers, and names from batters
     total_stats = add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
     total_stats = add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
@@ -299,6 +307,8 @@ def main():
     for i in range(len(total_stats)):
         print(f"pitcher {i} = {total_stats[i]}")
         break
+
+    player_data.set_player_data(total_stats)  # Set the player data in the class
 
 main()
 
