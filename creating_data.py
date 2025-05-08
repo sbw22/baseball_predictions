@@ -4,7 +4,9 @@ from pybaseball import team_ids
 from pybaseball import schedule_and_record
 import csv
 
-class baseball_player_data:
+
+
+class Baseball_player_data:
     def __init__(self):
         player_data = []
     def set_player_data(self, total_stats):
@@ -100,9 +102,11 @@ def get_names_and_strikeouts():
 
     total_stats = []
 
-    for year in range(2024, 2025):
+    curr_year = 0
 
-        games = statsapi.schedule(start_date=f'04/01/{year}',end_date=f'04/01/{year}')
+    for year in range(2016, 2025):
+
+        games = statsapi.schedule(start_date=f'06/01/{year}',end_date=f'07/01/{year}')
 
         # Print the game IDs
         game_ids = []
@@ -111,13 +115,18 @@ def get_names_and_strikeouts():
             game_ids.append(games[i]['game_id'])
 
         for game_id in game_ids:
+            new_year = year
+            if new_year != curr_year:
+                curr_year = new_year
+                print(f"curr_year = {curr_year}")
+
             game = statsapi.boxscore(game_id, battingBox=True, battingInfo=True, fieldingInfo=True, pitchingBox=True, gameInfo=True, timecode=None)        
             
             game_array = game.split("\n")
 
             # Print the game array
-            for i in range(len(game_array)):
-                print(f"line[{i}] = {game_array[i]}")
+            #for i in range(len(game_array)):
+            #    print(f"line[{i}] = {game_array[i]}")
 
 
             batter_names = get_batter_names(game_array)
@@ -324,13 +333,22 @@ def calculate_avg_batter_stats(total_stats):
             new_total_batter_info.append(new_batter_data)
         
 
-        new_total_stats.append(pitcher_info[0:4] + new_total_batter_info) # Add the new batter data to the pitcher data, while removing old data
+        new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
 
 
-        break
+        # break
 
 
     return new_total_stats
+
+
+def write_to_csv(total_stats):
+    # Write the total stats to a csv file
+    with open("created_data/created_total_stats.csv", "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["Pitcher Name", "Strikeouts", "Year", "Advanced Pitcher Data", "Batter Data"])
+        for pitcher_data in total_stats:
+            writer.writerow(pitcher_data)
     
         
 
@@ -341,7 +359,7 @@ def calculate_avg_batter_stats(total_stats):
 
 def main():
 
-    player_data = baseball_player_data()  # Create an instance of the baseball_player_data class
+    player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
     total_stats = get_names_and_strikeouts()  # Gets names and strikouts from pitchers, and names from batters
     total_stats = add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
@@ -349,16 +367,18 @@ def main():
     total_stats = convert_to_float(total_stats)  # Converts the stats to float
     total_stats = calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
 
+    write_to_csv(total_stats)  # Writes the total stats to a csv file
     # format is [pitcher_name, strikeouts, year, adv_pitcher_data, batter_info]
 
     
     # Print the total stats
     print(f"\n\n\n\n")
+    # print(f"total_stats = {total_stats}")
 
     
     for pitcher_data in total_stats:
         #batter_data = pitcher_data[4]
-        print(f"pitcher_data = {pitcher_data}")
+        #print(f"pitcher_data = {pitcher_data}")
                 
         # print(f"pitcher {i} = {pitcher_data}")
         break
@@ -367,13 +387,9 @@ def main():
 
     player_data.set_player_data(total_stats)  # Set the player data in the class
 
-main()
 
+    return  
 
-
-
-
-
-
-
-
+if __name__ == "__main__":
+     main()
+         
