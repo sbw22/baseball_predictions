@@ -183,12 +183,11 @@ def add_adv_pitcher_stats(total_stats):
 
 
                 if pitcher_name == last_name and pitcher_year == int(chart_year):
+                    adv_pitcher_data = row[5:29] # MIGHT WANT TO GET THE OTHER ADVANCED STATS TOO
+
                     same_name_counter += 1
 
             if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
-                adv_pitcher_data = row[5:29] # MIGHT WANT TO GET THE OTHER ADVANCED STATS TOO
-
-
                 # new format is [pitcher_name, strikeouts, opposing batter names, year, adv_pitcher_data]
                 pitcher_data.append(adv_pitcher_data)
                 
@@ -237,10 +236,10 @@ def add_adv_batter_stats(total_stats):
 
                     if batter_name == last_name and batter_year == int(chart_year): # If the batter name and year match the csv file
                         same_name_counter += 1
+                        adv_batter_data = row[3:70] + row[71:91] + row[99:] 
+                        batter_info = [batter_name, adv_batter_data] # Create a list of the batter's name and advanced stats
 
                 if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
-                    adv_batter_data = row[3:70] + row[71:91] + row[99:] 
-                    batter_info = [batter_name, adv_batter_data] # Create a list of the batter's name and advanced stats
                     new_batter_data.append(batter_info) # Add the batter name and year to the list
 
                     # new format is [pitcher_name, strikeouts, year, adv_pitcher_data, opposing batter info]
