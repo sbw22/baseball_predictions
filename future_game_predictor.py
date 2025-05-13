@@ -7,6 +7,7 @@ import requests
 import json
 import statsapi
 import datetime
+from creating_data import Baseball_player_data
 
 
 
@@ -51,45 +52,9 @@ def fetch_lineup_data():
 
 
 
-def process_lineup_data(data):
-    games = data.get("games", [])
-    for game in games:
-        away_team = game.get("away", {})
-        home_team = game.get("home", {})
-
-        # Extract away team pitcher info
-        away_pitcher = away_team.get("pitcher", {})
-        away_pitcher_name = away_pitcher.get("name")
-        away_pitcher_era = away_pitcher.get("pitcherEra")
-
-        # Extract home team pitcher info
-        home_pitcher = home_team.get("pitcher", {})
-        home_pitcher_name = home_pitcher.get("name")
-        home_pitcher_era = home_pitcher.get("pitcherEra")
-
-        # Extract away team lineup
-        away_lineup = away_team.get("lineup", [])
-        away_batters = [player.get("player") for player in away_lineup]
-
-        # Extract home team lineup
-        home_lineup = home_team.get("lineup", [])
-        home_batters = [player.get("player") for player in home_lineup]
-
-        # Process the extracted information as needed
-        print(f"Away Team Pitcher: {away_pitcher_name}, ERA: {away_pitcher_era}")
-        print(f"Away Team Batters: {away_batters}")
-        print(f"Home Team Pitcher: {home_pitcher_name}, ERA: {home_pitcher_era}")
-        print(f"Home Team Batters: {home_batters}")
-
-    
-
-
-
 def main():
     
     model, strikeout_scaler, input_scalers = load_model_and_scaler()
-
-    year = 2025
 
     # rand_game_s = statsapi.game()
 
@@ -100,9 +65,36 @@ def main():
     # Process all the data
     # Pass proccessed data to the model
 
-    data = fetch_lineup_data()
-    if data:
-        process_lineup_data(data)
+
+    new_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
+
+    # Get today's date
+    today = datetime.datetime.now()
+    # Format the date as MM/DD/YYYY
+    formatted_date = today.strftime("%m/%d/%Y")
+
+    start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
+    end_month_and_day = str(formatted_date[0:6])
+    start_year = 2025
+    end_year = 2025
+
+    print(f"start_month_and_day: {start_month_and_day}")
+    
+
+    total_stats = new_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day)  # Gets names and strikouts from pitchers, and names from batters
+    total_stats = new_player_data.add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
+    total_stats = new_player_data.add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
+    total_stats = new_player_data.convert_to_float(total_stats)  # Converts the stats to float
+    total_stats = new_player_data.calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
+
+    
+    # maybe write new write_to_csv function for the new player data?
+    # new_player_data.write_to_csv(total_stats)  # Writes the total stats to a csv file
+
+
+
+    # data = fetch_lineup_data()
+ 
 
     
     
