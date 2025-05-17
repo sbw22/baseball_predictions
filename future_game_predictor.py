@@ -24,7 +24,7 @@ def load_model_and_scaler():
 
 
 
-def fetch_lineup_data():
+'''def fetch_lineup_data():
     game_ids = []
 
     # Get today's date
@@ -47,7 +47,7 @@ def fetch_lineup_data():
             return game_data
 
 
-    print(f"Games: {games}")
+    print(f"Games: {games}")'''
     
 
 
@@ -73,20 +73,24 @@ def main():
     # Format the date as MM/DD/YYYY
     formatted_date = today.strftime("%m/%d/%Y")
 
-    start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
-    end_month_and_day = str(formatted_date[0:6])
+    #start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
+    #end_month_and_day = str(formatted_date[0:6])
+    start_month_and_day = "05/12/"
+    end_month_and_day = "05/12/"
     start_year = 2025
     end_year = 2025
 
     print(f"start_month_and_day: {start_month_and_day}")
     
 
-    total_stats = new_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day)  # Gets names and strikouts from pitchers, and names from batters
+    total_stats = new_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
+    print(f"total_stats after get_names_and_strikeouts: {total_stats}")
     total_stats = new_player_data.add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data
     total_stats = new_player_data.add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
     total_stats = new_player_data.convert_to_float(total_stats)  # Converts the stats to float
     total_stats = new_player_data.calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
 
+    print(f"total_stats after calculate_avg_batter_stats: {total_stats}")
     
     # maybe write new write_to_csv function for the new player data?
     # new_player_data.write_to_csv(total_stats)  # Writes the total stats to a csv file

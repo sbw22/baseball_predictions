@@ -156,7 +156,7 @@ class Baseball_player_data:
     def add_adv_pitcher_stats(self, total_stats):
             
         
-        file_path = f"raw_betting_data/historical_adv_pitcher_stats_5-5-25.csv"
+        file_path = f"raw_betting_data/historical_and_recent_pitcher_stats_5-13-25.csv"
 
         
 
@@ -182,7 +182,8 @@ class Baseball_player_data:
 
 
                     if pitcher_name == last_name and pitcher_year == int(chart_year):
-                        adv_pitcher_data = row[5:29] # MIGHT WANT TO GET THE OTHER ADVANCED STATS TOO
+                        adv_pitcher_data = row[3:] 
+                        # Might want to remove the indexes for row, to see if the code later in the script is successful at removing all empty stats
 
                         same_name_counter += 1
 
@@ -205,7 +206,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/historical_adv_batter_stats_5-6-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
+        file_path = f"raw_betting_data/historical_and_recent_batter_stats_5-13-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
 
         new_total_stats = []
         
@@ -235,7 +236,7 @@ class Baseball_player_data:
 
                         if batter_name == last_name and batter_year == int(chart_year): # If the batter name and year match the csv file
                             same_name_counter += 1
-                            adv_batter_data = row[3:70] + row[71:91] + row[99:] 
+                            adv_batter_data = row[3:] 
                             batter_info = [batter_name, adv_batter_data] # Create a list of the batter's name and advanced stats
 
                     if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
@@ -269,12 +270,13 @@ class Baseball_player_data:
                 rem_counter = 0 # Keeps track of how many times an item is removed from the list
                 for l in range(len(batter_data)):
                     l -= rem_counter # Adjust the index to account for the removed items
-                    
                     try: # If the index is out of range, break the loop (because we are removing from the list INSIDE the list)
 
                         #batter_stat = batter_data[l]
                         if total_stats[i][4][j][1][l] == "":  # skip and remove empty stats
-                            total_stats[i][4][j][1].remove(total_stats[i][4][j][1][l])
+
+                            total_stats[i][4][j][1].remove(total_stats[i][4][j][1][l])  # COMMENTED THIS OUT TO NOT REMOVE THE EMPTY STATS. IF I DECIDE TO START TAKING OUT EMPTY STATS AGAIN AND DEAL WITH THE IRREGULARITIES, I CAN UNCOMMENT THIS
+                            # If line above is commented out, I am just skipping converting the empty stats to float
                             rem_counter += 1
                             continue
                             
@@ -302,37 +304,84 @@ class Baseball_player_data:
         # New list will replace the entire batter data list (no more batter names, just the stats)
 
         new_total_stats = []
+        
+        '''print(f"total_stats[0]: {total_stats[0]}\n")
+        print(f"total_stats[0][4]: {total_stats[0][4]}\n")
+        print(f"total_stats[0][4][0]: {total_stats[0][4][0]}\n")
+        print(f"total_stats[0][4][0][1]: {total_stats[0][4][0][1]}\n")'''
+
+        # total_stats[0] = [pitcher_name, strikeouts, year, adv_pitcher_data, batter_info]
+        # pitcher_name[4] = [batter_1, batter_2, batter_3, . . .]
+        # batter_stats[1]
+
 
         for pitcher_info in total_stats:
 
-            total_batter_info = pitcher_info[4]
+            if pitcher_info[4] == [] or pitcher_info[4][0] == [] or pitcher_info[4][0][1] == []: # If there are no batters, skip the pitcher
+                continue
+
+            if len(pitcher_info[4]) < 1:
+                continue
+
+            print(f"length of total_stats[0][4][0][1]: {len(total_stats[0][4][0][1])}")
+
 
             new_total_batter_info = []
 
-            for i in range(len(total_batter_info[0][1])): # Uses the length of the first batter's stats to determine how many stats there are
+            skip_pitcher = False
+
+            # pitcher_info = total_stats[i]
+            for i in range(len(total_stats[0][4][0][1])): # Uses the length of the first batter's stats to determine how many stats there are
+
+                batter_list = pitcher_info[4]
+            
                 new_batter_data = []
 
-                summed_batter_data = 0
+                # if i == 70 or i == 137: Skips columns where data is empty. Not using it right now because different rows have different indexes for their columns
+                #   continue
+
                 # Get the first stat of every batter, calculate the average, and add it to a new list
                 # Repeat for every stat
 
                 summed_batter_data = 0.0
 
-                for ind_batter_info in total_batter_info:
+                # for batter in batter_list:
+
+                # ind_batter_info = total_stats[i][4][i]
+                for ind_batter_info in batter_list:
+                    
+                    # j = ind_batter_info
+                    #ind_batter_data = total_stats[i][4][j][1]
                     ind_batter_data = ind_batter_info[1]
-                    ind_batter_data = ind_batter_data[i]
-                    new_batter_data.append(ind_batter_data)
+                    if i < len(ind_batter_data):  # Check if the stat exists for this batter
+                        # This if statement is here because some batters have less stats than others. This is kind of a bandaid fix, but it works. Might want to find the true cause of the problem later
+                        single_ind_batter_data = ind_batter_data[i]
+
+                        if single_ind_batter_data == "":  # skip empty stats
+                            continue
+
+                        new_batter_data.append(single_ind_batter_data)
+
+
+                if len(new_batter_data) == 0:  # If there are no stats for this batter, skip the pitcher entirely (might want to remove this later)
+                    skip_pitcher = True
+                    break
 
                 for stat in new_batter_data:
-                    summed_batter_data = summed_batter_data + stat 
+                    summed_batter_data += stat 
 
-                new_batter_data = summed_batter_data / len(new_batter_data)
+                averaged_batter_data = summed_batter_data / len(new_batter_data)
 
-                new_total_batter_info.append(new_batter_data)
+                new_total_batter_info.append(averaged_batter_data)
+                
+            if skip_pitcher:  # If there are no stats for this batter, skip the pitcher entirely
+                continue
             
+            print(f"pitcher name: {pitcher_info[0]}")
+            print(f"new_total_batter_info: {new_total_batter_info}, length = {len(new_total_batter_info)}\n")
 
             new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
-
+        
 
             # break
 
@@ -351,9 +400,6 @@ class Baseball_player_data:
         
 
     
-            
-
-
 
 def main():
 
