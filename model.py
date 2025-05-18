@@ -117,9 +117,6 @@ def run_model(model, X, y, strikeout_scaler):
     
     print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)}\n")
 
-    # Make predictions
-    predictions = model.predict(X)
-
 
     return predictions
     

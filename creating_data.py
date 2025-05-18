@@ -323,7 +323,7 @@ class Baseball_player_data:
             if len(pitcher_info[4]) < 1:
                 continue
 
-            print(f"length of total_stats[0][4][0][1]: {len(total_stats[0][4][0][1])}")
+            # print(f"length of total_stats[0][4][0][1]: {len(total_stats[0][4][0][1])}")
 
 
             new_total_batter_info = []
@@ -377,8 +377,8 @@ class Baseball_player_data:
             if skip_pitcher:  # If there are no stats for this batter, skip the pitcher entirely
                 continue
             
-            print(f"pitcher name: {pitcher_info[0]}")
-            print(f"new_total_batter_info: {new_total_batter_info}, length = {len(new_total_batter_info)}\n")
+            #print(f"pitcher name: {pitcher_info[0]}")
+            #print(f"new_total_batter_info: {new_total_batter_info}, length = {len(new_total_batter_info)}\n")
 
             new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
         
