@@ -90,7 +90,7 @@ def create_model(X):
 
 def train_model(X, y, strikeout_scaler, model):
     # Train the model
-    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64)
+    model.fit(X, y, epochs=1000, validation_split=0.25, batch_size=128)
 
     return model
 

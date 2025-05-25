@@ -18,6 +18,14 @@ class Baseball_player_data:
         team1_batter_names = []
         team2_batter_names = []
 
+
+        line_3_halfway_index = game_array[3].find("|")
+        line_3_half_line = game_array[3][line_3_halfway_index+2:] # Reset the line to the second half of the line
+        if game_array[3][0] == "-" or line_3_half_line[0] != "1" or game_array[3][0] != "1": # If either team has no batters, skip the game
+            print(f"No batters in game. Skipping game.")
+            return False
+
+
         for i in range(len(game_array)-1):
             line = game_array[i]
             if line[0] == "-":
@@ -25,6 +33,7 @@ class Baseball_player_data:
                 continue
                 
             if line_counter == 2: # Get the batter data
+
                 starting_num = line[0]
                 halfway_index = line.find("|")
                 try:  # gets batter from team 1
@@ -60,11 +69,46 @@ class Baseball_player_data:
         line_counter = 0
         total_pitcher_data = []
 
+        line_3_halfway_index = game_array[3].find("|")
+        line_3_half_line = game_array[3][line_3_halfway_index+2:] # Reset the line to the second half of the line
+        if game_array[3][0] == "-" or line_3_half_line[0] != "1" or game_array[3][0] != "1": # If there are no batters, skip the game
+            print(f"No batters in game. Skipping game.")
+            return False
+
+        
+        line_23  = game_array[23]
+        # ab stat is around index 43 btw
+        ab_index = 3
+        potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
+        while True:
+            try:
+                temp = int(potential_ab) # seeing if the at bat is an integer
+                break
+            except ValueError:
+                ab_index += 1
+                potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
+
+        if potential_ab == "0": # If the game hasn't started, get the pitcher data from the 23rd line
+            
+            pitcher_1_name = line_23.split(' ')[1]
+            pitcher_2_name = line_23.split(' ')[3]
+            print(f"Pitchers from game that hasn't started yet:")
+            print(f"pitcher_1_name = {pitcher_1_name}")
+            print(f"pitcher_2_name = {pitcher_2_name}")
+
+            pitcher_1_data = [pitcher_1_name, '-1'] # Remember that -1 means the game hasn't started yet
+            pitcher_2_data = [pitcher_2_name, '-1']
+            return [pitcher_1_data, pitcher_2_data]
+        
+        
         for i in range(len(game_array)-1):
+
             line = game_array[i]
-            if line[0] == "-":
+
+            if line[0] == "-":   # Counts the number of lines in the boxscore 
                 line_counter += 1
                 continue
+
                 
             if line_counter == 7: # Get the pitcher data
                 halfway_index = line.find("|")
@@ -127,11 +171,23 @@ class Baseball_player_data:
                 #for i in range(len(game_array)):
                 #    print(f"line[{i}] = {game_array[i]}")
 
+                line1_halfway_index = game_array[1].find("|")
+                team1_name = game_array[1].split(" ")[0] # Get the team name from the first line
+                line1_half_line = game_array[1][line1_halfway_index+2:] # Reset the line to the second half of the line
+                team2_name = line1_half_line.split(" ")[0] # Get the team name from the first line
+                
 
-                batter_names = self.get_batter_names(game_array)
-                team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
 
                 pitcher_data = self.get_pitcher_data(game_array)
+
+                batter_names = self.get_batter_names(game_array)
+
+                if pitcher_data == False or batter_names == False: # If there is no pitcher data or batter names, skip the game
+                    print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet. Skipping game.")
+                    continue
+
+                team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
+
 
             
                 pitcher_1_data, pitcher_2_data = pitcher_data[0], pitcher_data[1] # Get the pitcher data from the list
@@ -162,11 +218,13 @@ class Baseball_player_data:
 
         for pitcher_data in total_stats:
 
-            pitcher_name = pitcher_data[0]
-            pitcher_strikeouts = pitcher_data[1]
-            opposing_batter_names = pitcher_data[2]
-            pitcher_year = pitcher_data[3]
-
+            try:
+                pitcher_name = pitcher_data[0]
+                pitcher_strikeouts = pitcher_data[1]
+                opposing_batter_names = pitcher_data[2]
+                pitcher_year = pitcher_data[3]
+            except:
+                print(f"Error: pitcher_data = {pitcher_data}")
 
             same_name_counter = 0 # Keeps track of how many times the same name is found in the csv file
 
@@ -296,6 +354,7 @@ class Baseball_player_data:
 
 
     def calculate_avg_batter_stats(self, total_stats):
+
         # Calculate the average batter stats for each pitcher
         # This function is not implemented yet
 
@@ -317,9 +376,19 @@ class Baseball_player_data:
 
         for pitcher_info in total_stats:
 
-            if pitcher_info[4] == [] or pitcher_info[4][0] == [] or pitcher_info[4][0][1] == []: # If there are no batters, skip the pitcher
+            if pitcher_info == [] or pitcher_info[0] == []: # If there are no batters, skip the pitcher
+                continue
+            elif pitcher_info[4] == []:
+                continue
+            elif pitcher_info[4][0] == []:
+                continue
+            elif pitcher_info[4][0][1] == []:
                 continue
 
+            '''if pitcher_info[0][4][0] == []:
+                continue
+            if total_stats[0][4][0][1] == []:
+                continue'''
             if len(pitcher_info[4]) < 1:
                 continue
 
@@ -330,8 +399,8 @@ class Baseball_player_data:
 
             skip_pitcher = False
 
-            # pitcher_info = total_stats[i]
-            for i in range(len(total_stats[0][4][0][1])): # Uses the length of the first batter's stats to determine how many stats there are
+            # JUST REPLACED THE LENGTH OF THE FOOR LOOP WITH THE LENGTH OF THE CURRENT PITCHER'S STATS. IT WAS ORIGINALLY USING total_stats[0][4][0][1], WHICH IS THE FIRST PITCHER'S STATS
+            for i in range(len(pitcher_info[4][0][1])): # Uses the length of the first batter's stats to determine how many stats there are
 
                 batter_list = pitcher_info[4]
             
@@ -376,15 +445,16 @@ class Baseball_player_data:
                 
             if skip_pitcher:  # If there are no stats for this batter, skip the pitcher entirely
                 continue
+
+            if len(new_total_batter_info) > 139: # If there are too many stats, skip the pitcher
+                continue
             
             #print(f"pitcher name: {pitcher_info[0]}")
             #print(f"new_total_batter_info: {new_total_batter_info}, length = {len(new_total_batter_info)}\n")
 
             new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
-        
 
             # break
-
 
         return new_total_stats
 
@@ -405,10 +475,10 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "06/01/"
-    end_month_and_day = "07/01/"
+    start_month_and_day = "04/17/"
+    end_month_and_day = "05/17/"
     start_year = 2016
-    end_year = 2024
+    end_year = 2025
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
     total_stats = historic_player_data.add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data

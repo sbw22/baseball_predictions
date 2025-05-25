@@ -38,17 +38,37 @@ def get_future_stats():
     # Format the date as MM/DD/YYYY
     formatted_date = today.strftime("%m/%d/%Y")
 
-    #start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
-    #end_month_and_day = str(formatted_date[0:6])
-    start_month_and_day = "05/18/"
-    end_month_and_day = "05/18/"
+    start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
+    end_month_and_day = str(formatted_date[0:6])
+    # start_month_and_day = "05/20/"
+    # end_month_and_day = "05/20/"
     start_year = 2025
     end_year = 2025
 
+    boilerplate_month_and_day = "05/02/"
+    boilerplate_year = 2022
+
     print(f"start_month_and_day: {start_month_and_day}")
+
+    boilerplate_stats = new_player_data.get_names_and_strikeouts(boilerplate_month_and_day, boilerplate_month_and_day, boilerplate_year, boilerplate_year)  # Gets stats from one game not in 2025. I am doing this because I think that if I have at least one game from 2024, the amount of inputs into the model will be correct
+    boilerplate_stats = [boilerplate_stats[0]]  # Adds an extra dimension to the boilerplate stats so that it can be added to the future stats
+
+    print(f"boilerplate_stats: {boilerplate_stats}")
+    print(f"boilerplate_stats length: {len(boilerplate_stats)}")
+    
+    boilerplate_stats = new_player_data.add_adv_pitcher_stats(boilerplate_stats)  # Adds advanced stats to the pitcher data
+    boilerplate_stats = new_player_data.add_adv_batter_stats(boilerplate_stats)  # Adds advanced stats to the batter data
+    boilerplate_stats = new_player_data.convert_to_float(boilerplate_stats)  # Converts the stats to float
+    boilerplate_stats = new_player_data.calculate_avg_batter_stats(boilerplate_stats)
     
 
+
     future_stats = new_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
+    
+    try:
+        print(f"future_stats[[0]: {future_stats[0]}")
+    except:
+        print(f"Error: future_stats = {future_stats}")
     
     game_visual(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets visual of boxscores
 
@@ -57,6 +77,8 @@ def get_future_stats():
     future_stats = new_player_data.convert_to_float(future_stats)  # Converts the stats to float
     future_stats = new_player_data.calculate_avg_batter_stats(future_stats)  # Calculates the average batter stats for each pitcher
 
+    future_stats = boilerplate_stats + future_stats  # Adds the boilerplate stats to the future stats
+    
     # print(f"future_stats after calculate_avg_batter_stats: {future_stats}")
 
     return future_stats
@@ -107,13 +129,13 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
     rounded_guesses = np.round(scaled_up_guesses)
 
 
-    for i in range(len(rounded_guesses)):
+    for i in range(1, len(rounded_guesses)):  #  Skip the first element because it is the boilerplate stats
 
         pitcher_name = future_stats[i][0]
 
         guess = round(rounded_guesses[i].item(), 2)
 
-        print(f"{pitcher_name}'s predicted strikeouts: {guess}\n")
+        print(f"\n{pitcher_name}'s predicted strikeouts: {guess}\n")
 
 
     return predictions
@@ -139,12 +161,23 @@ def main():
 
     future_stats = get_future_stats()  # Gets the future stats from the baseball_player_data class
 
+    print(f"future_stats 'strikeouts': {future_stats[1]}")
+
+
     process_player_data = Process_player_data()
 
     processed_pitcher_stats, all_pitcher_scalers = process_player_data.process_pitcher_stats(future_stats)
     processed_batter_stats, all_batter_scalers = process_player_data.process_batter_stats(future_stats)
 
+    print(f"processed_pitcher_stats: {len(processed_pitcher_stats)}")
+    print(f"processed_batter_stats: {len(processed_batter_stats)}")
+
     X = np.column_stack(processed_pitcher_stats + processed_batter_stats)
+
+    # print(f"X shape: {X.shape}")
+    # print(f"future_stats shape: {len(future_stats)}")
+
+    predict_strikeouts(model, X, strikeout_scaler, future_stats)  # Predicts the strikeouts for the pitchers
 
 
 

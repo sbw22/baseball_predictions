@@ -100,7 +100,7 @@ class Process_player_data:
         all_batter_scalers = []
 
 
-        print(f"total_stats[4]: {total_stats[4]}")
+        # print(f"total_stats[4]: {total_stats[4]}")
         
 
         for i in range(len(total_stats[0][4])): # Use the length of the first pitcher's stats for the loop
@@ -116,7 +116,16 @@ class Process_player_data:
 
                 batter_stats = pitcher[4] 
 
-                stat = batter_stats[i]
+                try:
+                    stat = batter_stats[i]
+                except:
+                    '''print(f"pitcher name: {pitcher[0]}")
+                    print(f"batter_stats: {batter_stats}")
+                    print(f"stat: {stat}")
+                    print(f"i: {i}")
+                    print(f"len(batter_stats): {len(batter_stats)}\n")'''
+                    pass
+                    
 
                 all_single_stats.append(stat)
 
@@ -135,7 +144,7 @@ class Process_player_data:
 
             
         
-        print(f"all_processed_batter_stats: {len(all_processed_batter_stats)}")
+        # print(f"all_processed_batter_stats: {len(all_processed_batter_stats)}")
         
         return all_processed_batter_stats, all_batter_scalers
 
@@ -147,6 +156,8 @@ def main():
     process_player_data = Process_player_data()
 
     total_stats = process_player_data.import_data()
+
+    # print(f"total_stats: {len(total_stats[0][4])}")
 
     processed_strikeouts, strikeout_scaler = process_player_data.process_strikeouts(total_stats)
     # Target
@@ -163,6 +174,9 @@ def main():
     print(f"processed_strikeouts: {len(processed_strikeouts)}")
 
     # print(f"processed_pitcher_stats viewed: {processed_pitcher_stats}")
+
+    print(f"processed_pitcher_stats viewed: {len(processed_pitcher_stats)}")
+    print(f"processed_batter_stats viewed: {len(processed_batter_stats)}")
 
 
     X = np.column_stack(processed_pitcher_stats + processed_batter_stats)
