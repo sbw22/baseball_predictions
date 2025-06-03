@@ -104,19 +104,30 @@ def run_model(model, X, y, strikeout_scaler):
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
     match_counter = 0
-    diff_avg = 0
+    within_one = 0
+    within_two = 0
+    within_three = 0
+    within_four = 0
 
     for i in range(len(rounded_guesses)):
         guess = round(rounded_guesses[i].item(), 2)
         actual = round(scaled_up_actual_strikeouts[i].item(), 2)
 
         match_counter += 1 if guess == actual else 0
+        within_one += 1 if abs(guess - actual) <= 1 else 0
+        within_two += 1 if abs(guess - actual) <= 2 else 0
+        within_three += 1 if abs(guess - actual) <= 3 else 0
+        within_four += 1 if abs(guess - actual) <= 4 else 0
+
 
         print(f"Predicted strikeouts: {guess}")
         print(f"Actual strikeouts: {actual}\n")
-    
-    print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)}\n")
 
+    print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)} -- {match_counter / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within one strikeout: {within_one} out of {len(rounded_guesses)} -- {within_one / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within two strikeouts: {within_two} out of {len(rounded_guesses)} -- {within_two / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within three strikeouts: {within_three} out of {len(rounded_guesses)} -- {within_three / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within four strikeouts: {within_four} out of {len(rounded_guesses)} -- {within_four / len(rounded_guesses) * 100:.2f}%\n")
 
     return predictions
     
