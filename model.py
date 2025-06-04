@@ -22,59 +22,25 @@ import csv
 import json
 import joblib
 import math
+from keras.losses import Huber
+from keras.callbacks import EarlyStopping
+from keras.callbacks import ModelCheckpoint
+
 
 
 def create_model(X):
     # Create a simple feedforward neural network
 
-    '''model = Sequential([
-    Input(shape=(125,)),
-    Dense(16, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-
-    Dense(250, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-    
-    Dense(500, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-
-    Dense(1000, activation='relu'),
-    Dropout(0.1),
-    BatchNormalization(),
-
-    Dense(500, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-    
-    Dense(250, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-    
-    Dense(125, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-
-    Dense(62, activation='relu'),
-    Dropout(0.05),
-    BatchNormalization(),
-    
-    Dense(16, activation='relu'),
-    
-    Dense(1)
-    ])'''
 
     model = Sequential([
         Input(shape=(X.shape[1],)),
         Dense(128, activation='relu'),
         BatchNormalization(),
-        Dropout(0.2),
+        Dropout(0.1),
 
         Dense(64, activation='relu'),
         BatchNormalization(),
-        Dropout(0.2),
+        Dropout(0.1),
 
         Dense(32, activation='relu'),
         BatchNormalization(),
@@ -84,13 +50,17 @@ def create_model(X):
     ])
 
     # Compile the model
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mae'])
+    model.compile(loss=Huber(delta=1.0), optimizer='adam', metrics=['mae'])
 
     return model
 
 def train_model(X, y, strikeout_scaler, model):
+
+    early_stop = EarlyStopping(monitor='val_loss', patience=200, restore_best_weights=True)
+    checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
+
     # Train the model
-    model.fit(X, y, epochs=1000, validation_split=0.25, batch_size=128)
+    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint])
 
     return model
 
@@ -103,31 +73,44 @@ def run_model(model, X, y, strikeout_scaler):
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
+    avg_error = 0.0
     match_counter = 0
     within_one = 0
     within_two = 0
     within_three = 0
     within_four = 0
+    within_five = 0
+    within_six = 0
 
     for i in range(len(rounded_guesses)):
         guess = round(rounded_guesses[i].item(), 2)
         actual = round(scaled_up_actual_strikeouts[i].item(), 2)
+
+        avg_error += abs(guess - actual)
 
         match_counter += 1 if guess == actual else 0
         within_one += 1 if abs(guess - actual) <= 1 else 0
         within_two += 1 if abs(guess - actual) <= 2 else 0
         within_three += 1 if abs(guess - actual) <= 3 else 0
         within_four += 1 if abs(guess - actual) <= 4 else 0
+        within_five += 1 if abs(guess - actual) <= 5 else 0
+        within_six += 1 if abs(guess - actual) <= 6 else 0
 
 
         print(f"Predicted strikeouts: {guess}")
         print(f"Actual strikeouts: {actual}\n")
+    
+    avg_error /= len(rounded_guesses)
+
+    print(f"Average error: {avg_error:.2f}\n")
 
     print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)} -- {match_counter / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within one strikeout: {within_one} out of {len(rounded_guesses)} -- {within_one / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within two strikeouts: {within_two} out of {len(rounded_guesses)} -- {within_two / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within three strikeouts: {within_three} out of {len(rounded_guesses)} -- {within_three / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within four strikeouts: {within_four} out of {len(rounded_guesses)} -- {within_four / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within five strikeouts: {within_five} out of {len(rounded_guesses)} -- {within_five / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six / len(rounded_guesses) * 100:.2f}%\n")
 
     return predictions
     
