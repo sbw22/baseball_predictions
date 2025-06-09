@@ -43,6 +43,8 @@ class Process_player_data:
             all_strikeouts.append(pitcher_strikeouts)
         
         numpy_strikeouts = np.array(all_strikeouts).reshape(-1, 1)  # Converts all numbers in training set to numpy.
+
+        print(f"numpy_strikeouts: {numpy_strikeouts.shape}")
         processed_strikeouts = strikeout_scaler.fit_transform(numpy_strikeouts)  # Fit the scaler to the data and transform it.
 
         return processed_strikeouts, strikeout_scaler

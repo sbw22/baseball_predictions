@@ -40,8 +40,8 @@ def get_future_stats():
 
     start_month_and_day = str(formatted_date[0:6])  # Get the month and day from the formatted date
     end_month_and_day = str(formatted_date[0:6])
-    # start_month_and_day = "05/20/"
-    # end_month_and_day = "05/20/"
+    # start_month_and_day = "06/04/"
+    # end_month_and_day = "06/04/"
     start_year = 2025
     end_year = 2025
 

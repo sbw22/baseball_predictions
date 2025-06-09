@@ -212,7 +212,7 @@ class Baseball_player_data:
     def add_adv_pitcher_stats(self, total_stats):
             
         
-        file_path = f"raw_betting_data/historical_and_recent_pitcher_stats_5-13-25.csv"
+        file_path = f"raw_betting_data/all_pitchers_6-5-25.csv"
 
         
 
@@ -264,7 +264,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/historical_and_recent_batter_stats_5-13-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
+        file_path = f"raw_betting_data/all_batters_6-4-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
 
         new_total_stats = []
         
@@ -446,7 +446,7 @@ class Baseball_player_data:
             if skip_pitcher:  # If there are no stats for this batter, skip the pitcher entirely
                 continue
 
-            if len(new_total_batter_info) > 139: # If there are too many stats, skip the pitcher
+            if len(new_total_batter_info) > 139: # If there are too many stats, skip the pitcher. If there is a different dataset being used (less than 130 stats), continue
                 continue
             
             #print(f"pitcher name: {pitcher_info[0]}")
@@ -455,7 +455,7 @@ class Baseball_player_data:
             new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
 
             # break
-
+        
         return new_total_stats
 
 
@@ -475,8 +475,8 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "04/17/"
-    end_month_and_day = "05/17/"
+    start_month_and_day = "05/2/"
+    end_month_and_day = "06/2/"
     start_year = 2016
     end_year = 2025
 
@@ -497,12 +497,12 @@ def main():
     
     for pitcher_data in total_stats:
         #batter_data = pitcher_data[4]
-        #print(f"pitcher_data = {pitcher_data}")
+        # print(f"pitcher_data = {pitcher_data}, length = {len(pitcher_data[4])}")
                 
         # print(f"pitcher {i} = {pitcher_data}")
         break
 
-    #print(f"\n\n\n\n {total_stats}")
+    # print(f"\n\n\n\n {total_stats}")
 
 
 
