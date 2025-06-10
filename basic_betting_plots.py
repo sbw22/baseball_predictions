@@ -21,4 +21,4 @@ plt.tight_layout()
 plt.show()
 
 
-# plt.scatter(x, y, label=f"r = {corr_coef:.2f}")
+plt.scatter(x, y, label=f"r = {corr_coef:.2f}")

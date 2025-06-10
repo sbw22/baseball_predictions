@@ -212,7 +212,7 @@ class Baseball_player_data:
     def add_adv_pitcher_stats(self, total_stats):
             
         
-        file_path = f"raw_betting_data/all_pitchers_6-5-25.csv"
+        file_path = f"raw_betting_data/all_pitchers_6-9-25.csv"
 
         
 
@@ -317,6 +317,7 @@ class Baseball_player_data:
             pitcher_data = total_stats[i]
             pitcher_data[1] = float(pitcher_data[1])
             pitcher_data[2] = int(pitcher_data[2])
+
 
             for k in range(len(pitcher_data[3])):
                 pitcher_data[3][k] = float(pitcher_data[3][k])
@@ -475,8 +476,8 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "05/2/"
-    end_month_and_day = "06/2/"
+    start_month_and_day = "05/7/"
+    end_month_and_day = "06/7/"
     start_year = 2016
     end_year = 2025
 
