@@ -73,6 +73,11 @@ def run_model(model, X, y, strikeout_scaler):
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
+    print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+
+
+def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts):
+
     avg_error = 0.0
     match_counter = 0
     within_one = 0
@@ -269,7 +274,7 @@ def run_model(model, X, y, strikeout_scaler):
 
 
 
-    '''# Print the confusion matrix
+    # Print the confusion matrix
     cm = confusion_matrix(scaled_up_actual_strikeouts, rounded_guesses, labels=np.arange(0, 10))
     print("Confusion Matrix:")
     print(cm)
@@ -284,7 +289,7 @@ def run_model(model, X, y, strikeout_scaler):
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
     plt.tight_layout()
-    plt.show()'''
+    plt.show()
 
     return predictions
     
