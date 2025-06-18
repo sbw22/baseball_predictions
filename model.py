@@ -56,7 +56,7 @@ def create_model(X):
 
 def train_model(X, y, strikeout_scaler, model):
 
-    early_stop = EarlyStopping(monitor='val_loss', patience=200, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
 
     # Train the model
@@ -82,6 +82,28 @@ def run_model(model, X, y, strikeout_scaler):
     within_five = 0
     within_six = 0
 
+    total_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+
+    correct_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_1_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_2_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_3_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_4_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_5_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+    within_6_num_of_so = [0,0,0,0,0,0,0,0,0,0]
+
+    master_num_of_so = [correct_num_of_so, within_1_num_of_so, within_2_num_of_so, within_3_num_of_so, within_4_num_of_so, within_5_num_of_so, within_6_num_of_so]
+
+    '''correct_on_1 = 0
+    correct_on_2 = 0
+    correct_on_3 = 0
+    correct_on_4 = 0
+    correct_on_5 = 0
+    correct_on_6 = 0
+    correct_on_7 = 0
+    correct_on_8 = 0
+    correct_on_9 = 0'''
+
     for i in range(len(rounded_guesses)):
         guess = round(rounded_guesses[i].item(), 2)
         actual = round(scaled_up_actual_strikeouts[i].item(), 2)
@@ -96,10 +118,33 @@ def run_model(model, X, y, strikeout_scaler):
         within_five += 1 if abs(guess - actual) <= 5 else 0
         within_six += 1 if abs(guess - actual) <= 6 else 0
 
+        total_num_of_so[int(actual)] += 1
+        correct_num_of_so[int(actual)] += 1 if guess == actual else 0
+        within_1_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 1 else 0
+        within_2_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 2 else 0
+        within_3_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 3 else 0
+        within_4_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 4 else 0
+        within_5_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 5 else 0
+        within_6_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 6 else 0
+
 
         print(f"Predicted strikeouts: {guess}")
         print(f"Actual strikeouts: {actual}\n")
+
+    # Calculate percent correct of guesses in each category
     
+    for num_of_so in master_num_of_so:
+        for i in range(len(num_of_so)):
+            new_percent = 0.0
+            if total_num_of_so[i] > 0:
+                new_percent = round(num_of_so[i] / total_num_of_so[i] * 100, 2)
+
+            else:
+                new_percent = 0.0
+            num_of_so[i] = [num_of_so[i], new_percent]
+
+
+
     avg_error /= len(rounded_guesses)
 
     print(f"Average error: {avg_error:.2f}\n")
@@ -110,7 +155,136 @@ def run_model(model, X, y, strikeout_scaler):
     print(f"Within three strikeouts: {within_three} out of {len(rounded_guesses)} -- {within_three / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within four strikeouts: {within_four} out of {len(rounded_guesses)} -- {within_four / len(rounded_guesses) * 100:.2f}%\n")
     print(f"Within five strikeouts: {within_five} out of {len(rounded_guesses)} -- {within_five / len(rounded_guesses) * 100:.2f}%\n")
-    print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six / len(rounded_guesses) * 100:.2f}%\n")
+    print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six / len(rounded_guesses) * 100:.2f}%\n\n")
+
+    
+    
+    for i in range(10):
+        try:
+            print(f"Correct guesses for {i} strikeouts: {correct_num_of_so[i][0]} out of {total_num_of_so[i]} -- {correct_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+
+        except ZeroDivisionError:
+            print(f"Correct guesses for {i} strikeouts: {correct_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+
+        try:
+            print(f"Within 1 strikeouts for {i} strikeouts: {within_1_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_1_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 1 strikeouts for {i} strikeouts: {within_1_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+
+        try:
+            print(f"Within 2 strikeouts for {i} strikeouts: {within_2_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_2_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 2 strikeouts for {i} strikeouts: {within_2_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+
+        try:
+            print(f"Within 3 strikeouts for {i} strikeouts: {within_3_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_3_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 3 strikeouts for {i} strikeouts: {within_3_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+        try:
+            print(f"Within 4 strikeouts for {i} strikeouts: {within_4_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_4_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 4 strikeouts for {i} strikeouts: {within_4_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+        try:
+            print(f"Within 5 strikeouts for {i} strikeouts: {within_5_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_5_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 5 strikeouts for {i} strikeouts: {within_5_num_of_so[i][0]} out of {total_num_of_so[i]} -- 0.00%\n")
+        try:
+            print(f"Within 6 strikeouts for {i} strikeouts: {within_6_num_of_so[i][0]} out of {total_num_of_so[i]} -- {within_6_num_of_so[i][0] / total_num_of_so[i] * 100:.2f}%\n")
+        except ZeroDivisionError:
+            print(f"Within 6 strikeouts for {i} strikeouts: {within_6_num_of_so[i]} out of {total_num_of_so[i]} -- 0.00%\n")
+
+
+    # import above data to a csv file
+    with open('prediction_stats/strikeout_data.csv', 'w', newline='') as csvfile:
+        fieldnames = ['strikeouts', 'total_guesses', 'correct_guesses', 'within_1', 'within_2', 'within_3', 'within_4', 'within_5', 'within_6']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for i in range(10):
+            try:
+                writer.writerow({
+                    'strikeouts': i,
+                    'total_guesses': total_num_of_so[i],
+                    'correct_guesses': correct_num_of_so[i][0],
+                    'within_1': within_1_num_of_so[i][0],
+                    'within_2': within_2_num_of_so[i][0],
+                    'within_3': within_3_num_of_so[i][0],
+                    'within_4': within_4_num_of_so[i][0],
+                    'within_5': within_5_num_of_so[i][0],
+                    'within_6': within_6_num_of_so[i][0]
+                })
+            except ZeroDivisionError:
+                writer.writerow({
+                    'strikeouts': i,
+                    'total_guesses': 0,
+                    'correct_guesses': 0,
+                    'within_1': 0,
+                    'within_2': 0,
+                    'within_3': 0,
+                    'within_4': 0,
+                    'within_5': 0,
+                    'within_6': 0
+                })
+        
+        # Write another row with the fieldnames
+        writer.writerow({})
+
+        writer.writerow({
+            'strikeouts': 'strikeouts - percentages',
+            'total_guesses': 'total_guesses',
+            'correct_guesses': 'correct_guesses',
+            'within_1': 'within_1',
+            'within_2': 'within_2',
+            'within_3': 'within_3',
+            'within_4': 'within_4',
+            'within_5': 'within_5',
+            'within_6': 'within_6'
+        })
+
+        for i in range(10):
+            try:
+                writer.writerow({
+                    'strikeouts': i,
+                    'total_guesses': total_num_of_so[i],
+                    'correct_guesses': f'{correct_num_of_so[i][1]} + %',
+                    'within_1': f'{within_1_num_of_so[i][1]} + %',
+                    'within_2': f'{within_2_num_of_so[i][1]} + %',
+                    'within_3': f'{within_3_num_of_so[i][1]} + %',
+                    'within_4': f'{within_4_num_of_so[i][1]} + %',
+                    'within_5': f'{within_5_num_of_so[i][1]} + %',
+                    'within_6': f'{within_6_num_of_so[i][1]} + %'
+                })
+            except ZeroDivisionError:
+                writer.writerow({
+                    'strikeouts': i,
+                    'total_guesses': '0.0 %',
+                    'correct_guesses': '0.0 %',
+                    'within_1': '0.0 %',
+                    'within_2': '0.0 %',
+                    'within_3': '0.0 %',
+                    'within_4': '0.0 %',
+                    'within_5': '0.0 %',
+                    'within_6': '0.0 %'
+                })
+
+
+
+    '''# Print the confusion matrix
+    cm = confusion_matrix(scaled_up_actual_strikeouts, rounded_guesses, labels=np.arange(0, 10))
+    print("Confusion Matrix:")
+    print(cm)
+    # Plot the confusion matrix
+    plt.figure(figsize=(10, 8))
+    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.colorbar()
+    tick_marks = np.arange(10)
+    plt.xticks(tick_marks, np.arange(10), rotation=45)
+    plt.yticks(tick_marks, np.arange(10))
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.tight_layout()
+    plt.show()'''
 
     return predictions
     

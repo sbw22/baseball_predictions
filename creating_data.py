@@ -264,7 +264,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/all_batters_6-4-25.csv" # CHANGE THIS TO THE CORRECT FILE PATH
+        file_path = f"raw_betting_data/all_batters_6-4-25.csv" 
 
         new_total_stats = []
         
