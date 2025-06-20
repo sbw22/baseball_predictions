@@ -124,6 +124,7 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
         within_six += 1 if abs(guess - actual) <= 6 else 0
 
         total_num_of_so[int(actual)] += 1
+
         correct_num_of_so[int(actual)] += 1 if guess == actual else 0
         within_1_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 1 else 0
         within_2_num_of_so[int(actual)] += 1 if abs(guess - actual) <= 2 else 0
@@ -201,14 +202,14 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
 
     # import above data to a csv file
     with open('prediction_stats/strikeout_data.csv', 'w', newline='') as csvfile:
-        fieldnames = ['strikeouts', 'total_guesses', 'correct_guesses', 'within_1', 'within_2', 'within_3', 'within_4', 'within_5', 'within_6']
+        fieldnames = ['actual_strikeouts', 'total_guesses', 'correct_guesses', 'within_1', 'within_2', 'within_3', 'within_4', 'within_5', 'within_6']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
         for i in range(10):
             try:
                 writer.writerow({
-                    'strikeouts': i,
+                    'actual_strikeouts': i,
                     'total_guesses': total_num_of_so[i],
                     'correct_guesses': correct_num_of_so[i][0],
                     'within_1': within_1_num_of_so[i][0],
@@ -220,7 +221,7 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
                 })
             except ZeroDivisionError:
                 writer.writerow({
-                    'strikeouts': i,
+                    'actual_strikeouts': i,
                     'total_guesses': 0,
                     'correct_guesses': 0,
                     'within_1': 0,
@@ -235,7 +236,7 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
         writer.writerow({})
 
         writer.writerow({
-            'strikeouts': 'strikeouts - percentages',
+            'actual_strikeouts': 'actual_strikeouts - percentages',
             'total_guesses': 'total_guesses',
             'correct_guesses': 'correct_guesses',
             'within_1': 'within_1',
@@ -249,7 +250,7 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
         for i in range(10):
             try:
                 writer.writerow({
-                    'strikeouts': i,
+                    'actual_strikeouts': i,
                     'total_guesses': total_num_of_so[i],
                     'correct_guesses': f'{correct_num_of_so[i][1]} + %',
                     'within_1': f'{within_1_num_of_so[i][1]} + %',
@@ -261,7 +262,7 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
                 })
             except ZeroDivisionError:
                 writer.writerow({
-                    'strikeouts': i,
+                    'actual_strikeouts': i,
                     'total_guesses': '0.0 %',
                     'correct_guesses': '0.0 %',
                     'within_1': '0.0 %',
@@ -274,24 +275,66 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
 
 
 
-    # Print the confusion matrix
-    cm = confusion_matrix(scaled_up_actual_strikeouts, rounded_guesses, labels=np.arange(0, 10))
-    print("Confusion Matrix:")
-    print(cm)
-    # Plot the confusion matrix
-    plt.figure(figsize=(10, 8))
+    '''# Print the confusion matrix
+    cm = confusion_matrix(scaled_up_actual_strikeouts, rounded_guesses)
+    plt.figure(figsize=(10, 7))
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     tick_marks = np.arange(10)
-    plt.xticks(tick_marks, np.arange(10), rotation=45)
-    plt.yticks(tick_marks, np.arange(10))
+    plt.xticks(tick_marks, range(10))
+    plt.yticks(tick_marks, range(10))
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
     plt.tight_layout()
-    plt.show()
+    plt.savefig('prediction_stats/confusion_matrix.png')
+    plt.show()'''
 
-    return predictions
+
+    # --- Heatmap for counts ---
+    counts_matrix = np.array([
+        [correct_num_of_so[i][0], within_1_num_of_so[i][0], within_2_num_of_so[i][0], within_3_num_of_so[i][0],
+         within_4_num_of_so[i][0], within_5_num_of_so[i][0], within_6_num_of_so[i][0]]
+        for i in range(10)
+    ])
+    plt.figure(figsize=(10, 7))
+    plt.imshow(counts_matrix, cmap='coolwarm', aspect='auto', vmin=0, vmax=np.max(counts_matrix))
+    plt.colorbar(label='Count')
+    plt.xticks(range(7), ['Exact', 'Within 1', 'Within 2', 'Within 3', 'Within 4', 'Within 5', 'Within 6'])
+    plt.yticks(range(10), [str(i) for i in range(10)])
+    for i in range(counts_matrix.shape[0]):
+        for j in range(counts_matrix.shape[1]):
+            plt.text(j, i, counts_matrix[i, j], ha='center', va='center', color='black', fontsize=10, alpha=0.8)
+    plt.title('Strikeout Prediction Counts Heatmap')
+    plt.xlabel('Prediction Accuracy')
+    plt.ylabel('Actual Strikeouts')
+    plt.tight_layout()
+    plt.savefig('prediction_stats/strikeout_counts_heatmap.png', dpi=200)
+    plt.close()
+
+    # --- Heatmap for percentages ---
+    percent_matrix = np.array([
+        [correct_num_of_so[i][1], within_1_num_of_so[i][1], within_2_num_of_so[i][1], within_3_num_of_so[i][1],
+         within_4_num_of_so[i][1], within_5_num_of_so[i][1], within_6_num_of_so[i][1]]
+        for i in range(10)
+    ])
+    plt.figure(figsize=(10, 7))
+    plt.imshow(percent_matrix, cmap='coolwarm', aspect='auto', vmin=0, vmax=100)
+    plt.colorbar(label='Percent')
+    plt.xticks(range(7), ['Exact', 'Within 1', 'Within 2', 'Within 3', 'Within 4', 'Within 5', 'Within 6'])
+    plt.yticks(range(10), [str(i) for i in range(10)])
+    for i in range(percent_matrix.shape[0]):
+        for j in range(percent_matrix.shape[1]):
+            plt.text(j, i, f"{percent_matrix[i, j]:.1f}%", ha='center', va='center', color='black', fontsize=10, alpha=0.8)
+    plt.title('Strikeout Prediction Percentages Heatmap')
+    plt.xlabel('Prediction Accuracy')
+    plt.ylabel('Actual Strikeouts')
+    plt.tight_layout()
+    plt.savefig('prediction_stats/strikeout_percentages_heatmap.png', dpi=200)
+    plt.close()
+    
+
+    return
     
 
 
