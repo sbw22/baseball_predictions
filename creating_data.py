@@ -127,80 +127,37 @@ class Baseball_player_data:
 
             if line[0] == "-":   # Counts the number of lines in the boxscore 
                 line_counter += 1
-                print(f"Found separator line {line_counter}: {line[:50]}...")  # Debug output
                 continue
 
                 
             if line_counter == 7: # Get the pitcher data
                 halfway_index = line.find("|")
-                if halfway_index == -1:  # No separator found, skip this line
-                    continue
-
-                # Safety check for line length before accessing specific positions
-                if len(line) < 67:
-                    print(f"Warning: Line too short for strikeout data: {line}")
-                    continue
 
                 pitcher_1_name = line.split(' ')[0] # Get the 1st pitcher's name from the line
                 if pitcher_1_name == "":
                     continue
                 if pitcher_1_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
                         pitcher_1_name = pitcher_1_name[:-1]
-                
-                # Try to get strikeouts, with error handling
-                try:
-                    pitcher_1_strikeouts = line[66] # Get the pitcher strikeouts from the line
-                    if not pitcher_1_strikeouts.isdigit():
-                        # If not a digit, try to find strikeouts in a different way
-                        line_parts = line.split()
-                        pitcher_1_strikeouts = '0'  # Default fallback
-                        for part in line_parts:
-                            if part.isdigit():
-                                pitcher_1_strikeouts = part
-                                break
-                except IndexError:
-                    print(f"Error getting pitcher 1 strikeouts from line: {line}")
-                    pitcher_1_strikeouts = '0'
-                
+                pitcher_1_strikeouts = line[66] # Get the pitcher strikeouts from the line
                 single_pitcher_data_1 = [pitcher_1_name, pitcher_1_strikeouts] # Create a list of the pitcher's name and strikeouts
                 
 
                 half_line = line[halfway_index+2:] # Reset the line to the second half of the line
-                
-                # Safety check for half_line length
-                if len(half_line) < 67:
-                    print(f"Warning: Half-line too short for strikeout data: {half_line}")
-                    continue
-                
                 pitcher_2_name = half_line.split(' ')[0] # Get the 2nd pitcher's name from the line
                 if pitcher_2_name == "":
                     continue
                 if pitcher_2_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
                         pitcher_2_name = pitcher_2_name[:-1]
-                
-                # Try to get strikeouts for pitcher 2, with error handling
-                try:
-                    pitcher_2_strikeouts = half_line[66] # Get the pitcher strikeouts from the line
-                    if not pitcher_2_strikeouts.isdigit():
-                        # If not a digit, try to find strikeouts in a different way
-                        half_line_parts = half_line.split()
-                        pitcher_2_strikeouts = '0'  # Default fallback
-                        for part in half_line_parts:
-                            if part.isdigit():
-                                pitcher_2_strikeouts = part
-                                break
-                except IndexError:
-                    print(f"Error getting pitcher 2 strikeouts from half_line: {half_line}")
-                    pitcher_2_strikeouts = '0'
-                
+                pitcher_2_strikeouts = half_line[66] # Get the pitcher strikeouts from the line
+                # print(f"pitcher_2_strikeouts = {pitcher_2_strikeouts}")
                 single_pitcher_data_2 = [pitcher_2_name, pitcher_2_strikeouts] # Create a list of the pitcher's name and strikeouts
                 
 
                 return [single_pitcher_data_1, single_pitcher_data_2] # Return the list of the pitcher's name and strikeouts
+                
+
+                
         
-        # If no pitcher data found in the expected section, return None or empty data
-        print("Warning: No pitcher data found in line_counter == 7 section")
-        return None
 
 
 
@@ -245,8 +202,8 @@ class Baseball_player_data:
 
                 batter_names = self.get_batter_names(game_array)
 
-                if pitcher_data == False or batter_names == False or pitcher_data is None: # If there is no pitcher data or batter names, skip the game
-                    print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet or pitcher data not found. Skipping game.")
+                if pitcher_data == False or batter_names == False: # If there is no pitcher data or batter names, skip the game
+                    print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet. Skipping game.")
                     continue
 
                 team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
