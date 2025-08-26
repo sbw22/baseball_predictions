@@ -18,8 +18,7 @@ def load_data():
     raw_batter_data = pd.read_csv(batter_file_path)
     created_total_stats = pd.read_csv("created_data/created_total_stats.csv")
 
-    # print(f"{raw_pitcher_data}")
-    print(f"{raw_pitcher_data}")
+    # print(f"raw pitcher data = {raw_pitcher_data}")
     # print(f"Batter data shape: {batter_data}")
 
     return raw_pitcher_data, raw_batter_data, created_total_stats
@@ -173,6 +172,7 @@ def calculate_batter_correlations(batter_data, batter_stat_titles):
     print(f"batter_stat_titles: {batter_stat_titles}")
 
     avg_so_list = [data[1] for data in batter_data]  # Extract average strikeouts from each batter's data
+    print(f"len of avg_so_list: {len(avg_so_list)}")
 
     corr_list = []  # List to hold the correlation coefficients
 
@@ -224,12 +224,16 @@ def calculate_batter_correlations(batter_data, batter_stat_titles):
         pass
 
 
-    for stat in corr_list:
+    '''for stat in corr_list:
 
         if np.isnan(stat[0]):  # Check if the correlation coefficient is NaN
             print(f"Error: {stat[0]}, {stat[1]} is not a float")
             corr_list.remove(stat)  # Remove the NaN correlation coefficient from the list
-            # i -= 1  # Decrement the index to account for the removed item
+            # i -= 1  # Decrement the index to account for the removed item'''
+
+    corr_list = [
+        stat for stat in corr_list if not np.isnan(stat[0])
+    ]
             
     
     sorted_corr_list = sorted(corr_list, key=lambda x: abs(x[0]), reverse=True)  # Sort the correlation list in descending order
@@ -237,6 +241,8 @@ def calculate_batter_correlations(batter_data, batter_stat_titles):
     print(f"Correlation coefficients for pitcher stats from greatest to least:")
     for corr, title in sorted_corr_list:
         print(f"{title}: {corr:.3f}")  # Print the correlation coefficient and the stat title
+    
+    print(f"len of corr_list: {len(corr_list)}")
 
 
 
@@ -263,17 +269,17 @@ def main():
 
 
 
-    # total_pitcher_data = get_avg_so(raw_pitcher_data, created_total_stats)  # total_pitcher data is a list of lists, where each list is a pitcher, their average strikeouts, and their stats
+    total_pitcher_data = get_avg_so(raw_pitcher_data, created_total_stats)  # total_pitcher data is a list of lists, where each list is a pitcher, their average strikeouts, and their stats
     # Returns [pitcher_name, avg_strikeouts, [stat_1, stat_2, ...]]
 
-    total_batter_data = get_avg_batter_stats(raw_batter_data, created_total_stats)  # Get the average batter stats (not implemented yet)
+    # total_batter_data = get_avg_batter_stats(raw_batter_data, created_total_stats)  # Get the average batter stats (not implemented yet)
     # Returns [pitcher_name, avg_strikeouts, [pitcher_stat_1, pitcher_stat_2, ...], [batter_stat_1, batter_stat_2, ...]]          Remember that some pitcher stats were skipped, so I might have to pull from the data found in get_avg_so().
 
     # print(f"After total_pitcher_data: {len(total_pitcher_data)} pitchers found")
-    print(f"After total_batter_data: {len(total_batter_data[0][3])}\n")
+    # print(f"After total_batter_data: {len(total_batter_data[0][3])}\n")
 
-    # calculate_pitcher_correlations(total_pitcher_data, pitcher_stat_titles)  # Calculate the correlations between the average strikeouts and each stat for each pitcher
-    calculate_batter_correlations(total_batter_data, batter_stat_titles)
+    calculate_pitcher_correlations(total_pitcher_data, pitcher_stat_titles)  # Calculate the correlations between the average strikeouts and each stat for each pitcher
+    # calculate_batter_correlations(total_batter_data, batter_stat_titles)
 
 if __name__ == "__main__":
     main()

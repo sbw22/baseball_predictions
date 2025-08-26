@@ -79,19 +79,38 @@ class Baseball_player_data:
         line_23  = game_array[23]
         # ab stat is around index 43 btw
         ab_index = 3
+        
         potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
+        potential_ab_of_team = []
+        for i in range(ab_index, ab_index+7):
+            try:
+                potential_ab_of_team.append(int(game_array[3].split(" ")[i])) # Gets the potential at bats of the team (7 batters max)
+            except ValueError:
+                continue
+        sum_of_potential_ab_of_team = sum(potential_ab_of_team)  # Sums the potential at bats of the team to see if the game has started yet
+        
+        # print(game_array[3])
+        #print(f"potential_ab = {potential_ab}")
         while True:
             try:
                 temp = int(potential_ab) # seeing if the at bat is an integer
                 break
             except ValueError:
                 ab_index += 1
-                potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
+                potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the batter at the top of the inning
+        
 
-        if potential_ab == "0": # If the game hasn't started, get the pitcher data from the 23rd line
-            
-            pitcher_1_name = line_23.split(' ')[1]
-            pitcher_2_name = line_23.split(' ')[3]
+
+        if sum_of_potential_ab_of_team == 0: # If the game hasn't started, get the pitcher data from the 23rd line
+            # print(f"line_23 = {line_23}")
+            try:
+                pitcher_1_name = line_23.split(' ')[1]
+                pitcher_2_name = line_23.split(' ')[3]
+            except IndexError:
+                print(f"Error: line_23")
+                for item in game_array:
+                    print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+                return
             print(f"Pitchers from game that hasn't started yet:")
             print(f"pitcher_1_name = {pitcher_1_name}")
             print(f"pitcher_2_name = {pitcher_2_name}")
@@ -99,6 +118,7 @@ class Baseball_player_data:
             pitcher_1_data = [pitcher_1_name, '-1'] # Remember that -1 means the game hasn't started yet
             pitcher_2_data = [pitcher_2_name, '-1']
             return [pitcher_1_data, pitcher_2_data]
+
         
         
         for i in range(len(game_array)-1):
@@ -107,37 +127,80 @@ class Baseball_player_data:
 
             if line[0] == "-":   # Counts the number of lines in the boxscore 
                 line_counter += 1
+                print(f"Found separator line {line_counter}: {line[:50]}...")  # Debug output
                 continue
 
                 
             if line_counter == 7: # Get the pitcher data
                 halfway_index = line.find("|")
+                if halfway_index == -1:  # No separator found, skip this line
+                    continue
+
+                # Safety check for line length before accessing specific positions
+                if len(line) < 67:
+                    print(f"Warning: Line too short for strikeout data: {line}")
+                    continue
 
                 pitcher_1_name = line.split(' ')[0] # Get the 1st pitcher's name from the line
                 if pitcher_1_name == "":
                     continue
                 if pitcher_1_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
                         pitcher_1_name = pitcher_1_name[:-1]
-                pitcher_1_strikeouts = line[66] # Get the pitcher strikeouts from the line
+                
+                # Try to get strikeouts, with error handling
+                try:
+                    pitcher_1_strikeouts = line[66] # Get the pitcher strikeouts from the line
+                    if not pitcher_1_strikeouts.isdigit():
+                        # If not a digit, try to find strikeouts in a different way
+                        line_parts = line.split()
+                        pitcher_1_strikeouts = '0'  # Default fallback
+                        for part in line_parts:
+                            if part.isdigit():
+                                pitcher_1_strikeouts = part
+                                break
+                except IndexError:
+                    print(f"Error getting pitcher 1 strikeouts from line: {line}")
+                    pitcher_1_strikeouts = '0'
+                
                 single_pitcher_data_1 = [pitcher_1_name, pitcher_1_strikeouts] # Create a list of the pitcher's name and strikeouts
                 
 
                 half_line = line[halfway_index+2:] # Reset the line to the second half of the line
+                
+                # Safety check for half_line length
+                if len(half_line) < 67:
+                    print(f"Warning: Half-line too short for strikeout data: {half_line}")
+                    continue
+                
                 pitcher_2_name = half_line.split(' ')[0] # Get the 2nd pitcher's name from the line
                 if pitcher_2_name == "":
                     continue
                 if pitcher_2_name[-1] == ",": # Remove the comma at the end of the pitcher's name (if there is one)
                         pitcher_2_name = pitcher_2_name[:-1]
-                pitcher_2_strikeouts = half_line[66] # Get the pitcher strikeouts from the line
-                # print(f"pitcher_2_strikeouts = {pitcher_2_strikeouts}")
+                
+                # Try to get strikeouts for pitcher 2, with error handling
+                try:
+                    pitcher_2_strikeouts = half_line[66] # Get the pitcher strikeouts from the line
+                    if not pitcher_2_strikeouts.isdigit():
+                        # If not a digit, try to find strikeouts in a different way
+                        half_line_parts = half_line.split()
+                        pitcher_2_strikeouts = '0'  # Default fallback
+                        for part in half_line_parts:
+                            if part.isdigit():
+                                pitcher_2_strikeouts = part
+                                break
+                except IndexError:
+                    print(f"Error getting pitcher 2 strikeouts from half_line: {half_line}")
+                    pitcher_2_strikeouts = '0'
+                
                 single_pitcher_data_2 = [pitcher_2_name, pitcher_2_strikeouts] # Create a list of the pitcher's name and strikeouts
                 
 
                 return [single_pitcher_data_1, single_pitcher_data_2] # Return the list of the pitcher's name and strikeouts
-                
-
-                
         
+        # If no pitcher data found in the expected section, return None or empty data
+        print("Warning: No pitcher data found in line_counter == 7 section")
+        return None
 
 
 
@@ -182,8 +245,8 @@ class Baseball_player_data:
 
                 batter_names = self.get_batter_names(game_array)
 
-                if pitcher_data == False or batter_names == False: # If there is no pitcher data or batter names, skip the game
-                    print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet. Skipping game.")
+                if pitcher_data == False or batter_names == False or pitcher_data is None: # If there is no pitcher data or batter names, skip the game
+                    print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet or pitcher data not found. Skipping game.")
                     continue
 
                 team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
@@ -212,7 +275,7 @@ class Baseball_player_data:
     def add_adv_pitcher_stats(self, total_stats):
             
         
-        file_path = f"raw_betting_data/all_pitchers_6-9-25.csv"
+        file_path = f"raw_betting_data/all_pitchers_8-7-25.csv"
 
         
 
@@ -264,7 +327,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/all_batters_6-4-25.csv" 
+        file_path = f"raw_betting_data/all_batters_6-4-25.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
 
         new_total_stats = []
         
@@ -476,8 +539,8 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "05/7/"
-    end_month_and_day = "06/7/"
+    start_month_and_day = "06/25/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    end_month_and_day = "07/25/"
     start_year = 2016
     end_year = 2025
 
@@ -512,3 +575,4 @@ def main():
 if __name__ == "__main__":
      main()
          
+
