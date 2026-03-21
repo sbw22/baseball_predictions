@@ -1,5 +1,7 @@
 import numpy as np
+import os
 import random
+import tensorflow as tf
 from random import randint
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -22,9 +24,20 @@ import csv
 import json
 import joblib
 import math
-from keras.losses import Huber
+from keras.losses import Huber, LogCosh
 from keras.callbacks import EarlyStopping
 from keras.callbacks import ModelCheckpoint
+# import TweedieLoss as Tweedie
+
+
+# ---- Seed control ---- # This adds reproducability to the output
+def set_seeds(seed=42):
+    np.random.seed(seed)        # NumPy
+    random.seed(seed)           # Python built-in
+    tf.random.set_seed(seed)    # TensorFlow/Keras
+    os.environ["PYTHONHASHSEED"] = str(seed)
+
+set_seeds()
 
 
 
@@ -34,31 +47,39 @@ def create_model(X):
 
     model = Sequential([
         Input(shape=(X.shape[1],)),
-        Dense(256, activation='relu'),
-        BatchNormalization(),
+        Dense(256, activation='silu'),
+        LayerNormalization(),
         Dropout(0.1),
 
-        Dense(512, activation='relu'),
-        BatchNormalization(),
+        Dense(512, activation='silu'),
+        LayerNormalization(),
         Dropout(0.1),
 
-        Dense(256, activation='relu'),
-        BatchNormalization(),
+        Dense(512, activation='silu'),
+        LayerNormalization(),
         Dropout(0.1),
 
-        Dense(128, activation='relu'),
-        BatchNormalization(),
+        Dense(256, activation='silu'),
+        LayerNormalization(),
         Dropout(0.1),
 
-        Dense(32, activation='relu'),
-        BatchNormalization(),
+        Dense(128, activation='silu'),
+        LayerNormalization(),
         Dropout(0.1),
+
+        Dense(32, activation='silu'),
+        LayerNormalization(),
+        Dropout(0.1),
+
+        
 
         Dense(1)
     ])
 
     # Compile the model
-    model.compile(loss=Huber(delta=1.0), optimizer='adam', metrics=['mae'])
+    model.compile(loss=Huber(delta=1.0), optimizer='AdamW', metrics=['mae'])
+    # List of losses to try: Huber, MAE, MSE, LogCosh, QuantileLoss (need to specify quantiles), Poisson, Tweedie, CategoricalCrossentropy (for classification), BinaryCrossentropy (for binary classification)
+    # loss=Huber(delta=1.0)
 
     return model
 
@@ -68,7 +89,7 @@ def train_model(X, y, strikeout_scaler, model):
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
 
     # Train the model
-    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint])
+    model.fit(X, y, epochs=100, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint])
 
     return model
 
@@ -159,8 +180,11 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
 
         avg_error += abs(guess - actual)
 
-        master_actual_normal_count[int(actual)] += 1
-        master_guess_normal_count[int(guess)] += 1
+        try:  # I think this part of the code is throwing an error (especially second line) because the guess is -0.0 or 10 (something less than 0 or greater than 9)
+            master_actual_normal_count[int(actual)] += 1
+            master_guess_normal_count[int(guess)] += 1
+        except:
+            continue
 
         match_counter += 1 if guess == actual else 0
         within_one += 1 if abs(guess - actual) <= 1 else 0

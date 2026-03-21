@@ -78,30 +78,45 @@ class Baseball_player_data:
         
         line_23  = game_array[23]
         # ab stat is around index 43 btw
-        ab_index = 3
+        first_batter_index = 4
+        ab_index = 4 # This stat is the index of the at bats in the batter stats. 
         
-        potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
+        potential_ab = game_array[4].split(" ")[ab_index] # Gets the number of at bats from the first batter at the top of the inning
         potential_ab_of_team = []
-        for i in range(ab_index, ab_index+7):
+        '''for item in game_array:
+            print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        return'''
+        for i in range(first_batter_index, first_batter_index+7):
             try:
-                potential_ab_of_team.append(int(game_array[3].split(" ")[i])) # Gets the potential at bats of the team (7 batters max)
+                # print(f"game_array[4].split(' '): {game_array[i].split(' ')}")
+                player_data = game_array[i].split(" ")
+                player_data = [item for item in player_data if item != ''] # Remove empty strings from the list
+                # print(f"player_data after removing empty strings: {player_data}")
+                player_ab = int(player_data[ab_index]) # Seeing if the at bat is an integer
+                # print(f"player_ab = {player_ab}")
+                potential_ab_of_team.append(player_ab) # Gets the potential at bats of the team (7 batters max)
             except ValueError:
+                # print(f"couldn't convert {game_array[i].split(' ')[ab_index]} to int")
                 continue
         sum_of_potential_ab_of_team = sum(potential_ab_of_team)  # Sums the potential at bats of the team to see if the game has started yet
         
         # print(game_array[3])
         #print(f"potential_ab = {potential_ab}")
-        while True:
+        '''while True:
             try:
                 temp = int(potential_ab) # seeing if the at bat is an integer
                 break
             except ValueError:
                 ab_index += 1
-                potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the batter at the top of the inning
+                potential_ab = game_array[3].split(" ")[ab_index] # Gets the number of at bats from the batter at the top of the inning'''
         
 
 
         if sum_of_potential_ab_of_team == 0: # If the game hasn't started, get the pitcher data from the 23rd line
+            '''for item in game_array:
+                print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")'''
+            print(f"No players with At Bats were found. The game hasn't started yet.")
+            # return
             # print(f"line_23 = {line_23}")
             try:
                 pitcher_1_name = line_23.split(' ')[1]
@@ -111,15 +126,20 @@ class Baseball_player_data:
                 for item in game_array:
                     print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
                 return
+            
+            '''for item in game_array:
+                    print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")'''
+                
             print(f"Pitchers from game that hasn't started yet:")
             print(f"pitcher_1_name = {pitcher_1_name}")
             print(f"pitcher_2_name = {pitcher_2_name}")
 
+
             pitcher_1_data = [pitcher_1_name, '-1'] # Remember that -1 means the game hasn't started yet
             pitcher_2_data = [pitcher_2_name, '-1']
-            return [pitcher_1_data, pitcher_2_data]
+            return [pitcher_1_data, pitcher_2_data] # ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 
-        
+        # Figure out why pitcher_1_data and pitcher_2_data isn't being used
         
         for i in range(len(game_array)-1):
 
@@ -209,8 +229,12 @@ class Baseball_player_data:
                 team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
 
 
-            
-                pitcher_1_data, pitcher_2_data = pitcher_data[0], pitcher_data[1] # Get the pitcher data from the list
+                try: 
+                    pitcher_1_data, pitcher_2_data = pitcher_data[0], pitcher_data[1] # Get the pitcher data from the list
+                except TypeError:
+                    print(f"Error: pitcher_data = {pitcher_data}")
+                    continue
+
 
                 # format here is [pitcher_name, strikeouts, opposing player names, year]
 
@@ -496,8 +520,8 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "06/25/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "07/25/"
+    start_month_and_day = "08/23/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    end_month_and_day = "09/23/"
     start_year = 2016
     end_year = 2025
 
@@ -532,4 +556,3 @@ def main():
 if __name__ == "__main__":
      main()
          
-
