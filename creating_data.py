@@ -129,6 +129,14 @@ class Baseball_player_data:
             
             '''for item in game_array:
                     print(f"\n{item} &&&&&&&&&&&&&&&&&&&&&&&&&&&&&")'''
+            try:
+                if pitcher_1_name[-1] == "," or pitcher_1_name[-1] == ")": # Remove the comma at the end of the pitcher's name (if there is one)
+                    pitcher_1_name = pitcher_1_name[:-1]
+                if pitcher_2_name[-1] == "," or pitcher_2_name[-1] == ")": # Remove the comma at the end
+                    pitcher_2_name = pitcher_2_name[:-1]
+            except IndexError:
+                print(f"Error: pitcher_1_name or pitcher_2_name is not long enough to have a last character. pitcher_1_name = {pitcher_1_name}, pitcher_2_name = {pitcher_2_name}")
+
                 
             print(f"Pitchers from game that hasn't started yet:")
             print(f"pitcher_1_name = {pitcher_1_name}")
@@ -254,6 +262,8 @@ class Baseball_player_data:
 
 
     def add_adv_pitcher_stats(self, total_stats):
+
+        print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
         
         file_path = f"raw_betting_data/all_pitchers_8-7-25.csv"
@@ -281,25 +291,26 @@ class Baseball_player_data:
 
                     full_name = row[0]
                     last_name = full_name.split(", ")[0] # Get the last name from the full name
-
-
-                    if pitcher_name == last_name and pitcher_year == int(chart_year):
+                    # WHEN YOU GET SUFFICIENT DATA FOR 2026 SEASON, BRING BACK THE YEAR CHECK
+                    if pitcher_name == last_name and int(chart_year) == 2025: # and pitcher_year == int(chart_year):
                         adv_pitcher_data = row[3:] 
                         # Might want to remove the indexes for row, to see if the code later in the script is successful at removing all empty stats
 
                         same_name_counter += 1
+                        print(f"\nFound a match for {pitcher_name} in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.\n") 
 
                 if same_name_counter == 1: # If the name is found in the csv file only once, add the data to the list
                     # new format is [pitcher_name, strikeouts, opposing batter names, year, adv_pitcher_data]
                     pitcher_data.append(adv_pitcher_data)
-                    
+                    print(f"\npitcher_data after adding advanced stats: {pitcher_data}\n")
 
         new_total_stats = []
-        
+        print(f"total_stats before filtering: {total_stats}")
         for pitcher_data in total_stats:
             if len(pitcher_data) > 4:
                 new_total_stats.append(pitcher_data)  # Remove the pitcher data if it doesn't have advanced stats
-            
+        
+        print(f"\nnew_total_stats after adding advanced pitcher stats: {new_total_stats}\n")
 
         return new_total_stats           
 
@@ -335,8 +346,9 @@ class Baseball_player_data:
                         full_name = row[0]
                         last_name = full_name.split(", ")[0] # Get the last name from the full name
 
-
-                        if batter_name == last_name and batter_year == int(chart_year): # If the batter name and year match the csv file
+                        # WHEN YOU GET SUFFICIENT DATA FOR 2026 SEASON, BRING BACK THE YEAR CHECK
+                        # print(f"BRING YEAR BACK WHEN SUFFIENCIENT DATA FOR 2026 SEASON IS AVAILABLE.")
+                        if batter_name == last_name and int(chart_year) == 2025: # and batter_year == int(chart_year): # If the batter name and year match the csv file
                             same_name_counter += 1
                             adv_batter_data = row[3:] 
                             batter_info = [batter_name, adv_batter_data] # Create a list of the batter's name and advanced stats
@@ -530,6 +542,8 @@ def main():
     total_stats = historic_player_data.add_adv_batter_stats(total_stats)  # Adds advanced stats to the batter data
     total_stats = historic_player_data.convert_to_float(total_stats)  # Converts the stats to float
     total_stats = historic_player_data.calculate_avg_batter_stats(total_stats)  # Calculates the average batter stats for each pitcher
+
+    print(f"len of total_stats after processing: {len(total_stats)}")
 
     historic_player_data.write_to_csv(total_stats)  # Writes the total stats to a csv file
     # format is [pitcher_name, strikeouts, year, adv_pitcher_data, batter_info]

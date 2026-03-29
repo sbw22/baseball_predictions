@@ -42,8 +42,8 @@ def get_future_stats():
     end_month_and_day = str(formatted_date[0:6])
     # start_month_and_day = "06/04/"
     # end_month_and_day = "06/04/"
-    start_year = 2025
-    end_year = 2025
+    start_year = 2026
+    end_year = 2026
 
     boilerplate_month_and_day = "05/02/"
     boilerplate_year = 2022
@@ -64,7 +64,8 @@ def get_future_stats():
 
 
     future_stats = new_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
-    
+    for item in future_stats:
+        print(f"future_stats item: {item}")
     try:
         print(f"future_stats[[0]: {future_stats[0]}")
     except:
@@ -73,17 +74,19 @@ def get_future_stats():
     game_visual(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets visual of boxscores
 
     future_stats = new_player_data.add_adv_pitcher_stats(future_stats)  # Adds advanced stats to the pitcher data
+    print(f"future_stats after adding adv pitcher stats: {future_stats}")
     future_stats = new_player_data.add_adv_batter_stats(future_stats)  # Adds advanced stats to the batter data
     future_stats = new_player_data.convert_to_float(future_stats)  # Converts the stats to float
     future_stats = new_player_data.calculate_avg_batter_stats(future_stats)  # Calculates the average batter stats for each pitcher
 
     future_stats = boilerplate_stats + future_stats  # Adds the boilerplate stats to the future stats
+
+    print(f"future_stats after adding all stats: {future_stats}")
+    # fdgs
     
     # print(f"future_stats after calculate_avg_batter_stats: {future_stats}")
 
     return future_stats
-
-
 
 
 def game_visual(start_month_and_day, end_month_and_day, start_year, end_year):
@@ -118,8 +121,6 @@ def game_visual(start_month_and_day, end_month_and_day, start_year, end_year):
                 print() # to get space between games
 
 
-
-
 def predict_strikeouts(model, X, strikeout_scaler, future_stats):
     # Evaluate the model
     predictions = model.predict(X, batch_size=1, verbose=0)
@@ -139,11 +140,6 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
 
 
     return predictions
-
-
-
-    
-
 
 
 def main():

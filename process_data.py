@@ -159,6 +159,8 @@ def main():
 
     total_stats = process_player_data.import_data()
 
+    print(f"total_stats: {len(total_stats)}")
+
     # print(f"total_stats: {len(total_stats[0][4])}")
 
     processed_strikeouts, strikeout_scaler = process_player_data.process_strikeouts(total_stats)
@@ -196,6 +198,8 @@ def main():
 
     print("Feature matrix X shape:", X.shape)
     print("Target vector y shape:", y.shape)
+
+
 
 
     joblib.dump(X, "processed_data/X.joblib")

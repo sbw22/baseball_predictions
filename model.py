@@ -47,29 +47,29 @@ def create_model(X):
 
     model = Sequential([
         Input(shape=(X.shape[1],)),
-        Dense(256, activation='silu'),
-        LayerNormalization(),
-        Dropout(0.1),
+        # Dense(256, activation='silu'),
+        # LayerNormalization(),
+        # Dropout(0.1),
 
         Dense(512, activation='silu'),
         LayerNormalization(),
         Dropout(0.1),
 
-        Dense(512, activation='silu'),
-        LayerNormalization(),
-        Dropout(0.1),
+        # Dense(512, activation='silu'),
+        # LayerNormalization(),
+        # Dropout(0.1),
 
         Dense(256, activation='silu'),
         LayerNormalization(),
-        Dropout(0.1),
+        # Dropout(0.1),
 
         Dense(128, activation='silu'),
         LayerNormalization(),
-        Dropout(0.1),
+        # Dropout(0.1),
 
         Dense(32, activation='silu'),
         LayerNormalization(),
-        Dropout(0.1),
+        # Dropout(0.1),
 
         
 
@@ -77,7 +77,7 @@ def create_model(X):
     ])
 
     # Compile the model
-    model.compile(loss=Huber(delta=1.0), optimizer='AdamW', metrics=['mae'])
+    model.compile(loss=Huber(delta=100.0), optimizer='AdamW', metrics=['mae'])
     # List of losses to try: Huber, MAE, MSE, LogCosh, QuantileLoss (need to specify quantiles), Poisson, Tweedie, CategoricalCrossentropy (for classification), BinaryCrossentropy (for binary classification)
     # loss=Huber(delta=1.0)
 
@@ -85,7 +85,7 @@ def create_model(X):
 
 def train_model(X, y, strikeout_scaler, model):
 
-    early_stop = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_loss', patience=30, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
 
     # Train the model
@@ -241,18 +241,18 @@ def print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_
                         continue
 
                     # total_actual_strikeouts += num_of_so[j]
-                    print(f"j = {j}")
+                    # print(f"j = {j}")
                     # total_actual_strikeouts += master_actual_normal_count[j]
                     total_actual_strikeouts += master_guess_normal_count[j]
 
 
                     '''if abs(j - i) <= within_n: # If the index is within n distance from the guess, we add it to the count
                        total_actual_strikeouts += num_of_so[j]'''
-                print(f"\n")
+                # print(f"\n")
             else:
                 # total_actual_strikeouts = master_actual_normal_count[i]
                 total_actual_strikeouts = master_guess_normal_count[i]
-                print(f"\n")
+                # rint(f"\n")
             
             # Where I am trying to impliment the below list, might delete later
             total_actual_strikeouts = master_guess_normal_count[i]
@@ -481,6 +481,10 @@ def main():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+    print(f"len of y_train: {len(y_train)}")
+    print(f"len of y_test: {len(y_test)}")
+
+    
 
     model = create_model(X)
 
