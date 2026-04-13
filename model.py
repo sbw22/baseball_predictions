@@ -77,7 +77,7 @@ def create_model(X):
     ])
 
     # Compile the model
-    model.compile(loss=Huber(delta=100.0), optimizer='AdamW', metrics=['mae'])
+    model.compile(loss='mse', optimizer='AdamW', metrics=['mae', tf.keras.metrics.RootMeanSquaredError(name='rmse')])
     # List of losses to try: Huber, MAE, MSE, LogCosh, QuantileLoss (need to specify quantiles), Poisson, Tweedie, CategoricalCrossentropy (for classification), BinaryCrossentropy (for binary classification)
     # loss=Huber(delta=1.0)
 
@@ -87,9 +87,12 @@ def train_model(X, y, strikeout_scaler, model):
 
     early_stop = EarlyStopping(monitor='val_loss', patience=30, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
+    y_unscaled = strikeout_scaler.inverse_transform(y.reshape(-1, 1)).ravel()
+    z = (y_unscaled - y_unscaled.mean()) / (y_unscaled.std() + 1e-8)
+    sample_weight = 1.0 + 0.5 * np.maximum(0.0, z - 1.0)
 
     # Train the model
-    model.fit(X, y, epochs=100, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint])
+    model.fit(X, y, epochs=100, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint], sample_weight=sample_weight)
 
     return model
 
@@ -495,7 +498,7 @@ def main():
 
 
     # Save the model
-    model.save('model_and_scalers/trained_strikeout_model.h5')  # Save the full model to a file
+    model.save('model_and_scalers/trained_strikeout_model.keras')  # Save the full model to a file | Note: Changed from .h5 to .keras
 
 
     # print(X.shape, y.shape)

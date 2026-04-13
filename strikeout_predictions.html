@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Strikeout Predictions</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f5f4f0;
+      --bg-tertiary: #eeece6;
+      --text-primary: #1a1a18;
+      --text-secondary: #5f5e5a;
+      --text-tertiary: #9b9a95;
+      --border: rgba(0,0,0,0.12);
+      --border-md: rgba(0,0,0,0.22);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e1e1c;
+        --bg-secondary: #2a2a27;
+        --bg-tertiary: #333330;
+        --text-primary: #f0ede6;
+        --text-secondary: #a8a69f;
+        --text-tertiary: #6b6964;
+        --border: rgba(255,255,255,0.1);
+        --border-md: rgba(255,255,255,0.2);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    .page { max-width: 700px; margin: 0 auto; }
+
+    .header { text-align: center; margin-bottom: 2.5rem; }
+    .header-eyebrow {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 0.5rem;
+    }
+    .header-title { font-size: 28px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.35rem; }
+    .header-date  { font-size: 14px; color: var(--text-secondary); }
+    .stitches { display: flex; justify-content: center; gap: 6px; margin-top: 1.2rem; }
+    .stitch {
+      width: 20px; height: 5px; border-radius: 3px;
+      background: var(--bg-secondary); border: 0.5px solid var(--border-md);
+    }
+
+    .summary-bar {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px; margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg); border-radius: var(--radius-md);
+      padding: 0.9rem 1rem; border: 0.5px solid var(--border);
+    }
+    .stat-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .stat-value { font-size: 22px; font-weight: 500; color: var(--text-primary); }
+
+    .toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .sort-btn {
+      font-size: 13px; padding: 5px 13px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-md); background: transparent;
+      color: var(--text-secondary); cursor: pointer; font-family: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sort-btn:hover { background: var(--bg-secondary); color: var(--text-primary); }
+    .sort-btn.active { background: var(--bg); color: var(--text-primary); border-color: var(--border-md); }
+
+    .pitcher-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .pitcher-card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1rem 1.25rem;
+      display: flex; align-items: center; gap: 16px; transition: border-color 0.15s;
+    }
+    .pitcher-card:hover { border-color: var(--border-md); }
+
+    .rank { font-size: 12px; color: var(--text-tertiary); width: 20px; text-align: right; flex-shrink: 0; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 500; flex-shrink: 0;
+    }
+    .pitcher-info { flex: 1; min-width: 0; }
+    .pitcher-name {
+      font-size: 15px; font-weight: 500; color: var(--text-primary);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 99px; font-weight: 500; margin-top: 3px; }
+    .badge-high { background: #E1F5EE; color: #0F6E56; }
+    .badge-mid  { background: #FAEEDA; color: #854F0B; }
+    .badge-low  { background: #F1EFE8; color: #5F5E5A; }
+
+    .bar-wrap { flex: 1; max-width: 120px; min-width: 60px; }
+    .bar-track { height: 4px; background: var(--bg-tertiary); border-radius: 2px; overflow: hidden; }
+    .bar-fill  { height: 100%; border-radius: 2px; }
+
+    .k-block { text-align: right; flex-shrink: 0; }
+    .k-num   { font-size: 24px; font-weight: 500; color: var(--text-primary); line-height: 1; }
+    .k-label { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; letter-spacing: 0.06em; }
+
+    .loading-state {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--text-secondary); font-size: 14px;
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .spinner {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--border-md);
+      border-top-color: var(--text-secondary);
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 0.75rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-state {
+      text-align: center; padding: 2rem 1rem;
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .error-title { font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .error-msg   { font-size: 13px; color: var(--text-secondary); margin-bottom: 1rem; font-family: monospace; }
+    .retry-btn {
+      font-size: 13px; padding: 6px 16px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-md); background: transparent;
+      color: var(--text-primary); cursor: pointer; font-family: inherit;
+    }
+    .retry-btn:hover { background: var(--bg-secondary); }
+
+    .footer { text-align: center; margin-top: 2.5rem; font-size: 12px; color: var(--text-tertiary); }
+    .ball-row { display: flex; justify-content: center; gap: 8px; margin-top: 0.8rem; }
+    .baseball {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 0.5px solid var(--border-md); background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .seam { width: 8px; height: 8px; border: 0.5px solid var(--border-md); border-radius: 50% 0 50% 0; }
+
+    @media (max-width: 480px) {
+      .bar-wrap { display: none; }
+      .header-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">AI strikeout predictions</div>
+    <div class="header-title">Today's starting pitchers -- Strikeout Predictions</div>
+    <div class="header-date" id="todays-date"></div>
+    
+    <div class="stitches">
+      <div class="stitch"></div><div class="stitch"></div><div class="stitch"></div>
+      <div class="stitch"></div><div class="stitch"></div>
+    </div>
+  </div>
+
+  <div class="summary-bar" id="summary-bar"></div>
+
+  <div class="toolbar" id="toolbar" style="display:none">
+    <button class="sort-btn active" onclick="sortBy('default', this)">Default</button>
+    <button class="sort-btn" onclick="sortBy('desc', this)">Most K's first</button>
+    <button class="sort-btn" onclick="sortBy('asc', this)">Fewest K's first</button>
+    <button class="sort-btn" onclick="sortBy('alpha', this)">A–Z</button>
+  </div>
+
+  <div class="pitcher-list" id="pitcher-list"></div>
+
+  <div class="footer">
+    Model predictions only — not a substitute for your own analysis.
+    <div class="ball-row">
+      <div class="baseball"><div class="seam"></div></div>
+      <div class="baseball"><div class="seam" style="transform:rotate(90deg)"></div></div>
+      <div class="baseball"><div class="seam"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const AVATAR_COLORS = [
+    { bg: "#EEEDFE", txt: "#3C3489" },
+    { bg: "#E1F5EE", txt: "#085041" },
+    { bg: "#FAECE7", txt: "#712B13" },
+    { bg: "#E6F1FB", txt: "#0C447C" },
+    { bg: "#EAF3DE", txt: "#27500A" },
+    { bg: "#FBEAF0", txt: "#72243E" },
+    { bg: "#FAEEDA", txt: "#633806" },
+    { bg: "#FCF0F0", txt: "#791F1F" },
+  ];
+  const BAR_COLORS = ["#534AB7","#1D9E75","#D85A30","#378ADD","#639922","#D4537E","#BA7517","#E24B4A"];
+
+  let pitchers = [];
+  let originalOrder = [];
+
+  function initDate() {
+    const d = new Date();
+    document.getElementById("todays-date").textContent =
+      d.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  }
+
+  function showLoading() {
+    document.getElementById("toolbar").style.display = "none";
+    document.getElementById("summary-bar").innerHTML = "";
+    document.getElementById("pitcher-list").innerHTML = `
+      <div class="loading-state">
+        <div class="spinner"></div>
+        Running predictions — this may take a moment...
+      </div>`;
+  }
+
+  function showError(msg) {
+    document.getElementById("pitcher-list").innerHTML = `
+      <div class="error-state">
+        <div class="error-title">Could not load predictions</div>
+        <div class="error-msg">${msg}</div>
+        <button class="retry-btn" onclick="loadPredictions()">Try again</button>
+      </div>`;
+  }
+
+  function initSummary() {
+    const ks = pitchers.map(p => p.k);
+    const avg = (ks.reduce((a, b) => a + b, 0) / ks.length).toFixed(1);
+    const max = Math.max(...ks);
+    const leader = pitchers.find(p => p.k === max).name.split(" ").pop();
+    document.getElementById("summary-bar").innerHTML = `
+      <div class="stat-card"><div class="stat-label">Pitchers today</div><div class="stat-value">${pitchers.length}</div></div>
+      <div class="stat-card"><div class="stat-label">Avg predicted K's</div><div class="stat-value">${avg}</div></div>
+      <div class="stat-card"><div class="stat-label">K leader</div><div class="stat-value">${leader}</div></div>
+    `;
+  }
+
+  function getInitials(name) {
+    return name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+  }
+
+  function getBadge(k, max) {
+    if (k >= max - 1) return '<span class="badge badge-high">elite stuff</span>';
+    if (k >= 7)       return '<span class="badge badge-mid">solid outing</span>';
+    return                   '<span class="badge badge-low">ground ball threat</span>';
+  }
+
+  function renderList(list) {
+    const max = Math.max(...list.map(p => p.k));
+    document.getElementById("pitcher-list").innerHTML = list.map((p, rank) => {
+      const col    = AVATAR_COLORS[p.idx % AVATAR_COLORS.length];
+      const barCol = BAR_COLORS[p.idx % BAR_COLORS.length];
+      const pct    = Math.round((p.k / (max + 2)) * 100);
+      return `
+        <div class="pitcher-card">
+          <div class="rank">${rank + 1}</div>
+          <div class="avatar" style="background:${col.bg};color:${col.txt}">${getInitials(p.name)}</div>
+          <div class="pitcher-info">
+            <div class="pitcher-name">${p.name}</div>
+            <div>${getBadge(p.k, max)}</div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${pct}%;background:${barCol}"></div>
+            </div>
+          </div>
+          <div class="k-block">
+            <div class="k-num">${p.k}</div>
+            <div class="k-label">K's</div>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  function sortBy(mode, btn) {
+    document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    let sorted = [...pitchers];
+    if      (mode === "desc")  sorted.sort((a, b) => b.k - a.k);
+    else if (mode === "asc")   sorted.sort((a, b) => a.k - b.k);
+    else if (mode === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name));
+    else                       sorted = [...originalOrder];
+    renderList(sorted);
+  }
+
+  async function loadPredictions() {
+    showLoading();
+    try {
+      const res = await fetch("/api/predictions");
+      const data = await res.json();
+
+      if (data.status !== "ok") {
+        showError(data.message || "Unknown error from server.");
+        return;
+      }
+
+      pitchers = data.predictions.map((p, i) => ({ ...p, idx: i }));
+      originalOrder = [...pitchers];
+
+      if (pitchers.length === 0) {
+        document.getElementById("pitcher-list").innerHTML =
+          '<div class="loading-state">No games scheduled for today.</div>';
+        return;
+      }
+
+      initSummary();
+      renderList(pitchers);
+      document.getElementById("toolbar").style.display = "flex";
+
+    } catch (err) {
+      showError("Cannot reach the server. Make sure server.py is running.");
+    }
+  }
+
+  initDate();
+  loadPredictions();
+</script>
+
+</body>
+</html>

@@ -10,12 +10,16 @@ import datetime
 from creating_data import Baseball_player_data
 from process_data import Process_player_data
 from sklearn.preprocessing import MinMaxScaler
+from keras.models import load_model
+from keras.losses import MeanSquaredError, Huber
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+import json
 
 
 
 def load_model_and_scaler():
 
-    model = load_model(f'model_and_scalers/trained_strikeout_model.h5')
+    model = load_model(f'model_and_scalers/trained_strikeout_model.keras') # NOTE: Changed from .h5 to .keras
 
     strikeout_scaler = load('model_and_scalers/strikeout_scaler.pkl')
 
@@ -137,6 +141,10 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
         guess = round(rounded_guesses[i].item(), 2)
 
         print(f"\n{pitcher_name}'s predicted strikeouts: {guess}\n")
+    
+
+    '''with open("predictions.json", "w") as f:
+        json.dump(predictions, f)'''
 
 
     return predictions

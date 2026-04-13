@@ -196,8 +196,16 @@ class Baseball_player_data:
         curr_year = 0
 
         for year in range(start_year, end_year+1): # end year is the last year to check, which is why we add 1 to the end_year
+            
+            try:
+                games = statsapi.schedule(start_date=f'{start_month_and_day}{year}',end_date=f'{end_month_and_day}{year}')
+            except:
+                # if date two is before date one, assume date two is the next year (for example, if the season starts in august and ends in april, the end date is technically in the next year, even though it's the same season)
+                games = statsapi.schedule(start_date=f'{start_month_and_day}{year}',end_date=f'{end_month_and_day}{year+1}')
+                
 
-            games = statsapi.schedule(start_date=f'{start_month_and_day}{year}',end_date=f'{end_month_and_day}{year}')
+
+            print(f"start_month_and_day = {start_month_and_day}, end_month_and_day = {end_month_and_day}, year = {year}")
 
             # Print the game IDs
             game_ids = []
@@ -211,7 +219,9 @@ class Baseball_player_data:
                     curr_year = new_year
                     print(f"curr_year = {curr_year}")
 
-                game = statsapi.boxscore(game_id, battingBox=True, battingInfo=True, fieldingInfo=True, pitchingBox=True, gameInfo=True, timecode=None)        
+                game = statsapi.boxscore(game_id, battingBox=True, battingInfo=True, fieldingInfo=True, pitchingBox=True, gameInfo=True, timecode=True)      
+
+                # print(f"game = {game}")  
                 
                 game_array = game.split("\n")
 
@@ -233,9 +243,10 @@ class Baseball_player_data:
                 if pitcher_data == False or batter_names == False: # If there is no pitcher data or batter names, skip the game
                     print(f"Lineups for {team1_name} vs {team2_name} game have not been released yet. Skipping game.")
                     continue
+                print(f"team1_name = {team1_name}, team2_name = {team2_name}")
 
                 team1_batter_names, team2_batter_names = batter_names[0], batter_names[1] # Get the batter names from the list
-
+                
 
                 try: 
                     pitcher_1_data, pitcher_2_data = pitcher_data[0], pitcher_data[1] # Get the pitcher data from the list
@@ -532,9 +543,9 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "08/23/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "09/23/"
-    start_year = 2016
+    start_month_and_day = "06/20/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    end_month_and_day = "07/20/"
+    start_year = 2021
     end_year = 2025
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
