@@ -58,6 +58,10 @@ def get_future_stats():
 def index():
     return send_from_directory(".", "strikeout_predictions.html")
 
+@app.route("/mlb_teams_logo_svg/light/<path:filename>")
+def serve_logo(filename):
+    return send_from_directory("mlb_teams_logo_svg/light", filename)
+
 
 @app.route("/api/predictions")
 def predictions():
@@ -78,9 +82,11 @@ def predictions():
 
         results = []
         for i in range(1, len(rounded)):   # skip boilerplate index 0
+            team = future_stats[i][5] if len(future_stats[i]) > 5 else ""
             results.append({
                 "name": future_stats[i][0],
-                "k": round(float(rounded[i].item()), 2)
+                "k": round(float(rounded[i].item()), 2),
+                "team": team
             })
 
         return jsonify({ "status": "ok", "predictions": results })

@@ -91,11 +91,16 @@
       width: 42px; height: 42px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 500; flex-shrink: 0;
+      background: var(--bg-secondary); overflow: hidden;
     }
+    .avatar img { width: 32px; height: 32px; object-fit: contain; display: block; }
     .pitcher-info { flex: 1; min-width: 0; }
     .pitcher-name {
       font-size: 15px; font-weight: 500; color: var(--text-primary);
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pitcher-team {
+      font-size: 12px; color: var(--text-secondary); margin-top: 1px; margin-bottom: 1px;
     }
     .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 99px; font-weight: 500; margin-top: 3px; }
     .badge-high { background: #E1F5EE; color: #0F6E56; }
@@ -160,9 +165,8 @@
 
   <div class="header">
     <div class="header-eyebrow">AI strikeout predictions</div>
-    <div class="header-title">Today's starting pitchers -- Strikeout Predictions</div>
+    <div class="header-title">Today's starting pitchers</div>
     <div class="header-date" id="todays-date"></div>
-    
     <div class="stitches">
       <div class="stitch"></div><div class="stitch"></div><div class="stitch"></div>
       <div class="stitch"></div><div class="stitch"></div>
@@ -192,16 +196,6 @@
 </div>
 
 <script>
-  const AVATAR_COLORS = [
-    { bg: "#EEEDFE", txt: "#3C3489" },
-    { bg: "#E1F5EE", txt: "#085041" },
-    { bg: "#FAECE7", txt: "#712B13" },
-    { bg: "#E6F1FB", txt: "#0C447C" },
-    { bg: "#EAF3DE", txt: "#27500A" },
-    { bg: "#FBEAF0", txt: "#72243E" },
-    { bg: "#FAEEDA", txt: "#633806" },
-    { bg: "#FCF0F0", txt: "#791F1F" },
-  ];
   const BAR_COLORS = ["#534AB7","#1D9E75","#D85A30","#378ADD","#639922","#D4537E","#BA7517","#E24B4A"];
 
   let pitchers = [];
@@ -248,6 +242,58 @@
     return name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
   }
 
+  const AVATAR_COLORS = [
+    { bg: "#EEEDFE", txt: "#3C3489" },
+    { bg: "#E1F5EE", txt: "#085041" },
+    { bg: "#FAECE7", txt: "#712B13" },
+    { bg: "#E6F1FB", txt: "#0C447C" },
+    { bg: "#EAF3DE", txt: "#27500A" },
+    { bg: "#FBEAF0", txt: "#72243E" },
+    { bg: "#FAEEDA", txt: "#633806" },
+    { bg: "#FCF0F0", txt: "#791F1F" },
+  ];
+
+  // Map truncated team names from statsapi to logo filenames
+  const TEAM_NAME_MAP = {
+    "D-backs": "D-backs",
+    "Red": "R-sox",
+    "Blue": "Bluejays",
+    "White": "W-sox",
+    //"Angels": "Angles",
+    //"Phillies": "Philies",
+  };
+
+  // Map truncated team names to full display names
+  const TEAM_DISPLAY_MAP = {
+    "Red": "Red Sox",
+    "Blue": "Blue Jays",
+    "White": "White Sox",
+  };
+
+  function getDisplayName(team) {
+    return TEAM_DISPLAY_MAP[team] || team;
+  }
+
+  function getLogoPath(team) {
+    const mapped = TEAM_NAME_MAP[team] || team;
+    return `mlb_teams_logo_svg/light/${mapped}.svg`;
+  }
+
+  function logoFallback(el, name, idx) {
+    const col = AVATAR_COLORS[idx % AVATAR_COLORS.length];
+    el.parentElement.style.background = col.bg;
+    el.parentElement.innerHTML = '<span style="color:' + col.txt + ';font-size:13px;font-weight:500">' + getInitials(name) + '</span>';
+  }
+
+  function getAvatarHtml(team, name, idx) {
+    if (team) {
+      const path = getLogoPath(team);
+      return `<img src="${path}" alt="${team}" onerror="logoFallback(this,'${name}',${idx})">`;
+    }
+    const col = AVATAR_COLORS[idx % AVATAR_COLORS.length];
+    return `<span style="color:${col.txt};font-size:13px;font-weight:500">${getInitials(name)}</span>`;
+  }
+
   function getBadge(k, max) {
     if (k >= max - 1) return '<span class="badge badge-high">elite stuff</span>';
     if (k >= 7)       return '<span class="badge badge-mid">solid outing</span>';
@@ -263,9 +309,10 @@
       return `
         <div class="pitcher-card">
           <div class="rank">${rank + 1}</div>
-          <div class="avatar" style="background:${col.bg};color:${col.txt}">${getInitials(p.name)}</div>
+          <div class="avatar" id="avatar-${rank}">${getAvatarHtml(p.team, p.name, p.idx)}</div>
           <div class="pitcher-info">
             <div class="pitcher-name">${p.name}</div>
+            ${p.team ? `<div class="pitcher-team">${getDisplayName(p.team)}</div>` : ''}
             <div>${getBadge(p.k, max)}</div>
           </div>
           <div class="bar-wrap">

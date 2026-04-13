@@ -257,8 +257,8 @@ class Baseball_player_data:
 
                 # format here is [pitcher_name, strikeouts, opposing player names, year]
 
-                pitcher_1_total_data = [pitcher_1_data[0], pitcher_1_data[1], team2_batter_names, year]
-                pitcher_2_total_data = [pitcher_2_data[0], pitcher_2_data[1], team1_batter_names, year]
+                pitcher_1_total_data = [pitcher_1_data[0], pitcher_1_data[1], team2_batter_names, year, team1_name]
+                pitcher_2_total_data = [pitcher_2_data[0], pitcher_2_data[1], team1_batter_names, year, team2_name]
 
 
                 total_stats.append(pitcher_1_total_data)
@@ -318,7 +318,7 @@ class Baseball_player_data:
         new_total_stats = []
         print(f"total_stats before filtering: {total_stats}")
         for pitcher_data in total_stats:
-            if len(pitcher_data) > 4:
+            if len(pitcher_data) > 5:
                 new_total_stats.append(pitcher_data)  # Remove the pitcher data if it doesn't have advanced stats
         
         print(f"\nnew_total_stats after adding advanced pitcher stats: {new_total_stats}\n")
@@ -371,8 +371,11 @@ class Baseball_player_data:
                         # opposing_batter_data = [batter_name, batter_stats]
 
                         
-            new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[4], new_batter_data]) # Move the batter names and data to the back of the list
-            
+            # new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[4], new_batter_data, pitcher_data[5]] if len(pitcher_data) > 5 else "") # Move the batter names and data to the back of the list
+            if len(pitcher_data) > 5:
+                new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[5], new_batter_data, pitcher_data[4]])
+            else:
+                new_total_stats.append([pitcher_data[0], pitcher_data[1], pitcher_data[3], pitcher_data[4], new_batter_data, ""])
 
         return new_total_stats
 
@@ -520,7 +523,7 @@ class Baseball_player_data:
             #print(f"pitcher name: {pitcher_info[0]}")
             #print(f"new_total_batter_info: {new_total_batter_info}, length = {len(new_total_batter_info)}\n")
 
-            new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info]) # Add the new batter data to the pitcher data, while removing old data
+            new_total_stats.append([pitcher_info[0], pitcher_info[1], pitcher_info[2], pitcher_info[3], new_total_batter_info, pitcher_info[5]]) # Add the new batter data to the pitcher data, while removing old data
 
             # break
         
