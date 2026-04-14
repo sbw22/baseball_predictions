@@ -3,6 +3,7 @@ from flask_cors import CORS
 import numpy as np
 import joblib
 import datetime
+import os
 
 # ── Import your existing modules ──────────────────────────────────────────────
 from creating_data import Baseball_player_data
@@ -101,4 +102,5 @@ def predictions():
     print("Starting server at http://localhost:10000")
     app.run(debug=False, port=5000)'''
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=10000)
