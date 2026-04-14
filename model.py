@@ -508,7 +508,8 @@ def main():
 
     # Save the model
     model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)  # Save the full model to a file | Note: Changed from .h5 to .keras
-
+    # Also save weights separately as a backup
+    model.save_weights('model_and_scalers/trained_strikeout_model_weights.h5')
 
     # print(X.shape, y.shape)
 

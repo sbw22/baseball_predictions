@@ -10,13 +10,19 @@ import os
 from creating_data import Baseball_player_data
 from process_data import Process_player_data
 from keras.models import load_model
+import keras
 
 app = Flask(__name__, static_folder=".")
 CORS(app)  # Enable CORS for all routes
 
 
 def load_model_and_scaler():
-    model = load_model("model_and_scalers/trained_strikeout_model.keras", compile=False)
+    # model = load_model("model_and_scalers/trained_strikeout_model.keras", compile=False)
+    model = keras.models.load_model(
+        "model_and_scalers/trained_strikeout_model.keras",
+        compile=False,
+        safe_mode=False   # allows loading older saved models
+    )
     strikeout_scaler = joblib.load("model_and_scalers/strikeout_scaler.pkl")
     input_scalers = joblib.load("model_and_scalers/input_scalers.pkl")
     all_pitcher_scalers = joblib.load("model_and_scalers/all_pitcher_scalers.pkl")
