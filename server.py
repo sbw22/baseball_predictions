@@ -5,6 +5,7 @@ import numpy as np
 import joblib
 import datetime
 import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
 # ── Import your existing modules ──────────────────────────────────────────────
 from creating_data import Baseball_player_data
