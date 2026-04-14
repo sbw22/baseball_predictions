@@ -6,12 +6,12 @@ from random import randint
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 
-'''import keras
+import keras
 from keras.models import Sequential, Model
 from keras.layers import Activation
 from keras.optimizers import Adam
 from keras.losses import Huber, LogCosh
-from keras.callbacks import EarlyStopping'''
+from keras.callbacks import EarlyStopping
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -509,7 +509,7 @@ def main():
     # Save the model
     model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)  # Save the full model to a file | Note: Changed from .h5 to .keras
     # Also save weights separately as a backup
-    model.save_weights('model_and_scalers/trained_strikeout_model_weights.h5')
+    model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
 
     # print(X.shape, y.shape)
 
