@@ -1,16 +1,15 @@
+import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
+
 from flask import Flask, jsonify, send_from_directory
-from tensorflow.keras.models import load_model
 from flask_cors import CORS
 import numpy as np
 import joblib
 import datetime
-import os
-os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
 # ── Import your existing modules ──────────────────────────────────────────────
 from creating_data import Baseball_player_data
 from process_data import Process_player_data
-from keras.models import load_model
 import keras
 
 app = Flask(__name__, static_folder=".")
@@ -111,4 +110,4 @@ def predictions():
     app.run(debug=False, port=5000)'''
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=port)
