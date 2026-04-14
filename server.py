@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
 import numpy as np
 import joblib
 import datetime
@@ -9,6 +10,7 @@ from process_data import Process_player_data
 from keras.models import load_model
 
 app = Flask(__name__, static_folder=".")
+CORS(app)  # Enable CORS for all routes
 
 
 def load_model_and_scaler():
@@ -56,7 +58,7 @@ def get_future_stats():
 
 @app.route("/")
 def index():
-    return send_from_directory(".", "strikeout_predictions.html")
+    return send_from_directory(".", "index.html") # Changed to index.html from strikeout_predictions.html for simplicity
 
 @app.route("/mlb_teams_logo_svg/light/<path:filename>")
 def serve_logo(filename):
