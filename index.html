@@ -342,7 +342,7 @@
   async function loadPredictions() {
     showLoading();
     try {
-      const res = await fetch("https://your-app-name.onrender.com/api/predictions");//fetch("/api/predictions");
+      const res = await fetch("https://strikeout-predictions.onrender.com/api/predictions");//fetch("/api/predictions");
       const data = await res.json();
 
       if (data.status !== "ok") {
