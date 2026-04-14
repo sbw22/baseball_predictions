@@ -17,7 +17,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 from keras import backend as K
-from tensorflow.keras.layers import Flatten, Dropout, BatchNormalization, Concatenate
+from tensorflow.keras.layers import Flatten, Dropout, BatchNormalization, Concatenate, Input
 from keras.metrics import categorical_crossentropy
 from tensorflow.keras.layers import *
 from keras.applications import imagenet_utils
