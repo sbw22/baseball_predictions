@@ -14,7 +14,7 @@ CORS(app)  # Enable CORS for all routes
 
 
 def load_model_and_scaler():
-    model = load_model("model_and_scalers/trained_strikeout_model.keras")
+    model = load_model("model_and_scalers/trained_strikeout_model.keras", compile=False)
     strikeout_scaler = joblib.load("model_and_scalers/strikeout_scaler.pkl")
     input_scalers = joblib.load("model_and_scalers/input_scalers.pkl")
     all_pitcher_scalers = joblib.load("model_and_scalers/all_pitcher_scalers.pkl")
@@ -98,7 +98,7 @@ def predictions():
 
 
 '''if __name__ == "__main__":
-    print("Starting server at http://localhost:5000")
+    print("Starting server at http://localhost:10000")
     app.run(debug=False, port=5000)'''
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)

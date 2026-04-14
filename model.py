@@ -5,15 +5,21 @@ import tensorflow as tf
 from random import randint
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-import keras
-from keras import backend as K
+
+'''import keras
 from keras.models import Sequential, Model
 from keras.layers import Activation
-from tensorflow.keras.layers import Flatten, Dropout, BatchNormalization, Concatenate
 from keras.optimizers import Adam
+from keras.losses import Huber, LogCosh
+from keras.callbacks import EarlyStopping'''
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+from keras import backend as K
+from tensorflow.keras.layers import Flatten, Dropout, BatchNormalization, Concatenate
 from keras.metrics import categorical_crossentropy
 from tensorflow.keras.layers import *
-from keras.models import Model
 from keras.applications import imagenet_utils
 import matplotlib.pyplot as plt 
 from sklearn.metrics import confusion_matrix
@@ -24,8 +30,6 @@ import csv
 import json
 import joblib
 import math
-from keras.losses import Huber, LogCosh
-from keras.callbacks import EarlyStopping
 from keras.callbacks import ModelCheckpoint
 # import TweedieLoss as Tweedie
 
@@ -45,7 +49,7 @@ def create_model(X):
     # Create a simple feedforward neural network
 
 
-    model = Sequential([
+    model = keras.Sequential([
         Input(shape=(X.shape[1],)),
         # Dense(256, activation='silu'),
         # LayerNormalization(),
@@ -77,7 +81,12 @@ def create_model(X):
     ])
 
     # Compile the model
-    model.compile(loss='mse', optimizer='AdamW', metrics=['mae', tf.keras.metrics.RootMeanSquaredError(name='rmse')])
+    model.compile(
+        loss='mse',
+        optimizer=tf.keras.optimizers.AdamW(),
+        metrics=['mae', tf.keras.metrics.RootMeanSquaredError(name='rmse')]
+    )
+    # model.compile(loss='mse', optimizer='AdamW', metrics=['mae', tf.keras.metrics.RootMeanSquaredError(name='rmse')])
     # List of losses to try: Huber, MAE, MSE, LogCosh, QuantileLoss (need to specify quantiles), Poisson, Tweedie, CategoricalCrossentropy (for classification), BinaryCrossentropy (for binary classification)
     # loss=Huber(delta=1.0)
 
@@ -498,7 +507,7 @@ def main():
 
 
     # Save the model
-    model.save('model_and_scalers/trained_strikeout_model.keras')  # Save the full model to a file | Note: Changed from .h5 to .keras
+    model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)  # Save the full model to a file | Note: Changed from .h5 to .keras
 
 
     # print(X.shape, y.shape)
