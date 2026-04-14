@@ -1,8 +1,15 @@
 flask==3.0.0
 flask-cors==4.0.0
+
 numpy
 joblib
+
 tensorflow==2.15.0
 keras==2.15.0
+
 MLB-StatsAPI
 pybaseball
+
+h5py
+protobuf
+typing-extensions
