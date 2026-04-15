@@ -184,7 +184,11 @@ def main():
     predict_strikeouts(model, X, strikeout_scaler, future_stats)  # Predicts the strikeouts for the pitchers
 
 
-
+'''
+git add .
+git commit -m "daily update to stats and predictions"
+git push origin main
+'''
 
     
 
