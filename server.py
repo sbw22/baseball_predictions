@@ -15,7 +15,7 @@ import keras
 
 app = Flask(__name__, static_folder=".")
 CORS(app)  # Enable CORS for all routes
-
+#
 
 def load_model_and_scaler():
     # model = load_model("model_and_scalers/trained_strikeout_model.keras", compile=False)
