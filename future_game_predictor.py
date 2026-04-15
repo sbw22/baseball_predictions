@@ -133,19 +133,19 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
     scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
     rounded_guesses = np.round(scaled_up_guesses)
 
-
+    results = []
     for i in range(1, len(rounded_guesses)):  #  Skip the first element because it is the boilerplate stats
-
         pitcher_name = future_stats[i][0]
-
-        guess = round(rounded_guesses[i].item(), 2)
-
+        team = future_stats[i][5] if len(future_stats[i]) > 5 else ""
+        guess = round(float(rounded_guesses[i].item()), 2)
         print(f"\n{pitcher_name}'s predicted strikeouts: {guess}\n")
+        results.append({"name": pitcher_name, "k": guess, "team": team})
     
-
-    '''with open("predictions.json", "w") as f:
-        json.dump(predictions, f)'''
-
+    # Save to predictions.json in the same format server.py used
+    output = {"status": "ok", "predictions": results}
+    with open("predictions.json", "w") as f:
+        json.dump(output, f)
+    print(f"\nSaved {len(results)} predictions to predictions.json")
 
     return predictions
 
