@@ -57,7 +57,7 @@ def create_model(X):
 
         Dense(512, activation='silu'),
         LayerNormalization(),
-        Dropout(0.1),
+        # Dropout(0.1),
 
         # Dense(512, activation='silu'),
         # LayerNormalization(),
@@ -94,14 +94,14 @@ def create_model(X):
 
 def train_model(X, y, strikeout_scaler, model):
 
-    early_stop = EarlyStopping(monitor='val_loss', patience=30, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_loss', patience=500, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
     y_unscaled = strikeout_scaler.inverse_transform(y.reshape(-1, 1)).ravel()
     z = (y_unscaled - y_unscaled.mean()) / (y_unscaled.std() + 1e-8)
     sample_weight = 1.0 + 0.5 * np.maximum(0.0, z - 1.0)
 
     # Train the model
-    model.fit(X, y, epochs=100, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint], sample_weight=sample_weight)
+    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop], sample_weight=sample_weight)
 
     return model
 

@@ -277,7 +277,7 @@ class Baseball_player_data:
         print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
         
-        file_path = f"raw_betting_data/all_pitchers_8-7-25.csv"
+        file_path = f"raw_betting_data/all_pitchers_4-16-26.csv"
 
         
 
@@ -330,7 +330,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/all_batters_6-4-25.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
+        file_path = f"raw_betting_data/all_batters_4-16-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
 
         new_total_stats = []
         
@@ -546,9 +546,9 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "06/20/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "07/20/"
-    start_year = 2021
+    start_month_and_day = "04/3/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    end_month_and_day = "04/15/"
+    start_year = 2018
     end_year = 2025
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
