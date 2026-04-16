@@ -1,1 +1,1 @@
-{"status": "ok", "predictions": [{"name": "Burns", "k": 3.0, "team": "Reds"}, {"name": "Bubic", "k": 5.0, "team": "Royals"}, {"name": "Suter", "k": 3.0, "team": "Angels"}, {"name": "Fried", "k": 5.0, "team": "Yankees"}]}
+{"status": "ok", "predictions": [{"name": "Burns", "k": 4.0, "team": "Reds"}, {"name": "Bubic", "k": 5.0, "team": "Royals"}, {"name": "Suter", "k": 3.0, "team": "Angels"}, {"name": "Fried", "k": 5.0, "team": "Yankees"}, {"name": "Corbin", "k": 2.0, "team": "Blue"}, {"name": "Matz", "k": 2.0, "team": "Rays"}, {"name": "Leasure", "k": 3.0, "team": "White"}]}
