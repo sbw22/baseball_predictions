@@ -190,6 +190,12 @@ git commit -m "daily update to stats and predictions"
 git push origin main
 '''
 
+'''
+crontab -l = view current cron table
+crontab -r = remove current cron table
+crontab -e = edit current cron table
+'''
+
     
 
 if __name__ == "__main__":
