@@ -1,1 +1,1 @@
-{"status": "ok", "predictions": [{"name": "Abbott", "k": 6.0, "team": "Reds"}]}
+{"status": "ok", "predictions": [{"name": "Abbott", "k": 5.0, "team": "Reds"}, {"name": "Rasmussen", "k": 4.0, "team": "Rays"}, {"name": "Skenes", "k": 5.0, "team": "Pirates"}, {"name": "Houser", "k": 4.0, "team": "Giants"}, {"name": "Cavalli", "k": 4.0, "team": "Nationals"}, {"name": "Fedde", "k": 4.0, "team": "White"}, {"name": "Severino", "k": 5.0, "team": "Athletics"}, {"name": "Skubal", "k": 5.0, "team": "Tigers"}, {"name": "Bello", "k": 4.0, "team": "Red"}]}
