@@ -434,3 +434,7 @@ Traceback (most recent call last):
   File "/Users/spencerweishaar/personalProjects/baseball_predictions/future_game_predictor.py", line 8, in <module>
     import statsapi
 ModuleNotFoundError: No module named 'statsapi'
+Traceback (most recent call last):
+  File "/Users/spencerweishaar/personalProjects/baseball_predictions/future_game_predictor.py", line 8, in <module>
+    import statsapi
+ModuleNotFoundError: No module named 'statsapi'
