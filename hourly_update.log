@@ -1238,3 +1238,638 @@ Hancock's predicted strikeouts: 4.0
 
 
 Saved 16 predictions to predictions.json
+[main 4e076f0] daily update to stats and predictions
+ 3 files changed, 656 insertions(+), 3 deletions(-)
+fatal: could not read Username for 'https://github.com': terminal prompts disabled
+start_month_and_day: 04/20/
+start_month_and_day = 05/02/, end_month_and_day = 05/02/, year = 2022
+curr_year = 2022
+team1_name = Royals, team2_name = Cardinals
+team1_name = Angels, team2_name = White
+team1_name = D-backs, team2_name = Marlins
+team1_name = Twins, team2_name = Orioles
+team1_name = Yankees, team2_name = Blue
+team1_name = Braves, team2_name = Mets
+team1_name = Mariners, team2_name = Astros
+team1_name = Rays, team2_name = Athletics
+boilerplate_stats: [['Greinke', '1', ['Bader', 'Goldschmidt', "O'Neill", 'Arenado', 'Dickerson', 'Carlson', 'Knizner', 'Donovan'], 2022, 'Royals']]
+boilerplate_stats length: 1
+total_stats at the beginning of add_adv_pitcher_stats: [['Greinke', '1', ['Bader', 'Goldschmidt', "O'Neill", 'Arenado', 'Dickerson', 'Carlson', 'Knizner', 'Donovan'], 2022, 'Royals']]
+total_stats before filtering: [['Greinke', '1', ['Bader', 'Goldschmidt', "O'Neill", 'Arenado', 'Dickerson', 'Carlson', 'Knizner', 'Donovan'], 2022, 'Royals']]
+
+new_total_stats after adding advanced pitcher stats: []
+
+start_month_and_day = 04/20/, end_month_and_day = 04/20/, year = 2026
+curr_year = 2026
+team1_name = Tigers, team2_name = Red
+team1_name = Astros, team2_name = Guardians
+team1_name = Reds, team2_name = Rays
+team1_name = Cardinals, team2_name = Marlins
+team1_name = Braves, team2_name = Nationals
+No players with At Bats were found. The game hasn't started yet.
+Pitchers from game that hasn't started yet:
+pitcher_1_name = Bradish
+pitcher_2_name = Lugo
+team1_name = Orioles, team2_name = Royals
+No players with At Bats were found. The game hasn't started yet.
+Pitchers from game that hasn't started yet:
+pitcher_1_name = Nola
+pitcher_2_name = 0-0;
+team1_name = Phillies, team2_name = Cubs
+No players with At Bats were found. The game hasn't started yet.
+Pitchers from game that hasn't started yet:
+pitcher_1_name = Wrobleski
+pitcher_2_name = Quintana
+team1_name = Dodgers, team2_name = Rockies
+No players with At Bats were found. The game hasn't started yet.
+Pitchers from game that hasn't started yet:
+pitcher_1_name = Cease
+pitcher_2_name = Detmers
+team1_name = Blue, team2_name = Angels
+No players with At Bats were found. The game hasn't started yet.
+Pitchers from game that hasn't started yet:
+pitcher_1_name = Ginn
+pitcher_2_name = Hancock
+team1_name = Athletics, team2_name = Mariners
+future_stats item: ['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers']
+future_stats item: ['Gray', '2', ['McGonigle', 'Torres', 'Keith', 'Greene', 'Dingler', 'Carpenter', 'Vierling', 'Lee', 'Rogers'], 2026, 'Red']
+future_stats item: ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros']
+future_stats item: ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians']
+future_stats item: ['Lowder', '0', ['Simpson', 'Caminero', 'Aranda', 'Díaz', 'Fraley', 'Mullins', 'Fortes', 'Palacios', 'Walls'], 2026, 'Reds']
+future_stats item: ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays']
+future_stats item: ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals']
+future_stats item: ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins']
+future_stats item: ['Totals', '0', ['Wood', 'García', 'House', 'Abrams', 'Lile', 'Young', 'Tena', 'Millas', 'Nuñez'], 2026, 'Braves']
+future_stats item: ['Totals', '1', ['Acuña', 'Baldwin', 'Olson', 'Riley', 'Albies', 'Harris', 'Smith', 'Mateo', 'Yastrzemski'], 2026, 'Nationals']
+future_stats item: ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles']
+future_stats item: ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals']
+future_stats item: ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies']
+future_stats item: ['0-0;', '-1', ['Turner', 'Schwarber', 'Harper', 'García', 'Marsh', 'Bohm', 'Stott', 'Crawford', 'Marchán'], 2026, 'Cubs']
+future_stats item: ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers']
+future_stats item: ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies']
+future_stats item: ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue']
+future_stats item: ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels']
+future_stats item: ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics']
+future_stats item: ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners']
+future_stats[[0]: ['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers']
+curr_year = 2026
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Tigers Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS  | Red Sox Batters                          AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 McGonigle  SS                           5   1   2   0   0   1   1  .317 .899  | 1 Anthony  LF                             2   0   1   1   3   1   0  .234 .704 
+line[4] = 2 Torres  2B                              4   1   1   1   1   0   1  .238 .654  | 2 Contreras, Wn  1B                       5   0   1   0   0   1   8  .274 .870 
+line[5] = 3 Keith  1B                               4   0   0   0   0   0   2  .299 .732  | 3 Abreu, W  RF                            4   0   0   1   1   1   4  .296 .833 
+line[6] =     b-Torkelson  PH                       1   0   0   0   0   1   2  .179 .553  | 4 Yoshida  DH                             4   2   2   0   1   0   5  .324 .889 
+line[7] = 4 Greene, R  LF                           3   1   2   2   2   0   0  .263 .760  | 5 Story  SS                               4   2   1   0   1   2   2  .196 .539 
+line[8] = 5 Dingler  DH                             4   1   0   0   1   0   3  .284 .935  | 6 Duran, Ja  CF                           3   0   0   0   0   1   0  .164 .497 
+line[9] = 6 Carpenter  RF                           1   0   0   0   0   1   0  .228 .799  |     a-Kiner-Falefa  2B                    2   0   1   2   0   1   2  .200 .459 
+line[10] =     a-Jones, Jah  PH                      1   0   1   1   0   0   0  .238 .667  | 7 Durbin  3B                              4   1   2   0   1   0   1  .162 .495 
+line[11] =     Pérez, W  RF                          1   0   0   0   0   0   1  .037 .251  | 8 Mayer  2B                               3   1   1   0   0   0   1  .182 .549 
+line[12] = 7 Vierling  CF                            4   1   1   0   0   2   5  .237 .645  |     b-Rafaela  CF                         2   1   1   2   0   0   1  .286 .747 
+line[13] = 8 Lee, H  3B                              4   1   2   1   0   1   3  .182 .455  | 9 Narváez  C                              3   1   2   1   1   0   1  .234 .542 
+line[14] = 9 Rogers  C                               4   0   1   1   0   1   5  .143 .405  |                                                                                
+line[15] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[16] = Totals                                   36   6  10   6   4   7  23             | Totals                                   36   8  12   7   8   7  25            
+line[17] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[18] = a-Singled for Carpenter in the 6th.                                             | a-Struck out for Duran, Ja in the 7th.                                         
+line[19] = b-Struck out for Keith in the 9th.                                              | b-Singled for Mayer in the 7th.                                                
+line[20] =                                                                                 |                                                                                
+line[21] = BATTING                                                                         | BATTING                                                                        
+line[22] = 2B: Vierling (3, Gray, S); Lee, H (1, Watson, R); McGonigle (7, Watson, R);     | 2B: Durbin (5, Flaherty); Narváez (2, Hurter); Story (5, Anderson, D).         
+line[23] =     Greene, R (7, Chapman).                                                     | TB: Anthony; Contreras, Wn; Durbin 3; Kiner-Falefa; Mayer; Narváez 3; Rafaela; 
+line[24] = TB: Greene, R 3; Jones, Jah; Lee, H 3; McGonigle 3; Rogers; Torres; Vierling 2. |     Story 2; Yoshida 2.                                                        
+line[25] = RBI: Greene, R 2 (14); Jones, Jah (3); Lee, H (1); Rogers (4); Torres (7).      | RBI: Abreu, W (11); Anthony (4); Kiner-Falefa 2 (2); Narváez (1); Rafaela 2    
+line[26] = 2-out RBI: Greene, R 2; Lee, H.                                                 |     (7).                                                                       
+line[27] = Runners left in scoring position, 2 out: Dingler; Rogers 2; Vierling; Keith.    | 2-out RBI: Abreu, W; Narváez.                                                  
+line[28] = GIDP: Torres.                                                                   | Runners left in scoring position, 2 out: Contreras, Wn; Abreu, W; Mayer;       
+line[29] = Team RISP: 6-for-17.                                                            |     Rafaela; Story; Yoshida 3.                                                 
+line[30] = Team LOB: 8.                                                                    | Team RISP: 5-for-19.                                                           
+line[31] =                                                                                 | Team LOB: 12.                                                                  
+line[32] = FIELDING                                                                        |                                                                                
+line[33] = E: Flaherty (1, throw).                                                         | FIELDING                                                                       
+line[34] =                                                                                 | DP: (Contreras, Wn-Story-Contreras, Wn).                                       
+line[35] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[36] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[37] = Tigers Pitchers                              IP   H   R  ER  BB   K  HR   ERA   | Red Sox Pitchers                             IP   H   R  ER  BB   K  HR   ERA  
+line[38] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[39] = Flaherty                                    3.1   3   2   0   6   3   0   3.47  | Gray, S                                     2.2   3   1   1   1   2   0   4.30 
+line[40] = Hurter                                      2.2   2   1   1   0   2   0   3.00  | Coulombe                                    0.2   0   1   1   1   0   0   3.18 
+line[41] = Holton  (L, 0-1)                            0.2   4   3   3   2   1   0   3.60  | Kelly, Z  (BS, 1)                           1.2   1   0   0   0   1   0   4.50 
+line[42] = Anderson, D                                 1.1   3   2   2   0   1   0   7.94  | Morán                                       0.0   1   1   1   2   0   0   2.03 
+line[43] =                                                                                 | Weissert                                    1.0   0   0   0   0   3   0   4.82 
+line[44] =                                                                                 | Whitlock  (W, 2-1)                          1.0   0   0   0   0   0   0   2.00 
+line[45] =                                                                                 | Watson, R  (H, 1)                           1.1   4   3   3   0   0   0   8.10 
+line[46] =                                                                                 | Chapman  (S, 4)                             0.2   1   0   0   0   1   0   1.17 
+line[47] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[48] = Totals                                      8.0  12   8   6   8   7   0         | Totals                                      9.0  10   6   6   4   7   0        
+line[49] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[50] = WP: Holton.                                                                                                                                                      
+line[51] = HBP: Carpenter (by Coulombe).                                                                                                                                    
+line[52] = ABS Challenge: Rogers (Ball-Confirmed); Torres (Strike-Confirmed).                                                                                               
+line[53] = Pitches-strikes: Flaherty 73-41; Hurter 41-25; Holton 26-14; Anderson, D 21-15; Gray, S 40-27; Coulombe 15-6; Kelly, Z 27-16; Morán 14-6; Weissert 10-9; Whitlock
+line[54] =     12-9; Watson, R 29-19; Chapman 13-11.                                                                                                                        
+line[55] = Groundouts-flyouts: Flaherty 2-4; Hurter 3-0; Holton 0-0; Anderson, D 1-2; Gray, S 3-2; Coulombe 2-0; Kelly, Z 3-0; Morán 0-0; Weissert 0-0; Whitlock 1-1;       
+line[56] =     Watson, R 3-1; Chapman 1-0.                                                                                                                                  
+line[57] = Batters faced: Flaherty 20; Hurter 10; Holton 7; Anderson, D 7; Gray, S 11; Coulombe 4; Kelly, Z 6; Morán 3; Weissert 3; Whitlock 3; Watson, R 8; Chapman 3.     
+line[58] = Inherited runners-scored: Hurter 2-0; Anderson, D 2-0; Coulombe 2-0; Kelly, Z 2-1; Weissert 2-0; Chapman 2-2.                                                    
+line[59] = Umpires: HP: Will Little. 1B: Ryan Additon. 2B: Felix Neon. 3B: Lance Barksdale.                                                                                 
+line[60] = Weather: 47 degrees, Partly Cloudy.                                                                                                                              
+line[61] = Wind: 9 mph, Out To RF.                                                                                                                                          
+line[62] = First pitch: 11:13 AM.                                                                                                                                           
+line[63] = T: 3:10.                                                                                                                                                         
+line[64] = Att: 34,880.                                                                                                                                                     
+line[65] = Venue: Fenway Park.                                                                                                                                              
+line[66] = April 20, 2026                                                                                                                                                   
+line[67] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[68] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Astros Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS  | Guardians Batters                        AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Correa  SS                              2   1   1   0   0   1   0  .260 .712  | 1 Kwan  CF                                2   0   0   0   0   0   2  .225 .585 
+line[4] = 2 Alvarez, Y  DH                          2   0   1   0   0   0   1  .337 1.255 | 2 DeLauter  RF                            2   0   0   0   0   0   2  .225 .824 
+line[5] = 3 Altuve  2B                              2   0   0   0   0   0   2  .291 .861  | 3 Ramírez, Jo  3B                         1   1   1   0   1   0   0  .238 .878 
+line[6] = 4 Walker, C  1B                           2   1   1   2   0   1   0  .259 .877  | 4 Manzardo  1B                            2   0   1   0   0   0   1  .190 .525 
+line[7] = 5 Paredes  3B                             1   0   1   0   0   0   0  .203 .586  | 5 Hoskins  DH                             1   0   1   1   0   0   0  .208 .702 
+line[8] = 6 Trammell  CF                            0   0   0   0   1   0   0  .321 .835  | 6 Valera  LF                              1   0   0   0   0   0   2  .267 .667 
+line[9] = 7 Diaz, Y  C                              1   0   0   0   0   0   2  .188 .487  | 7 Brito  2B                               0   0   0   0   0   0   0  .184 .525 
+line[10] = 8 Harris, D  RF                           1   0   0   0   0   0   0  .200 .635  | 8 Naylor, B  C                            1   0   0   0   0   0   1  .152 .459 
+line[11] = 9 Matthews  LF                            1   0   0   0   0   0   0  .103 .429  | 9 Rocchio  SS                             1   0   1   0   0   0   0  .265 .793 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                   12   2   4   2   1   2   5             | Totals                                   11   1   4   1   1   0   8            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = BATTING                                                                         | BATTING                                                                        
+line[17] = HR: Walker, C (5, 1st inning off Cecconi, 1 on, 2 out).                         | 2B: Ramírez, Jo (5, Arrighetti).                                               
+line[18] = TB: Alvarez, Y; Correa; Paredes; Walker, C 4.                                   | TB: Hoskins; Manzardo; Ramírez, Jo 2; Rocchio.                                 
+line[19] = RBI: Walker, C 2 (18).                                                          | RBI: Hoskins (6).                                                              
+line[20] = 2-out RBI: Walker, C 2.                                                         | 2-out RBI: Hoskins.                                                            
+line[21] = Runners left in scoring position, 2 out: Diaz, Y.                               | Runners left in scoring position, 2 out: Valera; DeLauter.                     
+line[22] = GIDP: Altuve.                                                                   | Team RISP: 1-for-5.                                                            
+line[23] = Team RISP: 0-for-1.                                                             | Team LOB: 4.                                                                   
+line[24] = Team LOB: 2.                                                                    |                                                                                
+line[25] =                                                                                 | FIELDING                                                                       
+line[26] =                                                                                 | DP: (Brito-Manzardo).                                                          
+line[27] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[28] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[29] = Astros Pitchers                              IP   H   R  ER  BB   K  HR   ERA   | Guardians Pitchers                           IP   H   R  ER  BB   K  HR   ERA  
+line[30] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[31] = Arrighetti                                  2.1   4   1   1   1   0   0   2.16  | Cecconi                                     3.0   4   2   2   1   2   1   5.16 
+line[32] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[33] = Totals                                      2.1   4   1   1   1   0   0         | Totals                                      3.0   4   2   2   1   2   1        
+line[34] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[35] = HBP: Brito (by Arrighetti).                                                                                                                                      
+line[36] = ABS Challenge: Trammell (Strike-Overturned to Ball).                                                                                                             
+line[37] = Pitches-strikes: Arrighetti 45-28; Cecconi 48-29.                                                                                                                
+line[38] = Groundouts-flyouts: Arrighetti 3-2; Cecconi 2-3.                                                                                                                 
+line[39] = Batters faced: Arrighetti 13; Cecconi 13.                                                                                                                        
+line[40] = Umpires: HP: Andy Fletcher. 1B: Derek Thomas. 2B: Alex Tosi. 3B: Jansen Visconti.                                                                                
+line[41] = Weather: 39 degrees, Clear.                                                                                                                                      
+line[42] = Wind: 3 mph, In From LF.                                                                                                                                         
+line[43] = First pitch: 6:11 PM.                                                                                                                                            
+line[44] = Venue: Progressive Field.                                                                                                                                        
+line[45] = April 20, 2026                                                                                                                                                   
+line[46] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[47] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Reds Batters                             AB   R   H  RBI BB   K  LOB AVG   OPS  | Rays Batters                             AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Friedl  CF                              1   0   0   0   0   0   0  .152 .429  | 1 Simpson  LF                             1   0   1   0   0   0   0  .341 .752 
+line[4] = 2 McLain, M  2B                           1   1   1   0   0   0   0  .197 .594  | 2 Caminero  3B                            1   0   1   0   0   0   0  .259 .818 
+line[5] = 3 De La Cruz, E  SS                       1   0   0   0   0   0   1  .258 .850  | 3 Aranda  1B                              0   0   0   0   0   0   0  .218 .711 
+line[6] = 4 Stewart, S  1B                          1   1   1   2   0   0   0  .288 1.027 | 4 Díaz, Y  DH                             0   0   0   0   0   0   0  .337 .933 
+line[7] = 5 Suárez, E  DH                           1   0   0   0   0   1   0  .253 .735  | 5 Fraley  RF                              0   0   0   0   0   0   0  .227 .656 
+line[8] = 6 Steer  LF                               0   0   0   0   0   0   0  .206 .639  | 6 Mullins  CF                             0   0   0   0   0   0   0  .155 .504 
+line[9] = 7 Stephenson, T  C                        0   0   0   0   0   0   0  .184 .611  | 7 Fortes  C                               0   0   0   0   0   0   0  .327 .828 
+line[10] = 8 Hinds  RF                               0   0   0   0   0   0   0  .118 .334  | 8 Palacios, R  2B                         0   0   0   0   0   0   0  .290 .855 
+line[11] = 9 Hayes  3B                               0   0   0   0   0   0   0  .058 .183  | 9 Walls  SS                               0   0   0   0   0   0   0  .237 .556 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    5   2   2   2   0   1   1             | Totals                                    2   0   2   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = BATTING                                                                         | BATTING                                                                        
+line[17] = 2B: McLain, M (4, Scholtens).                                                   | TB: Caminero; Simpson.                                                         
+line[18] = HR: Stewart, S (8, 1st inning off Scholtens, 1 on, 2 out).                      |                                                                                
+line[19] = TB: McLain, M 2; Stewart, S 4.                                                  |                                                                                
+line[20] = RBI: Stewart, S 2 (21).                                                         |                                                                                
+line[21] = 2-out RBI: Stewart, S 2.                                                        |                                                                                
+line[22] = Team RISP: 1-for-2.                                                             |                                                                                
+line[23] =                                                                                 |                                                                                
+line[24] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[25] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[26] = Reds Pitchers                                IP   H   R  ER  BB   K  HR   ERA   | Rays Pitchers                                IP   H   R  ER  BB   K  HR   ERA  
+line[27] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[28] = Lowder                                      0.0   2   0   0   0   0   0   3.52  | Scholtens                                   1.0   2   2   2   0   1   1   1.69 
+line[29] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[30] = Totals                                      0.0   2   0   0   0   0   0         | Totals                                      1.0   2   2   2   0   1   1        
+line[31] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[32] = Pitches-strikes: Lowder 11-6; Scholtens 30-19.                                                                                                                   
+line[33] = Groundouts-flyouts: Lowder 0-0; Scholtens 1-1.                                                                                                                   
+line[34] = Batters faced: Lowder 2; Scholtens 5.                                                                                                                            
+line[35] = Umpires: HP: Marvin Hudson. 1B: Tripp Gibson. 2B: Ryan Blakney. 3B: Nick Mahrley.                                                                                
+line[36] = Weather: 72 degrees, Dome.                                                                                                                                       
+line[37] = Wind: 0 mph, None.                                                                                                                                               
+line[38] = First pitch: 6:40 PM.                                                                                                                                            
+line[39] = Venue: Tropicana Field.                                                                                                                                          
+line[40] = April 20, 2026                                                                                                                                                   
+line[41] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[42] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Cardinals Batters                        AB   R   H  RBI BB   K  LOB AVG   OPS  | Marlins Batters                          AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Wetherholt  2B                          0   0   0   0   0   0   0  .237 .756  | 1 Marsee  CF                              1   0   0   0   0   0   0  .153 .489 
+line[4] = 2 Herrera  C                              0   0   0   0   0   0   0  .200 .704  | 2 Stowers  LF                             1   0   0   0   0   0   0  .500 1.350
+line[5] = 3 Burleson  1B                            1   0   0   0   0   0   2  .277 .811  | 3 Lopez, O  SS                            1   0   0   0   0   0   0  .333 .925 
+line[6] = 4 Walker, J  RF                           1   0   0   0   0   1   2  .301 1.002 | 4 Edwards, X  2B                          0   0   0   0   0   0   0  .337 .879 
+line[7] = 5 Gorman  DH                              1   0   0   0   0   0   2  .206 .611  | 5 Hicks, L  DH                            0   0   0   0   0   0   0  .328 .925 
+line[8] = 6 Winn  SS                                1   0   0   0   0   1   0  .219 .661  | 6 Ramírez  C                              0   0   0   0   0   0   0  .221 .637 
+line[9] = 7 Urías, R  3B                            1   0   0   0   0   1   0  .189 .750  | 7 Caissie  RF                             0   0   0   0   0   0   0  .246 .720 
+line[10] = 8 Saggese  LF                             1   0   0   0   0   0   0  .205 .521  | 8 Pauley  3B                              0   0   0   0   0   0   0  .170 .502 
+line[11] = 9 Scott II  CF                            0   0   0   0   0   0   0  .226 .521  | 9 Norby  1B                               0   0   0   0   0   0   0  .254 .764 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    6   0   0   0   0   3   6             | Totals                                    3   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = BATTING                                                                         |                                                                                
+line[17] = Runners left in scoring position, 2 out: Gorman 2.                              |                                                                                
+line[18] = Team RISP: 0-for-3.                                                             |                                                                                
+line[19] = Team LOB: 2.                                                                    |                                                                                
+line[20] =                                                                                 |                                                                                
+line[21] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Cardinals Pitchers                           IP   H   R  ER  BB   K  HR   ERA   | Marlins Pitchers                             IP   H   R  ER  BB   K  HR   ERA  
+line[24] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[25] = McGreevy                                    1.0   0   0   0   0   0   0   2.38  | Meyer                                       2.0   0   0   0   0   3   0   3.74 
+line[26] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[27] = Totals                                      1.0   0   0   0   0   0   0         | Totals                                      2.0   0   0   0   0   3   0        
+line[28] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[29] = HBP: Wetherholt (by Meyer); Herrera (by Meyer).                                                                                                                  
+line[30] = Pitches-strikes: McGreevy 11-7; Meyer 28-18.                                                                                                                     
+line[31] = Groundouts-flyouts: McGreevy 2-1; Meyer 2-1.                                                                                                                     
+line[32] = Batters faced: McGreevy 3; Meyer 8.                                                                                                                              
+line[33] = Umpires: HP: Scott Barry. 1B: Manny Gonzalez. 2B: Jacob Metz. 3B: Tom Hanahan.                                                                                   
+line[34] = Weather: 72 degrees, Roof Closed.                                                                                                                                
+line[35] = Wind: 0 mph, None.                                                                                                                                               
+line[36] = First pitch: 6:40 PM.                                                                                                                                            
+line[37] = Venue: loanDepot park.                                                                                                                                           
+line[38] = April 20, 2026                                                                                                                                                   
+line[39] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[40] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Braves Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS  | Nationals Batters                        AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Acuña Jr.  RF                           1   0   0   0   0   1   0  .244 .707  | 1 Wood  RF                                1   0   0   0   0   0   0  .244 .920 
+line[4] = 2 Baldwin, D  C                           1   0   0   0   0   0   0  .301 .858  | 2 García Jr., L  1B                       1   0   0   0   0   0   0  .217 .593 
+line[5] = 3 Olson  1B                               1   0   0   0   0   0   0  .276 .933  | 3 House  3B                               1   0   1   0   0   0   0  .244 .653 
+line[6] = 4 Riley, A  3B                            0   0   0   0   0   0   0  .250 .735  | 4 Abrams  SS                              0   0   0   0   1   0   0  .320 1.035
+line[7] = 5 Albies  2B                              0   0   0   0   0   0   0  .282 .799  | 5 Lile  LF                                0   0   0   0   1   0   0  .283 .707 
+line[8] = 6 Harris II  CF                           0   0   0   0   0   0   0  .290 .816  | 6 Young  CF                               0   0   0   0   0   0   0  .254 .701 
+line[9] = 7 Smith, Do  DH                           0   0   0   0   0   0   0  .353 .997  | 7 Tena  DH                                0   0   0   0   0   0   0  .364 .811 
+line[10] = 8 Mateo  SS                               0   0   0   0   0   0   0  .368 .979  | 8 Millas  C                               0   0   0   0   0   0   0  .182 .512 
+line[11] = 9 Yastrzemski  LF                         0   0   0   0   0   0   0  .215 .603  | 9 Nuñez, N  2B                            0   0   0   0   0   0   0  .185 .484 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    3   0   0   0   0   1   0             | Totals                                    3   0   1   0   2   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Braves Pitchers                              IP   H   R  ER  BB   K  HR   ERA   | Nationals Pitchers                           IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Elder                                       0.2   1   0   0   2   0   0   0.75  | Irvin, J                                    1.0   0   0   0   0   1   0   5.85 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.2   1   0   0   2   0   0         | Totals                                      1.0   0   0   0   0   1   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Elder 25-10; Irvin, J 13-9.                                                                                                                     
+line[24] = Groundouts-flyouts: Elder 1-0; Irvin, J 1-1.                                                                                                                     
+line[25] = Batters faced: Elder 5; Irvin, J 3.                                                                                                                              
+line[26] = Umpires: HP: Erich Bacchus. 1B: Laz Diaz. 2B: Brian O'Nora. 3B: Chris Segal.                                                                                     
+line[27] = Weather: 53 degrees, Partly Cloudy.                                                                                                                              
+line[28] = Wind: 13 mph, In From LF.                                                                                                                                        
+line[29] = First pitch: 6:45 PM.                                                                                                                                            
+line[30] = Venue: Nationals Park.                                                                                                                                           
+line[31] = April 20, 2026                                                                                                                                                   
+line[32] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[33] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Orioles Batters                          AB   R   H  RBI BB   K  LOB AVG   OPS  | Royals Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Henderson  SS                           0   0   0   0   0   0   0  .204 .763  | 1 Garcia, M  3B                           0   0   0   0   0   0   0  .256 .718 
+line[4] = 2 Ward  LF                                0   0   0   0   0   0   0  .295 .843  | 2 Witt Jr.  SS                            0   0   0   0   0   0   0  .280 .716 
+line[5] = 3 Beavers  DH                             0   0   0   0   0   0   0  .212 .588  | 3 Pasquantino  1B                         0   0   0   0   0   0   0  .157 .499 
+line[6] = 4 Alonso  1B                              0   0   0   0   0   0   0  .207 .664  | 4 Perez, S  DH                            0   0   0   0   0   0   0  .152 .491 
+line[7] = 5 Basallo  C                              0   0   0   0   0   0   0  .140 .532  | 5 Jensen  C                               0   0   0   0   0   0   0  .237 .811 
+line[8] = 6 Jackson, J  2B                          0   0   0   0   0   0   0  .303 .880  | 6 Massey  2B                              0   0   0   0   0   0   0  .174 .469 
+line[9] = 7 Cowser  RF                              0   0   0   0   0   0   0  .174 .460  | 7 Caglianone  RF                          0   0   0   0   0   0   0  .270 .708 
+line[10] = 8 Taveras, L  CF                          0   0   0   0   0   0   0  .359 .992  | 8 Collins  LF                             0   0   0   0   0   0   0  .180 .541 
+line[11] = 9 Alexander  3B                           0   0   0   0   0   0   0  .213 .509  | 9 Isbel  CF                               0   0   0   0   0   0   0  .265 .741 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    0   0   0   0   0   0   0             | Totals                                    0   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Orioles Pitchers                             IP   H   R  ER  BB   K  HR   ERA   | Royals Pitchers                              IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Bradish                                     0.0   0   0   0   0   0   0   5.49  | Lugo, S                                     0.0   0   0   0   0   0   0   1.48 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.0   0   0   0   0   0   0         | Totals                                      0.0   0   0   0   0   0   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Bradish 0-0; Lugo, S 0-0.                                                                                                                       
+line[24] = Groundouts-flyouts: Bradish 0-0; Lugo, S 0-0.                                                                                                                    
+line[25] = Umpires: Quinn Wolcott, Brock Ballou, Adrian Johnson, Paul Clemons (base assignments not confirmed until first pitch).                                           
+line[26] = Weather: 73 degrees, Clear.                                                                                                                                      
+line[27] = Wind: 14 mph, Out To CF.                                                                                                                                         
+line[28] = First pitch: 6:40 pm.                                                                                                                                            
+line[29] = Venue: Kauffman Stadium.                                                                                                                                         
+line[30] = April 20, 2026                                                                                                                                                   
+line[31] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[32] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Phillies Batters                         AB   R   H  RBI BB   K  LOB AVG   OPS  | Cubs Batters                             AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Turner  SS                              0   0   0   0   0   0   0  .256 .676  | 1 Hoerner  2B                             0   0   0   0   0   0   0  .325 .920 
+line[4] = 2 Schwarber  DH                           0   0   0   0   0   0   0  .227 .936  | 2 Busch  1B                               0   0   0   0   0   0   0  .164 .454 
+line[5] = 3 Harper, B  1B                           0   0   0   0   0   0   0  .273 .883  | 3 Bregman  3B                             0   0   0   0   0   0   0  .233 .623 
+line[6] = 4 García, Ad  RF                          0   0   0   0   0   0   0  .205 .648  | 4 Happ  LF                                0   0   0   0   0   0   0  .240 .885 
+line[7] = 5 Marsh  LF                               0   0   0   0   0   0   0  .265 .704  | 5 Ballesteros  DH                         0   0   0   0   0   0   0  .364 .987 
+line[8] = 6 Bohm  3B                                0   0   0   0   0   0   0  .139 .407  | 6 Conforto  RF                            0   0   0   0   0   0   0  .304 .883 
+line[9] = 7 Stott  2B                               0   0   0   0   0   0   0  .207 .511  | 7 Amaya  C                                0   0   0   0   0   0   0  .273 .794 
+line[10] = 8 Crawford  CF                            0   0   0   0   0   0   0  .276 .733  | 8 Crow-Armstrong  CF                      0   0   0   0   0   0   0  .222 .585 
+line[11] = 9 Marchán  C                              0   0   0   0   0   0   0  .037 .219  | 9 Swanson  SS                             0   0   0   0   0   0   0  .188 .703 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    0   0   0   0   0   0   0             | Totals                                    0   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Phillies Pitchers                            IP   H   R  ER  BB   K  HR   ERA   | Cubs Pitchers                                IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Nola, A                                     0.0   0   0   0   0   0   0   4.03  | Rea                                         0.0   0   0   0   0   0   0   3.63 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.0   0   0   0   0   0   0         | Totals                                      0.0   0   0   0   0   0   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Nola, A 0-0; Rea 0-0.                                                                                                                           
+line[24] = Groundouts-flyouts: Nola, A 0-0; Rea 0-0.                                                                                                                        
+line[25] = Umpires: Edwin Moscoso, Vic Carapazza, John Bacon, Hunter Wendelstedt (base assignments not confirmed until first pitch).                                        
+line[26] = Weather: 49 degrees, Partly Cloudy.                                                                                                                              
+line[27] = Wind: 11 mph, R To L.                                                                                                                                            
+line[28] = First pitch: 6:40 pm.                                                                                                                                            
+line[29] = Venue: Wrigley Field.                                                                                                                                            
+line[30] = April 20, 2026                                                                                                                                                   
+line[31] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[32] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Dodgers Batters                          AB   R   H  RBI BB   K  LOB AVG   OPS  | Rockies Batters                          AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Ohtani  DH                              0   0   0   0   0   0   0  .273 .915  | 1 Beck  LF                                0   0   0   0   0   0   0  .122 .402 
+line[4] = 2 Call  RF                                0   0   0   0   0   0   0  .400 1.104 | 2 Doyle, B  CF                            0   0   0   0   0   0   0  .217 .571 
+line[5] = 3 Smith, W  C                             0   0   0   0   0   0   0  .303 .782  | 3 Goodman  DH                             0   0   0   0   0   0   0  .257 .851 
+line[6] = 4 Hernández, T  LF                        0   0   0   0   0   0   0  .273 .819  | 4 Freeman, T  RF                          0   0   0   0   0   0   0  .294 .679 
+line[7] = 5 Pages, A  CF                            0   0   0   0   0   0   0  .382 1.061 | 5 Tovar  SS                               0   0   0   0   0   0   0  .235 .641 
+line[8] = 6 Rojas, M  SS                            0   0   0   0   0   0   0  .323 .758  | 6 Johnston, T  1B                         0   0   0   0   0   0   0  .323 .898 
+line[9] = 7 Muncy  3B                               0   0   0   0   0   0   0  .264 .866  | 7 Castro, W  2B                           0   0   0   0   0   0   0  .217 .610 
+line[10] = 8 Espinal  2B                             0   0   0   0   0   0   0  .143 .357  | 8 Karros, K  3B                           0   0   0   0   0   0   0  .211 .633 
+line[11] = 9 Rushing  1B                             0   0   0   0   0   0   0  .455 1.705 | 9 Sullivan, B  C                          0   0   0   0   0   0   0  .241 .612 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    0   0   0   0   0   0   0             | Totals                                    0   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Dodgers Pitchers                             IP   H   R  ER  BB   K  HR   ERA   | Rockies Pitchers                             IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Wrobleski                                   0.0   0   0   0   0   0   0   2.12  | Quintana                                    0.0   0   0   0   0   0   0   5.63 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.0   0   0   0   0   0   0         | Totals                                      0.0   0   0   0   0   0   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Wrobleski 0-0; Quintana 0-0.                                                                                                                    
+line[24] = Groundouts-flyouts: Wrobleski 0-0; Quintana 0-0.                                                                                                                 
+line[25] = Umpires: Adam Beck, Jeremie Rehak, Cory Blaser, James Jean (base assignments not confirmed until first pitch).                                                   
+line[26] = Weather: 78 degrees, Partly Cloudy.                                                                                                                              
+line[27] = Wind: 6 mph, R To L.                                                                                                                                             
+line[28] = First pitch: 6:40 pm.                                                                                                                                            
+line[29] = Venue: Coors Field.                                                                                                                                              
+line[30] = April 20, 2026                                                                                                                                                   
+line[31] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[32] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Blue Jays Batters                        AB   R   H  RBI BB   K  LOB AVG   OPS  | Angels Batters                           AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Schneider  LF                           0   0   0   0   0   0   0  .194 .697  | 1 Neto  SS                                0   0   0   0   0   0   0  .244 .837 
+line[4] = 2 Clement  SS                             0   0   0   0   0   0   0  .302 .717  | 2 Trout  CF                               0   0   0   0   0   0   0  .234 .980 
+line[5] = 3 Guerrero Jr.  1B                        0   0   0   0   0   0   0  .333 .865  | 3 Schanuel  1B                            0   0   0   0   0   0   0  .222 .625 
+line[6] = 4 Jiménez, E  DH                          0   0   0   0   0   0   0  .313 .702  | 4 Soler  DH                               0   0   0   0   0   0   0  .232 .830 
+line[7] = 5 Okamoto  3B                             0   0   0   0   0   0   0  .221 .658  | 5 Moncada  3B                             0   0   0   0   0   0   0  .169 .654 
+line[8] = 6 Sosa, L  2B                             0   0   0   0   0   0   0  .227 .545  | 6 Adell  RF                               0   0   0   0   0   0   0  .280 .721 
+line[9] = 7 Varsho  CF                              0   0   0   0   0   0   0  .262 .795  | 7 Lowe, J  LF                             0   0   0   0   0   0   0  .155 .559 
+line[10] = 8 Straw  RF                               0   0   0   0   0   0   0  .346 .893  | 8 O'Hoppe  C                              0   0   0   0   0   0   0  .210 .607 
+line[11] = 9 Heineman  C                             0   0   0   0   0   0   0  .259 .569  | 9 Frazier  2B                             0   0   0   0   0   0   0  .303 .880 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    0   0   0   0   0   0   0             | Totals                                    0   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Blue Jays Pitchers                           IP   H   R  ER  BB   K  HR   ERA   | Angels Pitchers                              IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Cease                                       0.0   0   0   0   0   0   0   1.74  | Detmers                                     0.0   0   0   0   0   0   0   3.57 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.0   0   0   0   0   0   0         | Totals                                      0.0   0   0   0   0   0   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Cease 0-0; Detmers 0-0.                                                                                                                         
+line[24] = Groundouts-flyouts: Cease 0-0; Detmers 0-0.                                                                                                                      
+line[25] = Umpires: Brian Walsh, Chad Fairchild, Chad Whitson, Bill Miller (base assignments not confirmed until first pitch).                                              
+line[26] = Weather: 70 degrees, Partly Cloudy.                                                                                                                              
+line[27] = Wind: 8 mph, Out To RF.                                                                                                                                          
+line[28] = First pitch: 6:38 pm.                                                                                                                                            
+line[29] = Venue: Angel Stadium.                                                                                                                                            
+line[30] = April 20, 2026                                                                                                                                                   
+line[31] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[32] = 
+
+line[0] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[1] = Athletics Batters                        AB   R   H  RBI BB   K  LOB AVG   OPS  | Mariners Batters                         AB   R   H  RBI BB   K  LOB AVG   OPS 
+line[2] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[3] = 1 Kurtz  1B                               0   0   0   0   0   0   0  .225 .773  | 1 Crawford, J  SS                         0   0   0   0   0   0   0  .213 .723 
+line[4] = 2 Langeliers  C                           0   0   0   0   0   0   0  .310 .947  | 2 Raleigh  C                              0   0   0   0   0   0   0  .159 .511 
+line[5] = 3 Cortes  DH                              0   0   0   0   0   0   0  .270 .804  | 3 Rodríguez, J  CF                        0   0   0   0   0   0   0  .209 .592 
+line[6] = 4 Soderstrom  LF                          0   0   0   0   0   0   0  .202 .664  | 4 Naylor, J  1B                           0   0   0   0   0   0   0  .146 .451 
+line[7] = 5 Wilson, J  SS                           0   0   0   0   0   0   0  .253 .613  | 5 Arozarena  LF                           0   0   0   0   0   0   0  .293 .829 
+line[8] = 6 McNeil  2B                              0   0   0   0   0   0   0  .266 .695  | 6 Raley, L  DH                            0   0   0   0   0   0   0  .313 .997 
+line[9] = 7 Muncy  3B                               0   0   0   0   0   0   0  .260 .765  | 7 Canzone  RF                             0   0   0   0   0   0   0  .255 .810 
+line[10] = 8 Butler, L  RF                           0   0   0   0   0   0   0  .191 .576  | 8 Young  2B                               0   0   0   0   0   0   0  .244 .716 
+line[11] = 9 Gelof  CF                               0   0   0   0   0   0   0  .250 .625  | 9 Rivas  3B                               0   0   0   0   0   0   0  .143 .479 
+line[12] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[13] = Totals                                    0   0   0   0   0   0   0             | Totals                                    0   0   0   0   0   0   0            
+line[14] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[15] =                                                                                 |                                                                                
+line[16] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[17] = Athletics Pitchers                           IP   H   R  ER  BB   K  HR   ERA   | Mariners Pitchers                            IP   H   R  ER  BB   K  HR   ERA  
+line[18] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[19] = Ginn                                        0.0   0   0   0   0   0   0   3.31  | Hancock                                     0.0   0   0   0   0   0   0   2.28 
+line[20] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[21] = Totals                                      0.0   0   0   0   0   0   0         | Totals                                      0.0   0   0   0   0   0   0        
+line[22] = ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------
+line[23] = Pitches-strikes: Ginn 0-0; Hancock 0-0.                                                                                                                          
+line[24] = Groundouts-flyouts: Ginn 0-0; Hancock 0-0.                                                                                                                       
+line[25] = Umpires: Mike Estabrook, Malachi Moore, Alfonso Márquez, Willie Traynor (base assignments not confirmed until first pitch).                                      
+line[26] = Weather: 70 degrees, Partly Cloudy.                                                                                                                              
+line[27] = Wind: 5 mph, Out To RF.                                                                                                                                          
+line[28] = First pitch: 6:40 pm.                                                                                                                                            
+line[29] = Venue: T-Mobile Park.                                                                                                                                            
+line[30] = April 20, 2026                                                                                                                                                   
+line[31] = -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+line[32] = 
+
+total_stats at the beginning of add_adv_pitcher_stats: [['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers'], ['Gray', '2', ['McGonigle', 'Torres', 'Keith', 'Greene', 'Dingler', 'Carpenter', 'Vierling', 'Lee', 'Rogers'], 2026, 'Red'], ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros'], ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians'], ['Lowder', '0', ['Simpson', 'Caminero', 'Aranda', 'Díaz', 'Fraley', 'Mullins', 'Fortes', 'Palacios', 'Walls'], 2026, 'Reds'], ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays'], ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals'], ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins'], ['Totals', '0', ['Wood', 'García', 'House', 'Abrams', 'Lile', 'Young', 'Tena', 'Millas', 'Nuñez'], 2026, 'Braves'], ['Totals', '1', ['Acuña', 'Baldwin', 'Olson', 'Riley', 'Albies', 'Harris', 'Smith', 'Mateo', 'Yastrzemski'], 2026, 'Nationals'], ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles'], ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals'], ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies'], ['0-0;', '-1', ['Turner', 'Schwarber', 'Harper', 'García', 'Marsh', 'Bohm', 'Stott', 'Crawford', 'Marchán'], 2026, 'Cubs'], ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers'], ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies'], ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue'], ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels'], ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics'], ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners']]
+
+Found a match for Flaherty in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers', ['681', '614', '188', '27.6', '8.7', '0.239', '0.406', '0.311', '0.717', '0.167', '0.307', '0.232', '0.406', '0.313', '0.310', '0.305', '0.173', '0.394', '0.389', '0.344', '0.334', '89.7', '37.8', '5.6', '43.8', '94.724612024', '27.3']]
+
+
+Found a match for Gray in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+Found a match for Gray in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+Found a match for Arrighetti in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros', ['156', '131', '31', '19.9', '12.8', '0.229', '0.412', '0.340', '0.752', '0.183', '0.250', '0.250', '0.426', '0.331', '0.356', '0.366', '0.177', '0.349', '0.387', '0.294', '0.334', '89.1', '35.3', '8.8', '45.1', '94.953613663', '27.4']]
+
+
+Found a match for Cecconi in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians', ['545', '506', '109', '20', '5.9', '0.247', '0.451', '0.294', '0.745', '0.204', '0.269', '0.267', '0.489', '0.319', '0.343', '0.314', '0.222', '0.374', '0.407', '0.313', '0.340', '91.7', '37.2', '8.5', '49.1', '95.530064534', '22.5']]
+
+
+Found a match for Scholtens in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays', ['38', '34', '12', '31.6', '7.9', '0.265', '0.353', '0.316', '0.669', '0.088', '0.364', '0.236', '0.346', '0.294', '0.279', '0.290', '0.111', '0.396', '0.370', '0.391', '0.349', '90.4', '30.4', '0', '39.1', '94.813690435', '34.2']]
+
+
+Found a match for McGreevy in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals', ['400', '373', '58', '14.5', '5', '0.268', '0.426', '0.309', '0.735', '0.158', '0.289', '0.274', '0.457', '0.318', '0.333', '0.316', '0.183', '0.348', '0.367', '0.315', '0.324', '90.5', '33.2', '6', '40.1', '94.840920349', '19.2']]
+
+
+Found a match for Meyer in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins', ['285', '261', '68', '23.9', '7', '0.276', '0.460', '0.330', '0.790', '0.184', '0.328', '0.263', '0.453', '0.341', '0.337', '0.320', '0.191', '0.420', '0.414', '0.369', '0.355', '91.9', '30.3', '7.2', '48.2', '95.684813731', '27.4']]
+
+
+Found a match for Bradish in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles', ['126', '115', '47', '37.3', '7.9', '0.200', '0.296', '0.270', '0.566', '0.096', '0.308', '0.210', '0.341', '0.255', '0.275', '0.279', '0.131', '0.360', '0.397', '0.338', '0.355', '89.8', '45.6', '7.4', '38.2', '94.417301029', '34.8']]
+
+
+Found a match for Lugo in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals', ['611', '546', '125', '20.5', '9', '0.244', '0.438', '0.319', '0.757', '0.194', '0.268', '0.256', '0.480', '0.329', '0.349', '0.331', '0.224', '0.374', '0.403', '0.315', '0.332', '90.7', '34.8', '9.6', '45.2', '94.977892339', '20.6']]
+
+
+Found a match for Nola in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies', ['404', '371', '97', '24', '6.9', '0.267', '0.480', '0.325', '0.805', '0.213', '0.316', '0.246', '0.417', '0.346', '0.315', '0.306', '0.171', '0.428', '0.382', '0.361', '0.333', '89.4', '35.3', '6.5', '43.3', '94.399605751', '25.2']]
+
+
+Found a match for Wrobleski in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers', ['280', '255', '76', '27.1', '6.1', '0.255', '0.380', '0.306', '0.686', '0.125', '0.335', '0.244', '0.359', '0.299', '0.289', '0.297', '0.115', '0.382', '0.366', '0.357', '0.343', '92', '30.4', '7.1', '47.8', '95.696025111', '24.6']]
+
+
+Found a match for Quintana in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies', ['556', '497', '89', '16', '9', '0.241', '0.382', '0.315', '0.697', '0.141', '0.260', '0.269', '0.463', '0.308', '0.349', '0.341', '0.193', '0.323', '0.378', '0.292', '0.327', '88.7', '35', '6.8', '41.7', '94.323604352', '18.4']]
+
+
+Found a match for Cease in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue', ['722', '636', '215', '29.8', '9.8', '0.239', '0.399', '0.318', '0.717', '0.160', '0.323', '0.214', '0.359', '0.313', '0.290', '0.297', '0.145', '0.406', '0.366', '0.357', '0.321', '88.9', '36.6', '7.7', '37.5', '93.931109718', '33.4']]
+
+
+Found a match for Detmers in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels', ['266', '238', '80', '30.1', '9.4', '0.244', '0.357', '0.320', '0.677', '0.113', '0.340', '0.231', '0.363', '0.295', '0.296', '0.311', '0.132', '0.386', '0.387', '0.365', '0.350', '90.1', '32.7', '5', '42.8', '94.748538662', '32.7']]
+
+
+Found a match for Ginn in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics', ['392', '354', '99', '25.3', '7.9', '0.260', '0.472', '0.329', '0.801', '0.212', '0.314', '0.227', '0.388', '0.344', '0.301', '0.300', '0.161', '0.428', '0.363', '0.359', '0.315', '88.4', '26.2', '5.5', '44.5', '94.914220549', '28.7']]
+
+
+Found a match for Hancock in the advanced pitcher stats csv file. Adding advanced stats to the pitcher data.
+
+
+pitcher_data after adding advanced stats: ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners', ['385', '346', '64', '16.6', '8.1', '0.269', '0.445', '0.336', '0.781', '0.176', '0.290', '0.291', '0.468', '0.339', '0.358', '0.357', '0.178', '0.371', '0.396', '0.327', '0.356', '89', '35.4', '4.6', '42.5', '94.459962923', '20.3']]
+
+total_stats before filtering: [['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers', ['681', '614', '188', '27.6', '8.7', '0.239', '0.406', '0.311', '0.717', '0.167', '0.307', '0.232', '0.406', '0.313', '0.310', '0.305', '0.173', '0.394', '0.389', '0.344', '0.334', '89.7', '37.8', '5.6', '43.8', '94.724612024', '27.3']], ['Gray', '2', ['McGonigle', 'Torres', 'Keith', 'Greene', 'Dingler', 'Carpenter', 'Vierling', 'Lee', 'Rogers'], 2026, 'Red'], ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros', ['156', '131', '31', '19.9', '12.8', '0.229', '0.412', '0.340', '0.752', '0.183', '0.250', '0.250', '0.426', '0.331', '0.356', '0.366', '0.177', '0.349', '0.387', '0.294', '0.334', '89.1', '35.3', '8.8', '45.1', '94.953613663', '27.4']], ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians', ['545', '506', '109', '20', '5.9', '0.247', '0.451', '0.294', '0.745', '0.204', '0.269', '0.267', '0.489', '0.319', '0.343', '0.314', '0.222', '0.374', '0.407', '0.313', '0.340', '91.7', '37.2', '8.5', '49.1', '95.530064534', '22.5']], ['Lowder', '0', ['Simpson', 'Caminero', 'Aranda', 'Díaz', 'Fraley', 'Mullins', 'Fortes', 'Palacios', 'Walls'], 2026, 'Reds'], ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays', ['38', '34', '12', '31.6', '7.9', '0.265', '0.353', '0.316', '0.669', '0.088', '0.364', '0.236', '0.346', '0.294', '0.279', '0.290', '0.111', '0.396', '0.370', '0.391', '0.349', '90.4', '30.4', '0', '39.1', '94.813690435', '34.2']], ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals', ['400', '373', '58', '14.5', '5', '0.268', '0.426', '0.309', '0.735', '0.158', '0.289', '0.274', '0.457', '0.318', '0.333', '0.316', '0.183', '0.348', '0.367', '0.315', '0.324', '90.5', '33.2', '6', '40.1', '94.840920349', '19.2']], ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins', ['285', '261', '68', '23.9', '7', '0.276', '0.460', '0.330', '0.790', '0.184', '0.328', '0.263', '0.453', '0.341', '0.337', '0.320', '0.191', '0.420', '0.414', '0.369', '0.355', '91.9', '30.3', '7.2', '48.2', '95.684813731', '27.4']], ['Totals', '0', ['Wood', 'García', 'House', 'Abrams', 'Lile', 'Young', 'Tena', 'Millas', 'Nuñez'], 2026, 'Braves'], ['Totals', '1', ['Acuña', 'Baldwin', 'Olson', 'Riley', 'Albies', 'Harris', 'Smith', 'Mateo', 'Yastrzemski'], 2026, 'Nationals'], ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles', ['126', '115', '47', '37.3', '7.9', '0.200', '0.296', '0.270', '0.566', '0.096', '0.308', '0.210', '0.341', '0.255', '0.275', '0.279', '0.131', '0.360', '0.397', '0.338', '0.355', '89.8', '45.6', '7.4', '38.2', '94.417301029', '34.8']], ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals', ['611', '546', '125', '20.5', '9', '0.244', '0.438', '0.319', '0.757', '0.194', '0.268', '0.256', '0.480', '0.329', '0.349', '0.331', '0.224', '0.374', '0.403', '0.315', '0.332', '90.7', '34.8', '9.6', '45.2', '94.977892339', '20.6']], ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies', ['404', '371', '97', '24', '6.9', '0.267', '0.480', '0.325', '0.805', '0.213', '0.316', '0.246', '0.417', '0.346', '0.315', '0.306', '0.171', '0.428', '0.382', '0.361', '0.333', '89.4', '35.3', '6.5', '43.3', '94.399605751', '25.2']], ['0-0;', '-1', ['Turner', 'Schwarber', 'Harper', 'García', 'Marsh', 'Bohm', 'Stott', 'Crawford', 'Marchán'], 2026, 'Cubs'], ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers', ['280', '255', '76', '27.1', '6.1', '0.255', '0.380', '0.306', '0.686', '0.125', '0.335', '0.244', '0.359', '0.299', '0.289', '0.297', '0.115', '0.382', '0.366', '0.357', '0.343', '92', '30.4', '7.1', '47.8', '95.696025111', '24.6']], ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies', ['556', '497', '89', '16', '9', '0.241', '0.382', '0.315', '0.697', '0.141', '0.260', '0.269', '0.463', '0.308', '0.349', '0.341', '0.193', '0.323', '0.378', '0.292', '0.327', '88.7', '35', '6.8', '41.7', '94.323604352', '18.4']], ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue', ['722', '636', '215', '29.8', '9.8', '0.239', '0.399', '0.318', '0.717', '0.160', '0.323', '0.214', '0.359', '0.313', '0.290', '0.297', '0.145', '0.406', '0.366', '0.357', '0.321', '88.9', '36.6', '7.7', '37.5', '93.931109718', '33.4']], ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels', ['266', '238', '80', '30.1', '9.4', '0.244', '0.357', '0.320', '0.677', '0.113', '0.340', '0.231', '0.363', '0.295', '0.296', '0.311', '0.132', '0.386', '0.387', '0.365', '0.350', '90.1', '32.7', '5', '42.8', '94.748538662', '32.7']], ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics', ['392', '354', '99', '25.3', '7.9', '0.260', '0.472', '0.329', '0.801', '0.212', '0.314', '0.227', '0.388', '0.344', '0.301', '0.300', '0.161', '0.428', '0.363', '0.359', '0.315', '88.4', '26.2', '5.5', '44.5', '94.914220549', '28.7']], ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners', ['385', '346', '64', '16.6', '8.1', '0.269', '0.445', '0.336', '0.781', '0.176', '0.290', '0.291', '0.468', '0.339', '0.358', '0.357', '0.178', '0.371', '0.396', '0.327', '0.356', '89', '35.4', '4.6', '42.5', '94.459962923', '20.3']]]
+
+new_total_stats after adding advanced pitcher stats: [['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers', ['681', '614', '188', '27.6', '8.7', '0.239', '0.406', '0.311', '0.717', '0.167', '0.307', '0.232', '0.406', '0.313', '0.310', '0.305', '0.173', '0.394', '0.389', '0.344', '0.334', '89.7', '37.8', '5.6', '43.8', '94.724612024', '27.3']], ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros', ['156', '131', '31', '19.9', '12.8', '0.229', '0.412', '0.340', '0.752', '0.183', '0.250', '0.250', '0.426', '0.331', '0.356', '0.366', '0.177', '0.349', '0.387', '0.294', '0.334', '89.1', '35.3', '8.8', '45.1', '94.953613663', '27.4']], ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians', ['545', '506', '109', '20', '5.9', '0.247', '0.451', '0.294', '0.745', '0.204', '0.269', '0.267', '0.489', '0.319', '0.343', '0.314', '0.222', '0.374', '0.407', '0.313', '0.340', '91.7', '37.2', '8.5', '49.1', '95.530064534', '22.5']], ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays', ['38', '34', '12', '31.6', '7.9', '0.265', '0.353', '0.316', '0.669', '0.088', '0.364', '0.236', '0.346', '0.294', '0.279', '0.290', '0.111', '0.396', '0.370', '0.391', '0.349', '90.4', '30.4', '0', '39.1', '94.813690435', '34.2']], ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals', ['400', '373', '58', '14.5', '5', '0.268', '0.426', '0.309', '0.735', '0.158', '0.289', '0.274', '0.457', '0.318', '0.333', '0.316', '0.183', '0.348', '0.367', '0.315', '0.324', '90.5', '33.2', '6', '40.1', '94.840920349', '19.2']], ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins', ['285', '261', '68', '23.9', '7', '0.276', '0.460', '0.330', '0.790', '0.184', '0.328', '0.263', '0.453', '0.341', '0.337', '0.320', '0.191', '0.420', '0.414', '0.369', '0.355', '91.9', '30.3', '7.2', '48.2', '95.684813731', '27.4']], ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles', ['126', '115', '47', '37.3', '7.9', '0.200', '0.296', '0.270', '0.566', '0.096', '0.308', '0.210', '0.341', '0.255', '0.275', '0.279', '0.131', '0.360', '0.397', '0.338', '0.355', '89.8', '45.6', '7.4', '38.2', '94.417301029', '34.8']], ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals', ['611', '546', '125', '20.5', '9', '0.244', '0.438', '0.319', '0.757', '0.194', '0.268', '0.256', '0.480', '0.329', '0.349', '0.331', '0.224', '0.374', '0.403', '0.315', '0.332', '90.7', '34.8', '9.6', '45.2', '94.977892339', '20.6']], ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies', ['404', '371', '97', '24', '6.9', '0.267', '0.480', '0.325', '0.805', '0.213', '0.316', '0.246', '0.417', '0.346', '0.315', '0.306', '0.171', '0.428', '0.382', '0.361', '0.333', '89.4', '35.3', '6.5', '43.3', '94.399605751', '25.2']], ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers', ['280', '255', '76', '27.1', '6.1', '0.255', '0.380', '0.306', '0.686', '0.125', '0.335', '0.244', '0.359', '0.299', '0.289', '0.297', '0.115', '0.382', '0.366', '0.357', '0.343', '92', '30.4', '7.1', '47.8', '95.696025111', '24.6']], ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies', ['556', '497', '89', '16', '9', '0.241', '0.382', '0.315', '0.697', '0.141', '0.260', '0.269', '0.463', '0.308', '0.349', '0.341', '0.193', '0.323', '0.378', '0.292', '0.327', '88.7', '35', '6.8', '41.7', '94.323604352', '18.4']], ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue', ['722', '636', '215', '29.8', '9.8', '0.239', '0.399', '0.318', '0.717', '0.160', '0.323', '0.214', '0.359', '0.313', '0.290', '0.297', '0.145', '0.406', '0.366', '0.357', '0.321', '88.9', '36.6', '7.7', '37.5', '93.931109718', '33.4']], ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels', ['266', '238', '80', '30.1', '9.4', '0.244', '0.357', '0.320', '0.677', '0.113', '0.340', '0.231', '0.363', '0.295', '0.296', '0.311', '0.132', '0.386', '0.387', '0.365', '0.350', '90.1', '32.7', '5', '42.8', '94.748538662', '32.7']], ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics', ['392', '354', '99', '25.3', '7.9', '0.260', '0.472', '0.329', '0.801', '0.212', '0.314', '0.227', '0.388', '0.344', '0.301', '0.300', '0.161', '0.428', '0.363', '0.359', '0.315', '88.4', '26.2', '5.5', '44.5', '94.914220549', '28.7']], ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners', ['385', '346', '64', '16.6', '8.1', '0.269', '0.445', '0.336', '0.781', '0.176', '0.290', '0.291', '0.468', '0.339', '0.358', '0.357', '0.178', '0.371', '0.396', '0.327', '0.356', '89', '35.4', '4.6', '42.5', '94.459962923', '20.3']]]
+
+future_stats after adding adv pitcher stats: [['Flaherty', '3', ['Anthony', 'Contreras', 'Abreu', 'Story', 'Duran', 'Narváez'], 2026, 'Tigers', ['681', '614', '188', '27.6', '8.7', '0.239', '0.406', '0.311', '0.717', '0.167', '0.307', '0.232', '0.406', '0.313', '0.310', '0.305', '0.173', '0.394', '0.389', '0.344', '0.334', '89.7', '37.8', '5.6', '43.8', '94.724612024', '27.3']], ['Arrighetti', '0', ['Kwan', 'DeLauter', 'Ramírez', 'Manzardo', 'Hoskins', 'Valera', 'Brito', 'Naylor', 'Rocchio'], 2026, 'Astros', ['156', '131', '31', '19.9', '12.8', '0.229', '0.412', '0.340', '0.752', '0.183', '0.250', '0.250', '0.426', '0.331', '0.356', '0.366', '0.177', '0.349', '0.387', '0.294', '0.334', '89.1', '35.3', '8.8', '45.1', '94.953613663', '27.4']], ['Cecconi', '2', ['Correa', 'Alvarez', 'Altuve', 'Walker', 'Paredes', 'Trammell', 'Diaz', 'Harris', 'Matthews'], 2026, 'Guardians', ['545', '506', '109', '20', '5.9', '0.247', '0.451', '0.294', '0.745', '0.204', '0.269', '0.267', '0.489', '0.319', '0.343', '0.314', '0.222', '0.374', '0.407', '0.313', '0.340', '91.7', '37.2', '8.5', '49.1', '95.530064534', '22.5']], ['Scholtens', '1', ['Friedl', 'McLain', 'De', 'Stewart', 'Suárez', 'Steer', 'Stephenson', 'Hinds', 'Hayes'], 2026, 'Rays', ['38', '34', '12', '31.6', '7.9', '0.265', '0.353', '0.316', '0.669', '0.088', '0.364', '0.236', '0.346', '0.294', '0.279', '0.290', '0.111', '0.396', '0.370', '0.391', '0.349', '90.4', '30.4', '0', '39.1', '94.813690435', '34.2']], ['McGreevy', '0', ['Marsee', 'Stowers', 'Lopez', 'Edwards', 'Hicks', 'Ramírez', 'Caissie', 'Pauley', 'Norby'], 2026, 'Cardinals', ['400', '373', '58', '14.5', '5', '0.268', '0.426', '0.309', '0.735', '0.158', '0.289', '0.274', '0.457', '0.318', '0.333', '0.316', '0.183', '0.348', '0.367', '0.315', '0.324', '90.5', '33.2', '6', '40.1', '94.840920349', '19.2']], ['Meyer', '3', ['Wetherholt', 'Herrera', 'Burleson', 'Walker', 'Gorman', 'Winn', 'Urías', 'Saggese', 'Scott'], 2026, 'Marlins', ['285', '261', '68', '23.9', '7', '0.276', '0.460', '0.330', '0.790', '0.184', '0.328', '0.263', '0.453', '0.341', '0.337', '0.320', '0.191', '0.420', '0.414', '0.369', '0.355', '91.9', '30.3', '7.2', '48.2', '95.684813731', '27.4']], ['Bradish', '-1', ['Garcia', 'Witt', 'Pasquantino', 'Perez', 'Jensen', 'Massey', 'Caglianone', 'Collins', 'Isbel'], 2026, 'Orioles', ['126', '115', '47', '37.3', '7.9', '0.200', '0.296', '0.270', '0.566', '0.096', '0.308', '0.210', '0.341', '0.255', '0.275', '0.279', '0.131', '0.360', '0.397', '0.338', '0.355', '89.8', '45.6', '7.4', '38.2', '94.417301029', '34.8']], ['Lugo', '-1', ['Henderson', 'Ward', 'Beavers', 'Alonso', 'Basallo', 'Jackson', 'Cowser', 'Taveras', 'Alexander'], 2026, 'Royals', ['611', '546', '125', '20.5', '9', '0.244', '0.438', '0.319', '0.757', '0.194', '0.268', '0.256', '0.480', '0.329', '0.349', '0.331', '0.224', '0.374', '0.403', '0.315', '0.332', '90.7', '34.8', '9.6', '45.2', '94.977892339', '20.6']], ['Nola', '-1', ['Hoerner', 'Busch', 'Bregman', 'Happ', 'Ballesteros', 'Conforto', 'Amaya', 'Crow-Armstrong', 'Swanson'], 2026, 'Phillies', ['404', '371', '97', '24', '6.9', '0.267', '0.480', '0.325', '0.805', '0.213', '0.316', '0.246', '0.417', '0.346', '0.315', '0.306', '0.171', '0.428', '0.382', '0.361', '0.333', '89.4', '35.3', '6.5', '43.3', '94.399605751', '25.2']], ['Wrobleski', '-1', ['Beck', 'Doyle', 'Goodman', 'Freeman', 'Tovar', 'Johnston', 'Castro', 'Karros', 'Sullivan'], 2026, 'Dodgers', ['280', '255', '76', '27.1', '6.1', '0.255', '0.380', '0.306', '0.686', '0.125', '0.335', '0.244', '0.359', '0.299', '0.289', '0.297', '0.115', '0.382', '0.366', '0.357', '0.343', '92', '30.4', '7.1', '47.8', '95.696025111', '24.6']], ['Quintana', '-1', ['Ohtani', 'Call', 'Smith', 'Hernández', 'Pages', 'Rojas', 'Muncy', 'Espinal', 'Rushing'], 2026, 'Rockies', ['556', '497', '89', '16', '9', '0.241', '0.382', '0.315', '0.697', '0.141', '0.260', '0.269', '0.463', '0.308', '0.349', '0.341', '0.193', '0.323', '0.378', '0.292', '0.327', '88.7', '35', '6.8', '41.7', '94.323604352', '18.4']], ['Cease', '-1', ['Neto', 'Trout', 'Schanuel', 'Soler', 'Moncada', 'Adell', 'Lowe', "O'Hoppe", 'Frazier'], 2026, 'Blue', ['722', '636', '215', '29.8', '9.8', '0.239', '0.399', '0.318', '0.717', '0.160', '0.323', '0.214', '0.359', '0.313', '0.290', '0.297', '0.145', '0.406', '0.366', '0.357', '0.321', '88.9', '36.6', '7.7', '37.5', '93.931109718', '33.4']], ['Detmers', '-1', ['Schneider', 'Clement', 'Guerrero', 'Jiménez', 'Okamoto', 'Sosa', 'Varsho', 'Straw', 'Heineman'], 2026, 'Angels', ['266', '238', '80', '30.1', '9.4', '0.244', '0.357', '0.320', '0.677', '0.113', '0.340', '0.231', '0.363', '0.295', '0.296', '0.311', '0.132', '0.386', '0.387', '0.365', '0.350', '90.1', '32.7', '5', '42.8', '94.748538662', '32.7']], ['Ginn', '-1', ['Crawford', 'Raleigh', 'Rodríguez', 'Naylor', 'Arozarena', 'Raley', 'Canzone', 'Young', 'Rivas'], 2026, 'Athletics', ['392', '354', '99', '25.3', '7.9', '0.260', '0.472', '0.329', '0.801', '0.212', '0.314', '0.227', '0.388', '0.344', '0.301', '0.300', '0.161', '0.428', '0.363', '0.359', '0.315', '88.4', '26.2', '5.5', '44.5', '94.914220549', '28.7']], ['Hancock', '-1', ['Kurtz', 'Langeliers', 'Cortes', 'Soderstrom', 'Wilson', 'McNeil', 'Muncy', 'Butler', 'Gelof'], 2026, 'Mariners', ['385', '346', '64', '16.6', '8.1', '0.269', '0.445', '0.336', '0.781', '0.176', '0.290', '0.291', '0.468', '0.339', '0.358', '0.357', '0.178', '0.371', '0.396', '0.327', '0.356', '89', '35.4', '4.6', '42.5', '94.459962923', '20.3']]]
+future_stats after adding all stats: [['Flaherty', 3.0, 2026, [681.0, 614.0, 188.0, 27.6, 8.7, 0.239, 0.406, 0.311, 0.717, 0.167, 0.307, 0.232, 0.406, 0.313, 0.31, 0.305, 0.173, 0.394, 0.389, 0.344, 0.334, 89.7, 37.8, 5.6, 43.8, 94.724612024, 27.3], [414.0, 458.0, 109.33333333333333, 69.33333333333333, 21.333333333333332, 26.266666666666666, 9.266666666666666, 0.2673333333333333, 0.455, 0.3403333333333334, 0.7953333333333333, 65.66666666666667, 186.33333333333334, 113.33333333333333, 4.333333333333333, 0.0, 37.333333333333336, 296.0, 43.666666666666664, 61.666666666666664, 84.66666666666667, 17.0, 23.0, 7.333333333333333, 1.6666666666666667, 213.0, 0.0, 0.3333333333333333, 0.0, 64.0, 2.3333333333333335, 1.3333333333333333, 0.45999999999999996, 0.3393333333333333, 0.43399999999999994, 0.4286666666666667, 0.37799999999999995, 0.017333333333333336, -0.005000000000000001, 0.004, 34.666666666666664, 102.89808927566666, 27.7, 47.96666666666667], 'Tigers'], ['Arrighetti', 0.0, 2026, [156.0, 131.0, 31.0, 19.9, 12.8, 0.229, 0.412, 0.34, 0.752, 0.183, 0.25, 0.25, 0.426, 0.331, 0.356, 0.366, 0.177, 0.349, 0.387, 0.294, 0.334, 89.1, 35.3, 8.8, 45.1, 94.953613663, 27.4], [351.8, 396.6, 87.0, 58.4, 16.0, 21.8, 9.760000000000002, 0.2392, 0.4, 0.3196, 0.7196, 43.6, 139.6, 80.6, 4.2, 0.0, 24.6, 282.6, 45.0, 64.6, 80.4, 29.4, 19.6, 19.4, 4.6, 124.4, 0.0, 0.2, 0.0, 39.8, 6.0, 1.2, 0.3668, 0.3026, 0.36140000000000005, 0.3406, 0.31520000000000004, 0.009200000000000002, 0.0332, 0.011600000000000003, 16.2, 98.9857391626, 23.56, 44.7], 'Astros'], ['Cecconi', 2.0, 2026, [545.0, 506.0, 109.0, 20.0, 5.9, 0.247, 0.451, 0.294, 0.745, 0.204, 0.269, 0.267, 0.489, 0.319, 0.343, 0.314, 0.222, 0.374, 0.407, 0.313, 0.34, 91.7, 37.2, 8.5, 49.1, 95.530064534, 22.5], [367.3333333333333, 404.1666666666667, 94.83333333333333, 63.333333333333336, 16.666666666666668, 23.866666666666664, 7.983333333333333, 0.23583333333333334, 0.41733333333333333, 0.3025, 0.7198333333333333, 45.5, 155.5, 89.33333333333333, 10.333333333333334, 0.0, 31.333333333333332, 294.3333333333333, 43.166666666666664, 52.166666666666664, 95.0, 26.166666666666668, 24.833333333333332, 14.666666666666666, 2.1666666666666665, 141.83333333333334, 0.0, 0.5, 0.0, 45.5, 2.6666666666666665, 3.0, 0.4061666666666666, 0.3081666666666667, 0.3811666666666667, 0.37633333333333335, 0.31866666666666665, 0.004999999999999999, 0.011166666666666667, 0.004333333333333334, 22.166666666666668, 100.30194930216665, 28.666666666666668, 48.666666666666664], 'Guardians'], ['Scholtens', 1.0, 2026, [38.0, 34.0, 12.0, 31.6, 7.9, 0.265, 0.353, 0.316, 0.669, 0.088, 0.364, 0.236, 0.346, 0.294, 0.279, 0.29, 0.111, 0.396, 0.37, 0.391, 0.349, 90.4, 30.4, 0.0, 39.1, 94.813690435, 34.2], [388.75, 437.625, 91.25, 59.25, 15.625, 28.15, 7.737499999999999, 0.22300000000000003, 0.40112499999999995, 0.288625, 0.68975, 50.75, 155.125, 91.875, 7.0, 0.0, 29.5, 284.0, 40.25, 59.75, 83.75, 24.125, 24.125, 5.375, 2.875, 178.25, 0.0, 0.5, 0.125, 52.375, 4.0, 2.625, 0.41025, 0.30574999999999997, 0.3805, 0.39424999999999993, 0.317625, -0.0006250000000000002, -0.009125000000000001, -0.005874999999999999, 22.875, 100.37101009075, 28.925, 46.875], 'Rays'], ['McGreevy', 0.0, 2026, [400.0, 373.0, 58.0, 14.5, 5.0, 0.268, 0.426, 0.309, 0.735, 0.158, 0.289, 0.274, 0.457, 0.318, 0.333, 0.316, 0.183, 0.348, 0.367, 0.315, 0.324, 90.5, 33.2, 6.0, 40.1, 94.840920349, 19.2], [285.57142857142856, 321.14285714285717, 76.57142857142857, 53.0, 14.142857142857142, 23.357142857142858, 8.457142857142857, 0.25385714285714284, 0.40314285714285714, 0.3218571428571428, 0.725, 34.714285714285715, 117.0, 64.85714285714286, 3.2857142857142856, 0.0, 24.714285714285715, 224.0, 36.285714285714285, 41.285714285714285, 72.28571428571429, 22.142857142857142, 10.714285714285714, 4.857142857142857, 2.142857142857143, 113.57142857142857, 0.0, 1.1428571428571428, 0.14285714285714285, 37.857142857142854, 3.2857142857142856, 1.7142857142857142, 0.39028571428571424, 0.31, 0.3788571428571429, 0.3688571428571429, 0.3408571428571428, 0.011142857142857144, 0.012857142857142857, 0.0064285714285714285, 15.714285714285714, 98.43106172571429, 25.028571428571432, 49.5], 'Cardinals'], ['Meyer', 3.0, 2026, [285.0, 261.0, 68.0, 23.9, 7.0, 0.276, 0.46, 0.33, 0.79, 0.184, 0.328, 0.263, 0.453, 0.341, 0.337, 0.32, 0.191, 0.42, 0.414, 0.369, 0.355, 91.9, 30.3, 7.2, 48.2, 95.684813731, 27.4], [403.5, 445.0, 102.75, 70.25, 21.0, 23.85, 7.625, 0.2515, 0.3835, 0.312, 0.6955, 47.75, 157.5, 100.0, 7.75, 0.0, 34.25, 307.5, 50.5, 70.25, 82.25, 27.75, 24.5, 11.25, 3.0, 161.0, 0.0, 0.5, 0.25, 49.75, 4.0, 1.5, 0.38849999999999996, 0.30175, 0.3665, 0.3635, 0.33825000000000005, 0.01475, -0.005, 0.0025, 22.5, 100.1454763605, 24.65, 48.075], 'Marlins'], ['Bradish', -1.0, 2026, [126.0, 115.0, 47.0, 37.3, 7.9, 0.2, 0.296, 0.27, 0.566, 0.096, 0.308, 0.21, 0.341, 0.255, 0.275, 0.279, 0.131, 0.36, 0.397, 0.338, 0.355, 89.8, 45.6, 7.4, 38.2, 94.417301029, 34.8], [385.625, 427.125, 97.75, 62.25, 20.75, 17.787499999999998, 7.925, 0.250625, 0.4115, 0.315375, 0.7268749999999999, 53.125, 161.0, 100.75, 8.125, 0.0, 31.0, 317.0, 46.75, 61.625, 101.0, 31.0, 25.0, 12.5, 2.625, 134.75, 0.0, 0.875, 0.75, 44.5, 5.125, 1.875, 0.43475, 0.329, 0.348875, 0.3681249999999999, 0.30974999999999997, -0.0095, -0.023250000000000007, -0.013374999999999998, 26.5, 101.33181312187499, 21.3375, 48.612500000000004], 'Orioles'], ['Lugo', -1.0, 2026, [611.0, 546.0, 125.0, 20.5, 9.0, 0.244, 0.438, 0.319, 0.757, 0.194, 0.268, 0.256, 0.48, 0.329, 0.349, 0.331, 0.224, 0.374, 0.403, 0.315, 0.332, 90.7, 34.8, 9.6, 45.2, 94.977892339, 20.6], [356.7142857142857, 402.57142857142856, 86.0, 48.142857142857146, 19.571428571428573, 26.47142857142857, 9.114285714285714, 0.22385714285714284, 0.40800000000000003, 0.3017142857142857, 0.7097142857142859, 54.714285714285715, 159.0, 85.28571428571429, 7.428571428571429, 0.0, 24.142857142857142, 257.7142857142857, 38.285714285714285, 51.857142857142854, 80.28571428571429, 21.285714285714285, 18.0, 3.142857142857143, 3.0, 161.57142857142858, 0.0, 0.2857142857142857, 0.14285714285714285, 47.57142857142857, 3.5714285714285716, 1.7142857142857142, 0.4214285714285714, 0.31614285714285717, 0.37814285714285717, 0.39057142857142857, 0.31614285714285717, -0.0054285714285714284, -0.013428571428571429, -0.00842857142857143, 33.285714285714285, 101.442912958, 26.771428571428572, 45.58571428571429], 'Royals'], ['Nola', -1.0, 2026, [404.0, 371.0, 97.0, 24.0, 6.9, 0.267, 0.48, 0.325, 0.805, 0.213, 0.316, 0.246, 0.417, 0.346, 0.315, 0.306, 0.171, 0.428, 0.382, 0.361, 0.333, 89.4, 35.3, 6.5, 43.3, 94.399605751, 25.2], [472.625, 530.375, 120.125, 74.5, 24.625, 20.1375, 9.475, 0.25775000000000003, 0.43799999999999994, 0.3345, 0.7725, 63.875, 205.625, 117.75, 6.25, 0.0, 35.625, 369.5, 55.125, 79.625, 111.0, 32.5, 25.375, 3.25, 4.125, 202.375, 0.0, 1.125, 0.25, 69.875, 5.0, 3.25, 0.449, 0.340125, 0.3805, 0.39050000000000007, 0.33025000000000004, -0.0007500000000000002, -0.011, -0.005625, 36.0, 100.22599821675, 23.3625, 47.725], 'Phillies'], ['Wrobleski', -1.0, 2026, [280.0, 255.0, 76.0, 27.1, 6.1, 0.255, 0.38, 0.306, 0.686, 0.125, 0.335, 0.244, 0.359, 0.299, 0.289, 0.297, 0.115, 0.382, 0.366, 0.357, 0.343, 92.0, 30.4, 7.1, 47.8, 95.696025111, 24.6], [370.2857142857143, 403.7142857142857, 92.85714285714286, 60.57142857142857, 17.0, 25.557142857142857, 7.000000000000001, 0.2501428571428571, 0.39642857142857146, 0.30857142857142855, 0.705, 41.285714285714285, 152.85714285714286, 80.71428571428571, 8.428571428571429, 0.0, 29.571428571428573, 267.42857142857144, 43.42857142857143, 51.714285714285715, 80.42857142857143, 24.857142857142858, 16.571428571428573, 7.857142857142857, 1.5714285714285714, 213.85714285714286, 0.0, 1.1428571428571428, 0.14285714285714285, 46.57142857142857, 2.857142857142857, 3.0, 0.4017142857142857, 0.30742857142857144, 0.38085714285714284, 0.3794285714285714, 0.34528571428571425, 0.008285714285714287, -0.005285714285714287, 0.0010000000000000007, 25.428571428571427, 100.23112518985715, 30.114285714285717, 51.785714285714285], 'Dodgers'], ['Quintana', -1.0, 2026, [556.0, 497.0, 89.0, 16.0, 9.0, 0.241, 0.382, 0.315, 0.697, 0.141, 0.26, 0.269, 0.463, 0.308, 0.349, 0.341, 0.193, 0.323, 0.378, 0.292, 0.327, 88.7, 35.0, 6.8, 41.7, 94.323604352, 18.4], [381.0, 431.2, 100.8, 63.8, 16.4, 22.68, 8.739999999999998, 0.2536, 0.41480000000000006, 0.32320000000000004, 0.7379999999999999, 51.8, 176.6, 82.2, 7.2, 0.0, 31.8, 291.6, 43.2, 63.6, 83.8, 26.6, 15.8, 33.4, 3.2, 173.2, 0.0, 0.8, 0.2, 60.6, 5.0, 2.0, 0.4224, 0.3198, 0.3842, 0.38780000000000003, 0.339, 0.012199999999999999, -0.0076, -0.0005999999999999998, 32.4, 100.1097396842, 24.779999999999998, 45.32000000000001], 'Rockies'], ['Cease', -1.0, 2026, [722.0, 636.0, 215.0, 29.8, 9.8, 0.239, 0.399, 0.318, 0.717, 0.16, 0.323, 0.214, 0.359, 0.313, 0.29, 0.297, 0.145, 0.406, 0.366, 0.357, 0.321, 88.9, 36.6, 7.7, 37.5, 93.931109718, 33.4], [417.625, 470.125, 101.0, 64.125, 17.125, 25.2625, 8.612499999999999, 0.23975000000000002, 0.41974999999999996, 0.31625, 0.7360000000000001, 54.125, 176.5, 88.5, 7.625, 0.0, 29.375, 304.375, 47.25, 62.5, 89.25, 29.75, 20.75, 20.25, 3.125, 206.5, 0.0, 0.5, 0.0, 53.75, 4.0, 1.875, 0.434, 0.324, 0.391, 0.400625, 0.33299999999999996, 0.002, -0.014250000000000002, -0.0052499999999999995, 34.125, 100.66551870074998, 27.075, 47.2625], 'Blue'], ['Detmers', -1.0, 2026, [266.0, 238.0, 80.0, 30.1, 9.4, 0.244, 0.357, 0.32, 0.677, 0.113, 0.34, 0.231, 0.363, 0.295, 0.296, 0.311, 0.132, 0.386, 0.387, 0.365, 0.35, 90.1, 32.7, 5.0, 42.8, 94.748538662, 32.7], [237.66666666666666, 265.1666666666667, 61.5, 40.0, 12.5, 20.78333333333333, 7.733333333333333, 0.22816666666666666, 0.3895, 0.2935, 0.6829999999999999, 31.5, 100.0, 60.166666666666664, 4.166666666666667, 0.0, 19.333333333333332, 196.16666666666666, 29.333333333333332, 47.0, 50.666666666666664, 16.833333333333332, 19.333333333333332, 0.3333333333333333, 2.3333333333333335, 84.83333333333333, 0.0, 0.16666666666666666, 0.0, 39.5, 6.333333333333333, 1.5, 0.37116666666666664, 0.29116666666666663, 0.3408333333333333, 0.332, 0.29316666666666663, 0.006999999999999998, 0.01833333333333333, 0.006000000000000001, 12.166666666666666, 98.49875854483332, 21.78333333333333, 49.0], 'Angels'], ['Ginn', -1.0, 2026, [392.0, 354.0, 99.0, 25.3, 7.9, 0.26, 0.472, 0.329, 0.801, 0.212, 0.314, 0.227, 0.388, 0.344, 0.301, 0.3, 0.161, 0.428, 0.363, 0.359, 0.315, 88.4, 26.2, 5.5, 44.5, 94.914220549, 28.7], [382.5, 444.5, 96.0, 59.666666666666664, 16.833333333333332, 24.166666666666668, 11.366666666666665, 0.24933333333333332, 0.4183333333333334, 0.3515, 0.7698333333333333, 53.166666666666664, 171.16666666666666, 87.0, 5.833333333333333, 0.0, 29.833333333333332, 278.1666666666667, 40.166666666666664, 54.833333333333336, 81.16666666666667, 23.833333333333332, 21.666666666666668, 9.333333333333334, 2.0, 210.33333333333334, 0.0, 0.3333333333333333, 0.5, 57.666666666666664, 3.5, 1.5, 0.41783333333333333, 0.33383333333333326, 0.39433333333333337, 0.38566666666666666, 0.34450000000000003, 0.015, 0.0005000000000000004, 0.004666666666666667, 32.166666666666664, 100.425272217, 28.566666666666663, 46.71666666666667], 'Athletics'], ['Hancock', -1.0, 2026, [385.0, 346.0, 64.0, 16.6, 8.1, 0.269, 0.445, 0.336, 0.781, 0.176, 0.29, 0.291, 0.468, 0.339, 0.358, 0.357, 0.178, 0.371, 0.396, 0.327, 0.356, 89.0, 35.4, 4.6, 42.5, 94.459962923, 20.3], [373.7142857142857, 418.2857142857143, 97.85714285714286, 55.57142857142857, 22.0, 25.6, 8.357142857142858, 0.25757142857142856, 0.46557142857142847, 0.3211428571428571, 0.7867142857142857, 55.57142857142857, 179.14285714285714, 91.14285714285714, 6.714285714285714, 0.0, 28.142857142857142, 277.57142857142856, 47.0, 52.42857142857143, 87.85714285714286, 22.571428571428573, 16.142857142857142, 4.714285714285714, 2.4285714285714284, 186.57142857142858, 0.0, 0.42857142857142855, 0.0, 55.142857142857146, 3.142857142857143, 1.7142857142857142, 0.42671428571428566, 0.31542857142857145, 0.42514285714285716, 0.39300000000000007, 0.3578571428571428, 0.020142857142857146, 0.03885714285714286, 0.021428571428571432, 29.714285714285715, 101.30986526957143, 28.58571428571429, 49.528571428571425], 'Mariners']]
+future_stats 'strikeouts': ['Arrighetti', 0.0, 2026, [156.0, 131.0, 31.0, 19.9, 12.8, 0.229, 0.412, 0.34, 0.752, 0.183, 0.25, 0.25, 0.426, 0.331, 0.356, 0.366, 0.177, 0.349, 0.387, 0.294, 0.334, 89.1, 35.3, 8.8, 45.1, 94.953613663, 27.4], [351.8, 396.6, 87.0, 58.4, 16.0, 21.8, 9.760000000000002, 0.2392, 0.4, 0.3196, 0.7196, 43.6, 139.6, 80.6, 4.2, 0.0, 24.6, 282.6, 45.0, 64.6, 80.4, 29.4, 19.6, 19.4, 4.6, 124.4, 0.0, 0.2, 0.0, 39.8, 6.0, 1.2, 0.3668, 0.3026, 0.36140000000000005, 0.3406, 0.31520000000000004, 0.009200000000000002, 0.0332, 0.011600000000000003, 16.2, 98.9857391626, 23.56, 44.7], 'Astros']
+processed_pitcher_stats: 27
+processed_batter_stats: 44
+
+Arrighetti's predicted strikeouts: 5.0
+
+
+Cecconi's predicted strikeouts: 4.0
+
+
+Scholtens's predicted strikeouts: 5.0
+
+
+McGreevy's predicted strikeouts: 4.0
+
+
+Meyer's predicted strikeouts: 4.0
+
+
+Bradish's predicted strikeouts: 5.0
+
+
+Lugo's predicted strikeouts: 4.0
+
+
+Nola's predicted strikeouts: 4.0
+
+
+Wrobleski's predicted strikeouts: 4.0
+
+
+Quintana's predicted strikeouts: 4.0
+
+
+Cease's predicted strikeouts: 5.0
+
+
+Detmers's predicted strikeouts: 5.0
+
+
+Ginn's predicted strikeouts: 5.0
+
+
+Hancock's predicted strikeouts: 4.0
+
+
+Saved 14 predictions to predictions.json
