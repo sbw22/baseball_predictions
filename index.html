@@ -145,6 +145,7 @@
     .retry-btn:hover { background: var(--bg-secondary); }
 
     .footer { text-align: center; margin-top: 2.5rem; font-size: 12px; color: var(--text-tertiary); }
+    .last-updated { margin-top: 0.35rem; color: var(--text-secondary); }
     .ball-row { display: flex; justify-content: center; gap: 8px; margin-top: 0.8rem; }
     .baseball {
       width: 14px; height: 14px; border-radius: 50%;
@@ -186,6 +187,7 @@
 
   <div class="footer">
     Model predictions only — not a substitute for your own analysis.
+    <div class="last-updated" id="last-updated"></div>
     <div class="ball-row">
       <div class="baseball"><div class="seam"></div></div>
       <div class="baseball"><div class="seam" style="transform:rotate(90deg)"></div></div>
@@ -236,6 +238,11 @@
       <div class="stat-card"><div class="stat-label">Avg predicted K's</div><div class="stat-value">${avg}</div></div>
       <div class="stat-card"><div class="stat-label">K leader</div><div class="stat-value">${leader}</div></div>
     `;
+  }
+
+  function setLastUpdated(updatedAt) {
+    const el = document.getElementById("last-updated");
+    el.textContent = updatedAt ? `Last updated: ${updatedAt}` : "";
   }
 
   function getInitials(name) {
@@ -350,6 +357,8 @@
         return;
       }
 
+      setLastUpdated(data.updated_at || "");
+
       pitchers = data.predictions.map((p, i) => ({ ...p, idx: i }));
       originalOrder = [...pitchers];
 
@@ -357,6 +366,18 @@
         document.getElementById("pitcher-list").innerHTML =
           '<div class="loading-state">No games scheduled for today.</div>';
         return;
+      }
+
+      if (!data.updated_at) {
+        const loadedAt = new Date().toLocaleString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        });
+        setLastUpdated(loadedAt);
       }
 
       initSummary();

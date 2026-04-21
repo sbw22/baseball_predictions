@@ -142,7 +142,11 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
         results.append({"name": pitcher_name, "k": guess, "team": team})
     
     # Save to predictions.json in the same format server.py used
-    output = {"status": "ok", "predictions": results}
+    output = {
+        "status": "ok",
+        "updated_at": datetime.datetime.now().strftime("%b %d, %Y at %H:%M"),
+        "predictions": results,
+    }
     with open("predictions.json", "w") as f:
         json.dump(output, f)
     print(f"\nSaved {len(results)} predictions to predictions.json")
