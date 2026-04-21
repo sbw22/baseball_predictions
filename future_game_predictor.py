@@ -183,6 +183,9 @@ def main():
 
     predict_strikeouts(model, X, strikeout_scaler, future_stats)  # Predicts the strikeouts for the pitchers
 
+    return
+
+# seudihjfiuegdhsjbf
 
 '''
 git add .
