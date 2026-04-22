@@ -1,6 +1,15 @@
 #!/bin/zsh
 set -euo pipefail
 
+LOG_FILE="/Users/spencerweishaar/personalProjects/baseball_predictions/hourly_update.log"
+
+# Prefix every emitted line with a timestamp before appending to the log file.
+exec > >(
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$line"
+  done >> "$LOG_FILE"
+) 2>&1
+
 # Cron has a minimal PATH; include common locations.
 export PATH="/opt/anaconda3/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
@@ -11,6 +20,8 @@ if [[ ! -x "$PYTHON_BIN" ]]; then
 fi
 
 cd /Users/spencerweishaar/personalProjects/baseball_predictions
+
+echo "Starting hourly update run"
 
 "$PYTHON_BIN" future_game_predictor.py
 
