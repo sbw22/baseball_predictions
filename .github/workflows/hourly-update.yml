@@ -1,8 +1,6 @@
 name: Hourly Prediction Update
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:

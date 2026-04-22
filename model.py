@@ -48,7 +48,8 @@ set_seeds()
 def create_model(X):
     # Create a simple feedforward neural network
 
-
+    # IF YOU EDIT THIS ARCHITECTURE, MAKE SURE TO UPDATE THE _build_inference_model FUNCTION IN future_game_predictor.py 
+    # TO MATCH THE NEW ARCHITECTURE (EXCEPT FOR THE INPUT LAYER, WHICH SHOULD NOT HAVE A BATCH SHAPE SPECIFIED)
     model = keras.Sequential([
         Input(shape=(X.shape[1],)),
         # Dense(256, activation='silu'),

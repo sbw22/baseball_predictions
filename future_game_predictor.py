@@ -178,7 +178,7 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
     # Save to predictions.json in the same format server.py used
     output = {
         "status": "ok",
-        "updated_at": datetime.datetime.now().strftime("%b %d, %Y at %H:%M"),
+        "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "predictions": results,
     }
     with open("predictions.json", "w") as f:
