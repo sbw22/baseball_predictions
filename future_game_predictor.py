@@ -17,26 +17,51 @@ from process_data import Process_player_data
 from sklearn.preprocessing import MinMaxScaler
 from keras.losses import MeanSquaredError, Huber
 from keras.callbacks import EarlyStopping, ModelCheckpoint
-import json
+
+
+def _infer_input_dim(input_scalers):
+    if isinstance(input_scalers, dict):
+        return len(input_scalers)
+    if isinstance(input_scalers, (list, tuple)):
+        return len(input_scalers)
+    return 71
+
+# This function builds the inference model architecture. It is used when loading the model weights if the full model cannot be loaded due to a batch shape error. The architecture is based on the one used during training, but it does not include the input layer with a specified batch shape, which allows it to be more flexible when loading weights.
+def _build_inference_model(input_dim):
+    return keras.Sequential([
+        keras.layers.Input(shape=(input_dim,)),
+        keras.layers.Dense(512, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(256, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(128, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(32, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(1)
+    ])
 
 
 
 def load_model_and_scaler():
 
     model_path = 'model_and_scalers/trained_strikeout_model.keras'
-    try:
-        model = keras.models.load_model(model_path, compile=False, safe_mode=False)
-    except TypeError:
-        # Fallback for Keras versions that do not support safe_mode.
-        model = keras.models.load_model(model_path, compile=False)
+    weights_path = 'model_and_scalers/trained_strikeout_model_weights.weights.h5'
 
     strikeout_scaler = load('model_and_scalers/strikeout_scaler.pkl')
-
     input_scalers = joblib.load('model_and_scalers/input_scalers.pkl')
-
     all_pitcher_scalers = joblib.load('model_and_scalers/all_pitcher_scalers.pkl')
-
     all_batter_scalers = joblib.load('model_and_scalers/all_batter_scalers.pkl')
+
+    try:
+        model = keras.models.load_model(model_path, compile=False)
+    except Exception as exc:
+        if 'batch_shape' not in str(exc):
+            raise
+
+        input_dim = _infer_input_dim(input_scalers)
+        model = _build_inference_model(input_dim)
+        model.load_weights(weights_path)
 
     return model, strikeout_scaler, input_scalers, all_pitcher_scalers, all_batter_scalers
 
