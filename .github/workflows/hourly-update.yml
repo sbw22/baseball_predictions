@@ -31,6 +31,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate latest predictions
+        env:
+          TF_USE_LEGACY_KERAS: "1"
         run: python future_game_predictor.py
 
       - name: Commit and push changes

@@ -1,16 +1,20 @@
+import os
+
+# Use legacy tf.keras behavior to improve compatibility when loading older/newer serialized models.
+os.environ.setdefault("TF_USE_LEGACY_KERAS", "1")
+
 import numpy as np
 import csv
-from keras.models import load_model
 import joblib
 from joblib import load
 import requests
 import json
 import statsapi
 import datetime
+import keras
 from creating_data import Baseball_player_data
 from process_data import Process_player_data
 from sklearn.preprocessing import MinMaxScaler
-from keras.models import load_model
 from keras.losses import MeanSquaredError, Huber
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 import json
@@ -19,7 +23,12 @@ import json
 
 def load_model_and_scaler():
 
-    model = load_model(f'model_and_scalers/trained_strikeout_model.keras') # NOTE: Changed from .h5 to .keras
+    model_path = 'model_and_scalers/trained_strikeout_model.keras'
+    try:
+        model = keras.models.load_model(model_path, compile=False, safe_mode=False)
+    except TypeError:
+        # Fallback for Keras versions that do not support safe_mode.
+        model = keras.models.load_model(model_path, compile=False)
 
     strikeout_scaler = load('model_and_scalers/strikeout_scaler.pkl')
 
