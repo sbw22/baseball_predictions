@@ -254,16 +254,16 @@
       return;
     }
 
-    const localText = parsed.toLocaleString("en-US", {
+    const centralText = parsed.toLocaleString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
       hour: "numeric",
       minute: "2-digit",
+      timeZone: "America/Chicago",
       timeZoneName: "short",
     });
-    const utcText = parsed.toISOString().replace("T", " ").slice(0, 16) + " UTC";
-    el.textContent = `Last updated: ${localText} (${utcText})`;
+    el.textContent = `Last updated: ${centralText}`;
   }
 
   function getInitials(name) {
