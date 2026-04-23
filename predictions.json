@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"status": "ok", "updated_at": "2026-04-22T19:16:48.152153+00:00", "predictions": [{"name": "Junk", "k": 4.0, "team": "Marlins"}, {"name": "Bibee", "k": 5.0, "team": "Guardians"}, {"name": "Bassitt", "k": 4.0, "team": "Orioles"}, {"name": "Wacha", "k": 5.0, "team": "Royals"}, {"name": "Lauer", "k": 4.0, "team": "Blue"}, {"name": "Civale", "k": 5.0, "team": "Athletics"}]}
-=======
-{"status": "ok", "updated_at": "2026-04-22T23:46:19.678926+00:00", "predictions": [{"name": "Junk", "k": 5.0, "team": "Marlins"}, {"name": "Bibee", "k": 5.0, "team": "Guardians"}, {"name": "Bassitt", "k": 5.0, "team": "Orioles"}, {"name": "Wacha", "k": 5.0, "team": "Royals"}, {"name": "Lauer", "k": 4.0, "team": "Blue"}, {"name": "Civale", "k": 5.0, "team": "Athletics"}, {"name": "Hall", "k": 5.0, "team": "Brewers"}, {"name": "Mize", "k": 5.0, "team": "Tigers"}, {"name": "Fuentes", "k": 4.0, "team": "Braves"}, {"name": "Littell", "k": 4.0, "team": "Nationals"}, {"name": "Fried", "k": 5.0, "team": "Yankees"}, {"name": "Buehler", "k": 5.0, "team": "Padres"}, {"name": "Sugano", "k": 4.0, "team": "Rockies"}, {"name": "Ohtani", "k": 5.0, "team": "Dodgers"}, {"name": "Mahle", "k": 5.0, "team": "Giants"}]}
->>>>>>> 7f0583de191b08a90351b21dba32ea88c0c6f31b
+{"status": "ok", "updated_at": "2026-04-23T14:39:08.066124+00:00", "predictions": []}
