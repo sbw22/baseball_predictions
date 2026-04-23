@@ -202,9 +202,10 @@ def main():
 
 
     future_stats = get_future_stats()  # Gets the future stats from the baseball_player_data class
-
-    print(f"future_stats 'strikeouts': {future_stats[1]}")
-
+    try:
+        print(f"future_stats 'strikeouts': {future_stats[1]}")
+    except IndexError:
+        print("Error: No pitchers stats are available at the moment.")
 
     process_player_data = Process_player_data()
 
@@ -221,9 +222,7 @@ def main():
 
     predict_strikeouts(model, X, strikeout_scaler, future_stats)  # Predicts the strikeouts for the pitchers
 
-    return
 
-# seudihjfiuegdhsjbf
 
 '''
 git add .
