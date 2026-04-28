@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-04-28T19:16:08.738961+00:00", "predictions": []}
+{"status": "ok", "updated_at": "2026-04-28T19:31:12.652432+00:00", "predictions": [{"name": "Baz", "k": 5.0, "team": "Orioles"}, {"name": "Freeland", "k": 4.0, "team": "Rockies"}, {"name": "Mahle", "k": 5.0, "team": "Giants"}, {"name": "Luzardo", "k": 5.0, "team": "Phillies"}, {"name": "Tolle", "k": 5.0, "team": "Red"}, {"name": "Yesavage", "k": 5.0, "team": "Blue"}]}
