@@ -219,8 +219,11 @@ class Baseball_player_data:
                     curr_year = new_year
                     print(f"curr_year = {curr_year}")
 
-                game = statsapi.boxscore(game_id, battingBox=True, battingInfo=True, fieldingInfo=True, pitchingBox=True, gameInfo=True, timecode=True)      
-
+                try:
+                    game = statsapi.boxscore(game_id, battingBox=True, battingInfo=True, fieldingInfo=True, pitchingBox=True, gameInfo=True, timecode=True)      
+                except Exception as e:
+                    print(f"Error getting boxscore for game ID {game_id}: {e}. Skipping game.")
+                    continue
                 # print(f"game = {game}")  
                 
                 game_array = game.split("\n")
@@ -277,7 +280,7 @@ class Baseball_player_data:
         print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
         
-        file_path = f"raw_betting_data/all_pitchers_4-16-26.csv"
+        file_path = f"raw_betting_data/all_pitchers_4-27-26.csv"
 
         
 
@@ -330,7 +333,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/all_batters_4-16-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
+        file_path = f"raw_betting_data/all_batters_4-27-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
 
         new_total_stats = []
         
@@ -547,9 +550,9 @@ def main():
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
     start_month_and_day = "04/3/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "04/15/"
-    start_year = 2018
-    end_year = 2025
+    end_month_and_day = "04/26/"
+    start_year = 2021
+    end_year = 2026
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
     total_stats = historic_player_data.add_adv_pitcher_stats(total_stats)  # Adds advanced stats to the pitcher data

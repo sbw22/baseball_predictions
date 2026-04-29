@@ -31,6 +31,7 @@ import json
 import joblib
 import math
 from keras.callbacks import ModelCheckpoint
+from xgboost import XGBRegressor
 # import TweedieLoss as Tweedie
 
 
@@ -52,13 +53,22 @@ def create_model(X):
     # TO MATCH THE NEW ARCHITECTURE (EXCEPT FOR THE INPUT LAYER, WHICH SHOULD NOT HAVE A BATCH SHAPE SPECIFIED)
     model = keras.Sequential([
         Input(shape=(X.shape[1],)),
-        # Dense(256, activation='silu'),
-        # LayerNormalization(),
+
+        Dense(64, activation='silu'),
+        LayerNormalization(),
         # Dropout(0.1),
+
+        Dense(128, activation='silu'),
+        LayerNormalization(),
+        # Dropout(0.1),
+
+        Dense(256, activation='silu'),
+        LayerNormalization(),
+        Dropout(0.1),
 
         Dense(512, activation='silu'),
         LayerNormalization(),
-        # Dropout(0.1),
+        Dropout(0.1),
 
         # Dense(512, activation='silu'),
         # LayerNormalization(),
@@ -76,8 +86,6 @@ def create_model(X):
         LayerNormalization(),
         # Dropout(0.1),
 
-        
-
         Dense(1)
     ])
 
@@ -93,17 +101,37 @@ def create_model(X):
 
     return model
 
+
+def create_xgboost_model():
+    return XGBRegressor(
+        objective='reg:squarederror',
+        n_estimators=500,
+        learning_rate=0.05,
+        max_depth=4,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+    )
+
 def train_model(X, y, strikeout_scaler, model):
 
-    early_stop = EarlyStopping(monitor='val_loss', patience=500, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_loss', patience=100, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
     y_unscaled = strikeout_scaler.inverse_transform(y.reshape(-1, 1)).ravel()
     z = (y_unscaled - y_unscaled.mean()) / (y_unscaled.std() + 1e-8)
     sample_weight = 1.0 + 0.5 * np.maximum(0.0, z - 1.0)
 
     # Train the model
-    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop], sample_weight=sample_weight)
+    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint], sample_weight=sample_weight)
 
+    return model
+
+
+def train_xgboost_model(X, y, strikeout_scaler, model):
+    y_unscaled = strikeout_scaler.inverse_transform(y.reshape(-1, 1)).ravel()
+    z = (y_unscaled - y_unscaled.mean()) / (y_unscaled.std() + 1e-8)
+    sample_weight = 1.0 + 0.5 * np.maximum(0.0, z - 1.0)
+    model.fit(X, y, sample_weight=sample_weight)
     return model
 
 def run_model(model, X, y, strikeout_scaler):
@@ -111,6 +139,15 @@ def run_model(model, X, y, strikeout_scaler):
     predictions = model.predict(X, batch_size=1, verbose=0)
     # loss, accuracy = model.evaluate(X, y)
 
+    scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
+    rounded_guesses = np.round(scaled_up_guesses)
+    scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
+
+    print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+
+
+def run_xgboost_model(model, X, y, strikeout_scaler):
+    predictions = model.predict(X).reshape(-1, 1)
     scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
@@ -499,18 +536,24 @@ def main():
 
     
 
-    model = create_model(X)
+    use_xgboost = True
+    model = create_xgboost_model() if use_xgboost else create_model(X)
 
-    train_model(X_train, y_train, strikeout_scaler, model)
+    if use_xgboost:
+        train_xgboost_model(X_train, y_train, strikeout_scaler, model)
+        run_xgboost_model(model, X_test, y_test, strikeout_scaler)
+    else:
+        train_model(X_train, y_train, strikeout_scaler, model)
+        run_model(model, X_test, y_test, strikeout_scaler)
 
-    predictions = run_model(model, X_test, y_test, strikeout_scaler)
 
 
-
-    # Save the model
-    model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)  # Save the full model to a file | Note: Changed from .h5 to .keras
-    # Also save weights separately as a backup
-    model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
+    # Save whichever model type was trained so the next run can reuse it.
+    if use_xgboost:
+        joblib.dump(model, 'model_and_scalers/trained_strikeout_model_xgboost.joblib')
+    else:
+        model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)
+        model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
 
     # print(X.shape, y.shape)
 
