@@ -536,7 +536,7 @@ def main():
 
     
 
-    use_xgboost = True
+    use_xgboost = False
     model = create_xgboost_model() if use_xgboost else create_model(X)
 
     if use_xgboost:
