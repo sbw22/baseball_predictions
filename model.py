@@ -172,7 +172,7 @@ def main():
 
     
 
-    use_xgboost = False
+    use_xgboost = True  # Set to False to use the Keras regression model instead of XGBoost
     model = create_xgboost_model() if use_xgboost else create_model(X)
 
     if use_xgboost:
