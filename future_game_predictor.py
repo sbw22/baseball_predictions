@@ -30,8 +30,16 @@ def _infer_input_dim(input_scalers):
 def _build_inference_model(input_dim):
     return keras.Sequential([
         keras.layers.Input(shape=(input_dim,)),
+        keras.layers.Dense(64, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(128, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dense(256, activation='silu'),
+        keras.layers.LayerNormalization(),
+        keras.layers.Dropout(0.1),
         keras.layers.Dense(512, activation='silu'),
         keras.layers.LayerNormalization(),
+        keras.layers.Dropout(0.1),
         keras.layers.Dense(256, activation='silu'),
         keras.layers.LayerNormalization(),
         keras.layers.Dense(128, activation='silu'),

@@ -71,10 +71,6 @@ def create_model(X):
         LayerNormalization(),
         Dropout(0.1),
 
-        # Dense(512, activation='silu'),
-        # LayerNormalization(),
-        # Dropout(0.1),
-
         Dense(256, activation='silu'),
         LayerNormalization(),
         # Dropout(0.1),
