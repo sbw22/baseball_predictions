@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-05-04T19:01:26.682600+00:00", "predictions": [{"name": "Sugano", "k": 6.0, "team": "Rockies"}, {"name": "Tolle", "k": 5.0, "team": "Red"}, {"name": "Holton", "k": 4.0, "team": "Tigers"}]}
+{"status": "ok", "updated_at": "2026-05-04T19:16:13.634420+00:00", "predictions": [{"name": "Sugano", "k": 6.0, "team": "Rockies"}, {"name": "Tolle", "k": 6.0, "team": "Red"}, {"name": "Holton", "k": 5.0, "team": "Tigers"}, {"name": "Lauer", "k": -2.0, "team": "Blue"}]}
