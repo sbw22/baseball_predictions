@@ -46,7 +46,6 @@ def set_seeds(seed=42):
 set_seeds()
 
 
-
 def create_model(X):
     # Create a simple feedforward neural network
 
@@ -172,7 +171,7 @@ def main():
 
     
 
-    use_xgboost = True  # Set to False to use the Keras regression model instead of XGBoost
+    use_xgboost = False  # Set to False to use the Keras regression model instead of XGBoost
     model = create_xgboost_model() if use_xgboost else create_model(X)
 
     if use_xgboost:
