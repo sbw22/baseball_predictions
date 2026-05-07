@@ -111,7 +111,7 @@ def create_xgboost_model():
 
 def train_model(X, y, strikeout_scaler, model):
 
-    early_stop = EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
     checkpoint = ModelCheckpoint('model_and_scalers/best_model.h5', save_best_only=True)
     y_unscaled = strikeout_scaler.inverse_transform(y.reshape(-1, 1)).ravel()
     z = (y_unscaled - y_unscaled.mean()) / (y_unscaled.std() + 1e-8)

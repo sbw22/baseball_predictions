@@ -151,8 +151,6 @@ class Process_player_data:
         return all_processed_batter_stats, all_batter_scalers
 
 
-
-
 def main():
 
     process_player_data = Process_player_data()
@@ -186,8 +184,6 @@ def main():
     X = np.column_stack(processed_pitcher_stats + processed_batter_stats)
     
 
-
-
     '''# Convert list of 1-column arrays to a single array (num_samples, total_features)
     processed_pitcher_stats_matrix = np.hstack(processed_pitcher_stats)
     processed_batter_stats_matrix = np.hstack(processed_batter_stats)
@@ -200,8 +196,6 @@ def main():
     print("Target vector y shape:", y.shape)
 
 
-
-
     joblib.dump(X, "processed_data/X.joblib")
     joblib.dump(y, "processed_data/y.joblib")
 
@@ -212,17 +206,7 @@ def main():
     joblib.dump(all_pitcher_scalers, 'model_and_scalers/all_pitcher_scalers.pkl')
     joblib.dump(all_batter_scalers, 'model_and_scalers/all_batter_scalers.pkl')
 
-    
-
-
-
-
-
-
     return
-
-
-    
 
 if __name__ == "__main__":
     main()

@@ -280,7 +280,7 @@ class Baseball_player_data:
         print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
         
-        file_path = f"raw_betting_data/all_pitchers_4-27-26.csv"
+        file_path = f"raw_betting_data/all_pitchers_5-6-26.csv"
 
         
 
@@ -333,7 +333,7 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         
-        file_path = f"raw_betting_data/all_batters_4-27-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
+        file_path = f"raw_betting_data/all_batters_5-6-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
 
         new_total_stats = []
         
@@ -422,9 +422,6 @@ class Baseball_player_data:
         return total_stats
 
                     
-                    
-
-
 
 
     def calculate_avg_batter_stats(self, total_stats):
@@ -543,14 +540,12 @@ class Baseball_player_data:
     
         
 
-    
-
 def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "04/3/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "04/26/"
+    start_month_and_day = "04/12/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    end_month_and_day = "05/6/"
     start_year = 2021
     end_year = 2026
 
