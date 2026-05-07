@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-05-07T16:46:19.523576+00:00", "predictions": [{"name": "Blackburn", "k": 4.0, "team": "Yankees"}, {"name": "Cecconi", "k": 3.0, "team": "Guardians"}, {"name": "Lugo", "k": 4.0, "team": "Royals"}, {"name": "Imanaga", "k": 3.0, "team": "Cubs"}, {"name": "Quintana", "k": 4.0, "team": "Rockies"}]}
+{"status": "ok", "updated_at": "2026-05-07T17:01:17.644170+00:00", "predictions": [{"name": "Lugo", "k": 4.0, "team": "Royals"}, {"name": "Imanaga", "k": 2.0, "team": "Cubs"}, {"name": "Quintana", "k": 4.0, "team": "Rockies"}]}
