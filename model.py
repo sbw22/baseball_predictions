@@ -139,7 +139,7 @@ def run_model(model, X, y, strikeout_scaler, results_metrics):
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
-    results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+    return results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
 
 
 def run_xgboost_model(model, X, y, strikeout_scaler, results_metrics):
@@ -148,7 +148,7 @@ def run_xgboost_model(model, X, y, strikeout_scaler, results_metrics):
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
-    results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+    return results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
 
 
 def main():
@@ -176,12 +176,23 @@ def main():
 
     if use_xgboost:
         train_xgboost_model(X_train, y_train, strikeout_scaler, model)
-        run_xgboost_model(model, X_test, y_test, strikeout_scaler, results_metrics)
+        within_percents_list = run_xgboost_model(model, X_test, y_test, strikeout_scaler, results_metrics)
     else:
         train_model(X_train, y_train, strikeout_scaler, model)
-        run_model(model, X_test, y_test, strikeout_scaler, results_metrics)
+        within_percents_list = run_model(model, X_test, y_test, strikeout_scaler, results_metrics)
 
 
+    # save/return the performance metrics from this model run so we can display them on the frontend
+    with open('model_and_scalers/performance_metrics.json', 'w') as f:
+        json.dump({
+            'perfect_guess': f"{within_percents_list[0]:.2f} %",
+            'within_1': f"{within_percents_list[1]:.2f} %",
+            'within_2': f"{within_percents_list[2]:.2f} %",
+            'within_3': f"{within_percents_list[3]:.2f} %",
+            'within_4': f"{within_percents_list[4]:.2f} %",
+            'within_5': f"{within_percents_list[5]:.2f} %",
+            'within_6': f"{within_percents_list[6]:.2f} %"
+        }, f)  # <-- add f here
 
     # Save whichever model type was trained so the next run can reuse it.
     if use_xgboost:

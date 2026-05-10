@@ -41,7 +41,65 @@
       padding: 2.5rem 1rem 4rem;
     }
 
-    .page { max-width: 700px; margin: 0 auto; }
+    .page-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .page { max-width: 100%; }
+
+    .content-with-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .metrics-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    .metric-card {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 0;
+      border-bottom: 0.5px solid var(--border-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .metric-card:last-child {
+      border-bottom: none;
+    }
+
+    .metric-content {
+      flex: 1;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .metric-percentage {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .metric-ring {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+    }
 
     .header { text-align: center; margin-bottom: 2.5rem; }
     .header-eyebrow {
@@ -157,10 +215,16 @@
     @media (max-width: 480px) {
       .bar-wrap { display: none; }
       .header-title { font-size: 22px; }
+      .content-with-sidebar { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+
+
+
+<div class="page-wrapper">
 
 <div class="page">
 
@@ -176,14 +240,18 @@
 
   <div class="summary-bar" id="summary-bar"></div>
 
-  <div class="toolbar" id="toolbar" style="display:none">
-    <button class="sort-btn active" onclick="sortBy('default', this)">Default</button>
-    <button class="sort-btn" onclick="sortBy('desc', this)">Most K's first</button>
-    <button class="sort-btn" onclick="sortBy('asc', this)">Fewest K's first</button>
-    <button class="sort-btn" onclick="sortBy('alpha', this)">A–Z</button>
+  <div class="content-with-sidebar">
+    <div class="metrics-sidebar" id="metrics-sidebar"></div>
+    <div>
+      <div class="toolbar" id="toolbar" style="display:none">
+        <button class="sort-btn active" onclick="sortBy('default', this)">Default</button>
+        <button class="sort-btn" onclick="sortBy('desc', this)">Most K's first</button>
+        <button class="sort-btn" onclick="sortBy('asc', this)">Fewest K's first</button>
+        <button class="sort-btn" onclick="sortBy('alpha', this)">A–Z</button>
+      </div>
+      <div class="pitcher-list" id="pitcher-list"></div>
+    </div>
   </div>
-
-  <div class="pitcher-list" id="pitcher-list"></div>
 
   <div class="footer">
     Model predictions only — not a substitute for your own analysis.
@@ -202,6 +270,16 @@
 
   let pitchers = [];
   let originalOrder = [];
+
+  const METRIC_LABELS = [
+    { key: "perfect_guess", label: "Perfect guess" },
+    { key: "within_1", label: "Within 1 K" },
+    { key: "within_2", label: "Within 2 K" },
+    { key: "within_3", label: "Within 3 K" },
+    { key: "within_4", label: "Within 4 K" },
+    { key: "within_5", label: "Within 5 K" },
+    { key: "within_6", label: "Within 6 K" },
+  ];
 
   function initDate() {
     const d = new Date();
@@ -264,6 +342,76 @@
       timeZoneName: "short",
     });
     el.textContent = `Last updated: ${centralText}`;
+  }
+
+  function renderMetricsRing(percentage, index) {
+    const colors = [
+      { start: "#534AB7", end: "#378ADD" },
+      { start: "#1D9E75", end: "#0F6E56" },
+      { start: "#D85A30", end: "#BA7517" },
+      { start: "#378ADD", end: "#1D9E75" },
+      { start: "#639922", end: "#378ADD" },
+      { start: "#D4537E", end: "#D85A30" },
+      { start: "#BA7517", end: "#639922" }
+    ];
+    
+    const color = colors[index % colors.length];
+    const gradientId = `grad-${index}`;
+    const radius = 25;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (percentage / 100) * circumference;
+    
+    return `<svg class="metric-ring" viewBox="0 0 60 60">
+      <defs>
+        <linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:${color.start};stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${color.end};stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <circle cx="30" cy="30" r="${radius}" fill="none" stroke="var(--border)" stroke-width="6"/>
+      <circle cx="30" cy="30" r="${radius}" fill="none" stroke="url(#${gradientId})" stroke-width="6" 
+        stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" 
+        stroke-linecap="round" style="transform: rotate(-90deg); transform-origin: 30px 30px;"/>
+      <text x="30" y="35" font-size="12" font-weight="500" text-anchor="middle" fill="var(--text-primary)">${Math.round(percentage)}</text>
+      <text x="30" y="48" font-size="8" text-anchor="middle" fill="var(--text-tertiary)">%</text>
+    </svg>`;
+  }
+
+  function renderMetrics(data) {
+    const sidebar = document.getElementById("metrics-sidebar");
+    if (!data) {
+      sidebar.innerHTML = '<div class="metric-card" style="color: var(--text-secondary);">No metrics available</div>';
+      return;
+    }
+
+    const cards = METRIC_LABELS.map((item, idx) => {
+      const raw = data?.[item.key] || "0 %";
+      const numeric = parseFloat(String(raw).replace(/[^\d.]/g, "")) || 0;
+      return `
+        <div class="metric-card">
+          <div class="metric-content">
+            <div class="metric-label">${item.label}</div>
+            <div class="metric-percentage">${raw}</div>
+          </div>
+          ${renderMetricsRing(numeric, idx)}
+        </div>`;
+    }).join("");
+
+    sidebar.innerHTML = cards;
+  }
+
+  async function loadMetrics() {
+    try {
+      const res = await fetch("model_and_scalers/performance_metrics.json");
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      const data = await res.json();
+      renderMetrics(data);
+    } catch (err) {
+      const sidebar = document.getElementById("metrics-sidebar");
+      sidebar.innerHTML = '<div class="metric-card" style="color: var(--text-secondary); font-size: 12px;">Metrics unavailable</div>';
+    }
   }
 
   function getInitials(name) {
@@ -411,6 +559,7 @@
   }
 
   initDate();
+  loadMetrics();
   loadPredictions();
 </script>
 

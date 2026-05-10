@@ -184,13 +184,21 @@ class ResultsMetrics:
 
         print(f"Average error: {avg_error:.2f}\n")
 
-        print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)} -- {match_counter / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within one strikeout: {within_one} out of {len(rounded_guesses)} -- {within_one / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within two strikeouts: {within_two} out of {len(rounded_guesses)} -- {within_two / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within three strikeouts: {within_three} out of {len(rounded_guesses)} -- {within_three / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within four strikeouts: {within_four} out of {len(rounded_guesses)} -- {within_four / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within five strikeouts: {within_five} out of {len(rounded_guesses)} -- {within_five / len(rounded_guesses) * 100:.2f}%\n")
-        print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six / len(rounded_guesses) * 100:.2f}%\n\n")
+        perfect_guess_percent = match_counter / len(rounded_guesses) * 100
+        within_one_percent = within_one / len(rounded_guesses) * 100
+        within_two_percent = within_two / len(rounded_guesses) * 100
+        within_three_percent = within_three / len(rounded_guesses) * 100
+        within_four_percent = within_four / len(rounded_guesses) * 100
+        within_five_percent = within_five / len(rounded_guesses) * 100
+        within_six_percent = within_six / len(rounded_guesses) * 100
+
+        print(f"Perfect guesses: {match_counter} out of {len(rounded_guesses)} -- {perfect_guess_percent:.2f}%\n")
+        print(f"Within one strikeout: {within_one} out of {len(rounded_guesses)} -- {within_one_percent:.2f}%\n")
+        print(f"Within two strikeouts: {within_two} out of {len(rounded_guesses)} -- {within_two_percent:.2f}%\n")
+        print(f"Within three strikeouts: {within_three} out of {len(rounded_guesses)} -- {within_three_percent:.2f}%\n")
+        print(f"Within four strikeouts: {within_four} out of {len(rounded_guesses)} -- {within_four_percent:.2f}%\n")
+        print(f"Within five strikeouts: {within_five} out of {len(rounded_guesses)} -- {within_five_percent:.2f}%\n")
+        print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six_percent:.2f}%\n\n")
 
         
         
@@ -301,6 +309,8 @@ class ResultsMetrics:
                         'within_5': '0.0 %',
                         'within_6': '0.0 %'
                     })
+        
+        return [perfect_guess_percent, within_one_percent, within_two_percent, within_three_percent, within_four_percent, within_five_percent, within_six_percent]
 
 
 
