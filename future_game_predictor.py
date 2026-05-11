@@ -17,6 +17,7 @@ from process_data import Process_player_data
 from sklearn.preprocessing import MinMaxScaler
 from keras.losses import MeanSquaredError, Huber
 from keras.callbacks import EarlyStopping, ModelCheckpoint
+from xgboost import XGBRegressor
 
 
 def _infer_input_dim(input_scalers):
@@ -167,9 +168,12 @@ def game_visual(start_month_and_day, end_month_and_day, start_year, end_year):
                 print() # to get space between games
 
 
-def predict_strikeouts(model, X, strikeout_scaler, future_stats):
+def predict_strikeouts(model, X, strikeout_scaler, future_stats, output_filename):
     # Evaluate the model
-    predictions = model.predict(X, batch_size=1, verbose=0)
+    if isinstance(model, XGBRegressor):
+        predictions = np.asarray(model.predict(X)).reshape(-1, 1)
+    else:
+        predictions = np.asarray(model.predict(X, batch_size=1, verbose=0)).reshape(-1, 1)
     # loss, accuracy = model.evaluate(X, y)
 
     scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
@@ -189,9 +193,12 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
         "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "predictions": results,
     }
-    with open("predictions.json", "w") as f:
+    with open(output_filename, "w") as f:
         json.dump(output, f)
-    print(f"\nSaved {len(results)} predictions to predictions.json")
+    if output_filename == "regression_predictions.json":
+        with open("predictions.json", "w") as f:
+            json.dump(output, f)
+    print(f"\nSaved {len(results)} predictions to {output_filename}")
 
     return predictions
 
@@ -199,6 +206,7 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats):
 def main():
     
     model, strikeout_scaler, input_scalers, all_pitcher_scalers, all_batter_scalers = load_model_and_scaler()
+    xgboost_model = joblib.load('model_and_scalers/trained_strikeout_model_xgboost.joblib')
 
     
     # Get names of pitchers
@@ -228,7 +236,8 @@ def main():
     # print(f"X shape: {X.shape}")
     # print(f"future_stats shape: {len(future_stats)}")
 
-    predict_strikeouts(model, X, strikeout_scaler, future_stats)  # Predicts the strikeouts for the pitchers
+    predict_strikeouts(model, X, strikeout_scaler, future_stats, "regression_predictions.json")  # Predicts the strikeouts for the pitchers
+    predict_strikeouts(xgboost_model, X, strikeout_scaler, future_stats, "xgboost_predictions.json")
 
 
 

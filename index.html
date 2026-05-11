@@ -65,6 +65,18 @@
       padding: 1rem;
     }
 
+    .model-toggle {
+      display: flex;
+      gap: 8px;
+      margin-right: 12px;
+    }
+
+    .model-toggle .sort-btn {
+      padding: 5px 13px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
     .metric-card {
       background: transparent;
       border: none;
@@ -241,7 +253,17 @@
   <div class="summary-bar" id="summary-bar"></div>
 
   <div class="content-with-sidebar">
-    <div class="metrics-sidebar" id="metrics-sidebar"></div>
+    <div>
+      <div class="toolbar" id="model-toolbar" style="display:none">
+        <div class="model-toggle">
+          <button class="sort-btn active" id="regression-toggle" onclick="switchModel('regression')">Regression</button>
+          <button class="sort-btn" id="xgboost-toggle" onclick="switchModel('xgboost')">XGBoost</button>
+        </div>
+      </div>
+      <div class="metrics-sidebar" id="metrics-sidebar">
+        <div id="metrics-sidebar-body"></div>
+      </div>
+    </div>
     <div>
       <div class="toolbar" id="toolbar" style="display:none">
         <button class="sort-btn active" onclick="sortBy('default', this)">Default</button>
@@ -270,6 +292,22 @@
 
   let pitchers = [];
   let originalOrder = [];
+  let activeModel = "regression";
+  const modelCache = {
+    regression: null,
+    xgboost: null,
+  };
+
+  const MODEL_FILES = {
+    regression: {
+      metrics: "model_and_scalers/regression_performance_metrics.json",
+      predictions: "regression_predictions.json",
+    },
+    xgboost: {
+      metrics: "model_and_scalers/xgboost_performance_metrics.json",
+      predictions: "xgboost_predictions.json",
+    },
+  };
 
   const METRIC_LABELS = [
     { key: "perfect_guess", label: "Perfect guess" },
@@ -288,12 +326,18 @@
   }
 
   function showLoading() {
+    document.getElementById("model-toolbar").style.display = "flex";
     document.getElementById("toolbar").style.display = "none";
     document.getElementById("summary-bar").innerHTML = "";
     document.getElementById("pitcher-list").innerHTML = `
       <div class="loading-state">
         <div class="spinner"></div>
         Running predictions — this may take a moment...
+      </div>`;
+    document.getElementById("metrics-sidebar-body").innerHTML = `
+      <div class="loading-state" style="padding: 1rem;">
+        <div class="spinner"></div>
+        Loading model metrics...
       </div>`;
   }
 
@@ -302,7 +346,7 @@
       <div class="error-state">
         <div class="error-title">Could not load predictions</div>
         <div class="error-msg">${msg}</div>
-        <button class="retry-btn" onclick="loadPredictions()">Try again</button>
+        <button class="retry-btn" onclick="loadModelData()">Try again</button>
       </div>`;
   }
 
@@ -344,6 +388,11 @@
     el.textContent = `Last updated: ${centralText}`;
   }
 
+  function setActiveModelButton() {
+    document.getElementById("regression-toggle").classList.toggle("active", activeModel === "regression");
+    document.getElementById("xgboost-toggle").classList.toggle("active", activeModel === "xgboost");
+  }
+
   function renderMetricsRing(percentage, index) {
     const colors = [
       { start: "#534AB7", end: "#378ADD" },
@@ -378,7 +427,7 @@
   }
 
   function renderMetrics(data) {
-    const sidebar = document.getElementById("metrics-sidebar");
+    const sidebar = document.getElementById("metrics-sidebar-body");
     if (!data) {
       sidebar.innerHTML = '<div class="metric-card" style="color: var(--text-secondary);">No metrics available</div>';
       return;
@@ -400,17 +449,53 @@
     sidebar.innerHTML = cards;
   }
 
-  async function loadMetrics() {
+  function renderModelData(modelKey) {
+    const model = modelCache[modelKey];
+    if (!model) {
+      return;
+    }
+
+    activeModel = modelKey;
+    setActiveModelButton();
+    renderMetrics(model.metrics);
+    renderPredictions(model.predictions);
+  }
+
+  function switchModel(modelKey) {
+    if (activeModel === modelKey && modelCache[modelKey]) {
+      return;
+    }
+
+    renderModelData(modelKey);
+  }
+
+  async function loadModelData() {
+    showLoading();
     try {
-      const res = await fetch("model_and_scalers/performance_metrics.json");
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+      const [regMetricsRes, xgbMetricsRes, regPredictionsRes, xgbPredictionsRes] = await Promise.all([
+        fetch(MODEL_FILES.regression.metrics),
+        fetch(MODEL_FILES.xgboost.metrics),
+        fetch(MODEL_FILES.regression.predictions),
+        fetch(MODEL_FILES.xgboost.predictions),
+      ]);
+
+      if (!regMetricsRes.ok || !xgbMetricsRes.ok || !regPredictionsRes.ok || !xgbPredictionsRes.ok) {
+        throw new Error("One or more model files could not be loaded.");
       }
-      const data = await res.json();
-      renderMetrics(data);
+
+      modelCache.regression = {
+        metrics: await regMetricsRes.json(),
+        predictions: await regPredictionsRes.json(),
+      };
+      modelCache.xgboost = {
+        metrics: await xgbMetricsRes.json(),
+        predictions: await xgbPredictionsRes.json(),
+      };
+
+      renderModelData(activeModel);
     } catch (err) {
-      const sidebar = document.getElementById("metrics-sidebar");
-      sidebar.innerHTML = '<div class="metric-card" style="color: var(--text-secondary); font-size: 12px;">Metrics unavailable</div>';
+      document.getElementById("metrics-sidebar-body").innerHTML = '<div class="metric-card" style="color: var(--text-secondary); font-size: 12px;">Metrics unavailable</div>';
+      showError("Cannot load the model data files. Make sure both prediction files exist.");
     }
   }
 
@@ -504,6 +589,41 @@
     }).join("");
   }
 
+  function renderPredictions(data) {
+    if (data.status !== "ok") {
+      showError(data.message || "Unknown error from server.");
+      return;
+    }
+
+    setLastUpdated(data.updated_at || "");
+
+    pitchers = data.predictions.map((p, i) => ({ ...p, idx: i }));
+    originalOrder = [...pitchers];
+
+    if (pitchers.length === 0) {
+      document.getElementById("pitcher-list").innerHTML =
+        '<div class="loading-state">No games scheduled for today.</div>';
+      return;
+    }
+
+    if (!data.updated_at) {
+      const loadedAt = new Date().toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      });
+      setLastUpdated(loadedAt);
+    }
+
+    initSummary();
+    renderList(pitchers);
+    document.getElementById("model-toolbar").style.display = "flex";
+    document.getElementById("toolbar").style.display = "flex";
+  }
+
   function sortBy(mode, btn) {
     document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
@@ -516,51 +636,12 @@
   }
 
   async function loadPredictions() {
-    showLoading();
-    try {
-      const res = await fetch("predictions.json") //fetch("https://strikeout-predictions.onrender.com/api/predictions");//fetch("/api/predictions");
-      const data = await res.json();
-
-      if (data.status !== "ok") {
-        showError(data.message || "Unknown error from server.");
-        return;
-      }
-
-      setLastUpdated(data.updated_at || "");
-
-      pitchers = data.predictions.map((p, i) => ({ ...p, idx: i }));
-      originalOrder = [...pitchers];
-
-      if (pitchers.length === 0) {
-        document.getElementById("pitcher-list").innerHTML =
-          '<div class="loading-state">No games scheduled for today.</div>';
-        return;
-      }
-
-      if (!data.updated_at) {
-        const loadedAt = new Date().toLocaleString("en-US", {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-          hour: "numeric",
-          minute: "2-digit",
-        });
-        setLastUpdated(loadedAt);
-      }
-
-      initSummary();
-      renderList(pitchers);
-      document.getElementById("toolbar").style.display = "flex";
-
-    } catch (err) {
-      showError("Cannot reach the server. Make sure server.py is running.");
-    }
+    await loadModelData();
   }
 
   initDate();
-  loadMetrics();
-  loadPredictions();
+  setActiveModelButton();
+  loadModelData();
 </script>
 
 </body>

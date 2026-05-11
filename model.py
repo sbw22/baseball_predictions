@@ -171,35 +171,48 @@ def main():
 
     
 
-    use_xgboost = False  # Set to False to use the Keras regression model instead of XGBoost
-    model = create_xgboost_model() if use_xgboost else create_model(X)
+    regression_model = create_model(X)
+    xgboost_model = create_xgboost_model()
 
-    if use_xgboost:
-        train_xgboost_model(X_train, y_train, strikeout_scaler, model)
-        within_percents_list = run_xgboost_model(model, X_test, y_test, strikeout_scaler, results_metrics)
-    else:
-        train_model(X_train, y_train, strikeout_scaler, model)
-        within_percents_list = run_model(model, X_test, y_test, strikeout_scaler, results_metrics)
+    print(f"Training XGBoost model...")
+    train_xgboost_model(X_train, y_train, strikeout_scaler, xgboost_model)
+    xgboost_within_percents_list = run_xgboost_model(xgboost_model, X_test, y_test, strikeout_scaler, results_metrics)
+
+    print(f"Training Keras model...")
+    train_model(X_train, y_train, strikeout_scaler, regression_model)
+    regression_within_percents_list = run_model(regression_model, X_test, y_test, strikeout_scaler, results_metrics)
 
 
     # save/return the performance metrics from this model run so we can display them on the frontend
-    with open('model_and_scalers/performance_metrics.json', 'w') as f:
+    # save regression metrics
+    with open('model_and_scalers/regression_performance_metrics.json', 'w') as f:
         json.dump({
-            'perfect_guess': f"{within_percents_list[0]:.2f} %",
-            'within_1': f"{within_percents_list[1]:.2f} %",
-            'within_2': f"{within_percents_list[2]:.2f} %",
-            'within_3': f"{within_percents_list[3]:.2f} %",
-            'within_4': f"{within_percents_list[4]:.2f} %",
-            'within_5': f"{within_percents_list[5]:.2f} %",
-            'within_6': f"{within_percents_list[6]:.2f} %"
+            'perfect_guess': f"{regression_within_percents_list[0]:.2f} %",
+            'within_1': f"{regression_within_percents_list[1]:.2f} %",
+            'within_2': f"{regression_within_percents_list[2]:.2f} %",
+            'within_3': f"{regression_within_percents_list[3]:.2f} %",
+            'within_4': f"{regression_within_percents_list[4]:.2f} %",
+            'within_5': f"{regression_within_percents_list[5]:.2f} %",
+            'within_6': f"{regression_within_percents_list[6]:.2f} %"
+        }, f)  # <-- add f here
+    # save xgboost metrics
+    with open('model_and_scalers/xgboost_performance_metrics.json', 'w') as f:
+        json.dump({
+            'perfect_guess': f"{xgboost_within_percents_list[0]:.2f} %",
+            'within_1': f"{xgboost_within_percents_list[1]:.2f} %",
+            'within_2': f"{xgboost_within_percents_list[2]:.2f} %",
+            'within_3': f"{xgboost_within_percents_list[3]:.2f} %",
+            'within_4': f"{xgboost_within_percents_list[4]:.2f} %",
+            'within_5': f"{xgboost_within_percents_list[5]:.2f} %",
+            'within_6': f"{xgboost_within_percents_list[6]:.2f} %"
         }, f)  # <-- add f here
 
-    # Save whichever model type was trained so the next run can reuse it.
-    if use_xgboost:
-        joblib.dump(model, 'model_and_scalers/trained_strikeout_model_xgboost.joblib')
-    else:
-        model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)
-        model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
+
+    # Save both models (the Keras regression model and the XGBoost model), so we can load them in the future for inference on new data. We save both the entire Keras model and just the weights, so that we have the option to load just the weights into a new model architecture in the future if we want to experiment with different architectures without having to retrain from scratch each time.
+    
+    joblib.dump(xgboost_model, 'model_and_scalers/trained_strikeout_model_xgboost.joblib')
+    regression_model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)
+    regression_model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
 
     # print(X.shape, y.shape)
 
