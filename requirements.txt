@@ -10,6 +10,9 @@ tensorflow==2.15.0
 keras==2.15.0
 tf-keras==2.15.0
 
+# Required for unpickling some joblib artifacts saved with dill
+dill==0.3.6
+
 MLB-StatsAPI
 pybaseball
 
