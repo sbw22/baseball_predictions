@@ -68,7 +68,7 @@ def create_model(X):
 
         Dense(512, activation='silu'),
         LayerNormalization(),
-        Dropout(0.1),
+        Dropout(0.11),
 
         Dense(256, activation='silu'),
         LayerNormalization(),
