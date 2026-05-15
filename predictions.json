@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-05-15T19:31:31.157264+00:00", "predictions": [{"name": "Abbott", "k": 3.0, "team": "Reds"}, {"name": "Junk", "k": 4.0, "team": "Marlins"}, {"name": "Strider", "k": 5.0, "team": "Braves"}]}
+{"status": "ok", "updated_at": "2026-05-15T19:46:22.290304+00:00", "predictions": [{"name": "Hanifee", "k": 3.0, "team": "Tigers"}, {"name": "Abbott", "k": -0.0, "team": "Reds"}, {"name": "Junk", "k": 4.0, "team": "Marlins"}, {"name": "Strider", "k": 7.0, "team": "Braves"}]}
