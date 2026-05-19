@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-05-19T19:46:14.162605+00:00", "predictions": [{"name": "Burns", "k": 5.0, "team": "Reds"}]}
+{"status": "ok", "updated_at": "2026-05-19T20:01:20.314521+00:00", "predictions": [{"name": "Burns", "k": 5.0, "team": "Reds"}, {"name": "Cease", "k": 4.0, "team": "Blue"}, {"name": "Warren", "k": 6.0, "team": "Yankees"}]}
