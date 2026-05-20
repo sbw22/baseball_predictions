@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-05-20T17:02:01.499754+00:00", "predictions": [{"name": "Baz", "k": 2.0, "team": "Orioles"}, {"name": "Matz", "k": 4.0, "team": "Rays"}, {"name": "Burrows", "k": 5.0, "team": "Astros"}, {"name": "Ryan", "k": 5.0, "team": "Twins"}]}
+{"status": "ok", "updated_at": "2026-05-20T17:17:04.604903+00:00", "predictions": [{"name": "Ryan", "k": 4.0, "team": "Twins"}, {"name": "Leiter", "k": 3.0, "team": "Rangers"}, {"name": "Freeland", "k": 2.0, "team": "Rockies"}, {"name": "Mahle", "k": 3.0, "team": "Giants"}]}
