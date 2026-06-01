@@ -543,7 +543,7 @@ def main():
 
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
-    start_month_and_day = "04/31/" # use to be 4/12/ before testing value implimented   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
+    start_month_and_day = "04/30/" # use to be 4/12/ before testing value implimented   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
     # end_month_and_day should be yesterday's date, not today
     end_month_and_day = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m/%d/") # This will set the end date to yesterday's date, which is useful for getting the most up to date data. I can change it to yesterday's date if I want to avoid any issues with incomplete data from today's games.
 
