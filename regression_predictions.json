@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"status": "ok", "updated_at": "2026-06-01T20:37:23.982920+00:00", "predictions": [{"name": "Alcantara", "k": 5.0, "team": "Marlins"}, {"name": "Richardson", "k": 4.0, "team": "Reds"}, {"name": "Ryan", "k": 6.0, "team": "Twins"}, {"name": "deGrom", "k": 6.0, "team": "Rangers"}, {"name": "McGreevy", "k": 4.0, "team": "Cardinals"}]}
+=======
+{"status": "ok", "updated_at": "2026-06-01T20:31:26.092605+00:00", "predictions": [{"name": "Alcantara", "k": -14.0, "team": "Marlins"}, {"name": "Richardson", "k": 3.0, "team": "Reds"}, {"name": "Ryan", "k": 6.0, "team": "Twins"}, {"name": "deGrom", "k": 5.0, "team": "Rangers"}, {"name": "McGreevy", "k": 3.0, "team": "Cardinals"}]}
+>>>>>>> dbe97c4b278d66bc6986e637ee3cba2f587a733d
