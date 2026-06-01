@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-06-01T19:46:16.463323+00:00", "predictions": [{"name": "Richardson", "k": 3.0, "team": "Reds"}]}
+{"status": "ok", "updated_at": "2026-06-01T20:01:35.054302+00:00", "predictions": [{"name": "Alcantara", "k": -14.0, "team": "Marlins"}, {"name": "Richardson", "k": 3.0, "team": "Reds"}, {"name": "deGrom", "k": 6.0, "team": "Rangers"}, {"name": "McGreevy", "k": 3.0, "team": "Cardinals"}]}
