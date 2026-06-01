@@ -1,3 +1,4 @@
+import datetime
 import statsapi
 from pybaseball import team_game_logs
 from pybaseball import team_ids
@@ -279,10 +280,8 @@ class Baseball_player_data:
 
         print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
-        
-        file_path = f"raw_betting_data/all_pitchers_5-6-26.csv"
-
-        
+        # file format: all_pitchers_MM-DD-YYYY.csv
+        file_path = f"raw_betting_data/all_pitchers_{datetime.date.today().strftime('%m-%d-%Y')}.csv"
 
         for pitcher_data in total_stats:
 
@@ -332,8 +331,8 @@ class Baseball_player_data:
 
     def add_adv_batter_stats(self, total_stats):
 
-        
-        file_path = f"raw_betting_data/all_batters_5-6-26.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
+        # file format: all_batters_MM-DD-YYYY.csv
+        file_path = f"raw_betting_data/all_batters_{datetime.date.today().strftime('%m-%d-%Y')}.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
 
         new_total_stats = []
         
@@ -545,8 +544,11 @@ def main():
     historic_player_data = Baseball_player_data()  # Create an instance of the baseball_player_data class
 
     start_month_and_day = "04/12/"   # CHANGE THE START AND END DATE, AND MAYBE TRY TO FIGURE OUT WHY OLD DATA WORKS BETTER THAN NEW DATA?
-    end_month_and_day = "05/6/"
-    start_year = 2021
+    # end_month_and_day should be yesterday's date, not today
+    end_month_and_day = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m/%d/") # This will set the end date to yesterday's date, which is useful for getting the most up to date data. I can change it to yesterday's date if I want to avoid any issues with incomplete data from today's games.
+
+    # If you are getting errors with importing the csv files, table_scraper.py might not have run before this
+    start_year = 2026
     end_year = 2026
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
