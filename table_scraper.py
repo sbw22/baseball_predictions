@@ -61,7 +61,8 @@ PITCHER_SELECTIONS = ",".join([
     "hard_hit_percent", "avg_hyper_speed", "whiff_percent",
 ])
 
-TODAY = date.today().strftime("%m-%d-%Y")
+# TODAY = date.today().strftime("%m-%d-%Y")
+TODAY = "current" # We are excluding the date from the file name for the stats, due to the github action being in a different time zone (might fix this later)
 
 # (api_type, min_value, sort_dir, selections, output_filename)
 PLAYER_TYPES = [

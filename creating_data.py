@@ -281,7 +281,9 @@ class Baseball_player_data:
         print(f"total_stats at the beginning of add_adv_pitcher_stats: {total_stats}")
             
         # file format: all_pitchers_MM-DD-YYYY.csv
-        file_path = f"raw_betting_data/all_pitchers_{datetime.date.today().strftime('%m-%d-%Y')}.csv"
+        # file_path = f"raw_betting_data/all_pitchers_{datetime.date.today().strftime('%m-%d-%Y')}.csv"
+        file_path = f"raw_betting_data/all_pitchers_current.csv" # We are excluding the date from the file name for the batter stats, due to the github action being in a different time zone (might fix this later)
+
 
         for pitcher_data in total_stats:
 
@@ -332,8 +334,8 @@ class Baseball_player_data:
     def add_adv_batter_stats(self, total_stats):
 
         # file format: all_batters_MM-DD-YYYY.csv
-        file_path = f"raw_betting_data/all_batters_{datetime.date.today().strftime('%m-%d-%Y')}.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
-
+        # file_path = f"raw_betting_data/all_batters_{datetime.date.today().strftime('%m-%d-%Y')}.csv"   # 6-4-25 dataset has more stats, and it works better for some reason than the reduced, more efficient dataset
+        file_path = f"raw_betting_data/all_batters_current.csv" # We are excluding the date from the file name for the batter stats, due to the github action being in a different time zone (might fix this later)
         new_total_stats = []
         
 
