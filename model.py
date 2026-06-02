@@ -211,7 +211,7 @@ def main():
     # Save both models (the Keras regression model and the XGBoost model), so we can load them in the future for inference on new data. We save both the entire Keras model and just the weights, so that we have the option to load just the weights into a new model architecture in the future if we want to experiment with different architectures without having to retrain from scratch each time.
     
     joblib.dump(xgboost_model, 'model_and_scalers/trained_strikeout_model_xgboost.joblib')
-    regression_model.save('model_and_scalers/trained_strikeout_model.keras', include_optimizer=False)
+    regression_model.save('model_and_scalers/trained_strikeout_model.keras') #, include_optimizer=False)
     regression_model.save_weights('model_and_scalers/trained_strikeout_model_weights.weights.h5')
 
     # print(X.shape, y.shape)
