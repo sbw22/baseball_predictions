@@ -61,4 +61,5 @@ jobs:
           fi
 
           git commit -m "daily pipeline update"
+          git pull --rebase origin main
           git push
