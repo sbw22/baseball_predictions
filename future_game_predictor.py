@@ -222,6 +222,7 @@ def main():
         print(f"future_stats 'strikeouts': {future_stats[1]}")
     except IndexError:
         print("Error: No pitchers stats are available at the moment.")
+        return
 
     process_player_data = Process_player_data()
 
