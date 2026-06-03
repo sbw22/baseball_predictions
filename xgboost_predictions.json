@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-06-03T17:01:44.665987+00:00", "predictions": [{"name": "Alvarez", "k": 2.0, "team": "Nationals"}, {"name": "Melton", "k": 1.0, "team": "Tigers"}, {"name": "Martinez", "k": 1.0, "team": "Rays"}, {"name": "Fedde", "k": 5.0, "team": "White"}, {"name": "Bradley", "k": 3.0, "team": "Twins"}]}
+{"status": "ok", "updated_at": "2026-06-03T17:16:20.848980+00:00", "predictions": [{"name": "Martinez", "k": 2.0, "team": "Rays"}, {"name": "Fedde", "k": 6.0, "team": "White"}, {"name": "Bradley", "k": 3.0, "team": "Twins"}]}
