@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-06-12T19:31:25.512312+00:00", "predictions": [{"name": "Baz", "k": 5.0, "team": "Orioles"}]}
+{"status": "ok", "updated_at": "2026-06-12T19:46:28.856997+00:00", "predictions": [{"name": "Canning", "k": 5.0, "team": "Padres"}, {"name": "Baz", "k": 5.0, "team": "Orioles"}, {"name": "Leiter", "k": 5.0, "team": "Rangers"}, {"name": "Gray", "k": 6.0, "team": "Red"}, {"name": "Rodriguez", "k": 4.0, "team": "D-backs"}]}
