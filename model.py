@@ -118,7 +118,7 @@ def train_model(X, y, strikeout_scaler, model):
     sample_weight = 1.0 + 0.5 * np.maximum(0.0, z - 1.0)
 
     # Train the model
-    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64, callbacks=[early_stop, checkpoint], sample_weight=sample_weight)
+    model.fit(X, y, epochs=1000, validation_split=0.2, batch_size=64 , callbacks=[early_stop, checkpoint], sample_weight=sample_weight)
 
     return model
 
@@ -148,7 +148,7 @@ def run_xgboost_model(model, X, y, strikeout_scaler, results_metrics):
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
 
-    return results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+    return results_metrics.print_and_save_results(scaled_up_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
 
 
 def main():
@@ -176,11 +176,11 @@ def main():
 
     print(f"Training XGBoost model...")
     train_xgboost_model(X_train, y_train, strikeout_scaler, xgboost_model)
-    xgboost_within_percents_list = run_xgboost_model(xgboost_model, X_test, y_test, strikeout_scaler, results_metrics)
+    xgboost_within_percents_list, xgboost_breakeven_odds = run_xgboost_model(xgboost_model, X_test, y_test, strikeout_scaler, results_metrics)
 
     print(f"Training Keras model...")
     train_model(X_train, y_train, strikeout_scaler, regression_model)
-    regression_within_percents_list = run_model(regression_model, X_test, y_test, strikeout_scaler, results_metrics)
+    regression_within_percents_list, regression_breakeven_odds = run_model(regression_model, X_test, y_test, strikeout_scaler, results_metrics)
 
 
     # save/return the performance metrics from this model run so we can display them on the frontend
@@ -193,7 +193,14 @@ def main():
             'within_3': f"{regression_within_percents_list[3]:.2f} %",
             'within_4': f"{regression_within_percents_list[4]:.2f} %",
             'within_5': f"{regression_within_percents_list[5]:.2f} %",
-            'within_6': f"{regression_within_percents_list[6]:.2f} %"
+            'within_6': f"{regression_within_percents_list[6]:.2f} %",
+            'perfect_guess_breakeven_odds': regression_breakeven_odds[0],
+            'within_1_breakeven_odds': regression_breakeven_odds[1],
+            'within_2_breakeven_odds': regression_breakeven_odds[2],
+            'within_3_breakeven_odds': regression_breakeven_odds[3],
+            'within_4_breakeven_odds': regression_breakeven_odds[4],
+            'within_5_breakeven_odds': regression_breakeven_odds[5],
+            'within_6_breakeven_odds': regression_breakeven_odds[6],
         }, f)  # <-- add f here
     # save xgboost metrics
     with open('model_and_scalers/xgboost_performance_metrics.json', 'w') as f:
@@ -204,7 +211,14 @@ def main():
             'within_3': f"{xgboost_within_percents_list[3]:.2f} %",
             'within_4': f"{xgboost_within_percents_list[4]:.2f} %",
             'within_5': f"{xgboost_within_percents_list[5]:.2f} %",
-            'within_6': f"{xgboost_within_percents_list[6]:.2f} %"
+            'within_6': f"{xgboost_within_percents_list[6]:.2f} %",
+            'perfect_guess_breakeven_odds': xgboost_breakeven_odds[0],
+            'within_1_breakeven_odds': xgboost_breakeven_odds[1],
+            'within_2_breakeven_odds': xgboost_breakeven_odds[2],
+            'within_3_breakeven_odds': xgboost_breakeven_odds[3],
+            'within_4_breakeven_odds': xgboost_breakeven_odds[4],
+            'within_5_breakeven_odds': xgboost_breakeven_odds[5],
+            'within_6_breakeven_odds': xgboost_breakeven_odds[6],
         }, f)  # <-- add f here
 
 

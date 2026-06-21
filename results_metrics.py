@@ -7,6 +7,32 @@ class ResultsMetrics:
     def __init__(self):
         pass
 
+    def calculate_breakeven_odds(self, percentages):
+        # This function calculates the breakeven odds in american odds for betting on the strikeout predictions. 
+        # It assumes a bet of $100 and calculates the payout for each guess based on whether it is correct or not. 
+        # The breakeven odds are calculated as the total payout divided by the total amount bet.
+
+        breakeven_odds = []
+
+        for percent in percentages:
+            if percent <= 0.0:
+                breakeven_odds.append("N/A")  # No chance of winning, so odds are not applicable
+            elif percent >= 100.0:
+                breakeven_odds.append("N/A")  # Certain win, so odds are not applicable
+            elif percent == 50.0:
+                breakeven_odds.append(f"100")  # Even odds
+            elif percent > 50.0: # + odds
+                odds = round((percent / (100 - percent)) * 100, 2)  # Negative odds for favorites
+                odds_str = f"+{odds}"
+                breakeven_odds.append(odds_str)
+            else: # - odds
+                odds = round(((100 - percent) / percent) * 100, 2)
+                odds_str = f"-{abs(odds)}"
+                breakeven_odds.append(odds_str)
+
+        return breakeven_odds
+
+
     def print_and_save_results(self, rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts):
 
         avg_error = 0.0
@@ -77,8 +103,8 @@ class ResultsMetrics:
         master_guess_num_of_so = [correct_guess_num_of_so, guess_within_1_num_of_so, guess_within_2_num_of_so, guess_within_3_num_of_so, guess_within_4_num_of_so, guess_within_5_num_of_so, guess_within_6_num_of_so]
 
         for i in range(len(rounded_guesses)):
-            guess = round(rounded_guesses[i].item(), 2)
-            actual = round(scaled_up_actual_strikeouts[i].item(), 2)
+            guess = rounded_guesses[i].item()  # round(rounded_guesses[i].item(), 5)
+            actual = scaled_up_actual_strikeouts[i].item()  # round(scaled_up_actual_strikeouts[i].item(), 5)
 
             avg_error += abs(guess - actual)
 
@@ -200,6 +226,8 @@ class ResultsMetrics:
         print(f"Within five strikeouts: {within_five} out of {len(rounded_guesses)} -- {within_five_percent:.2f}%\n")
         print(f"Within six strikeouts: {within_six} out of {len(rounded_guesses)} -- {within_six_percent:.2f}%\n\n")
 
+        breakeven_odds = self.calculate_breakeven_odds([perfect_guess_percent, within_one_percent, within_two_percent, within_three_percent, within_four_percent, within_five_percent, within_six_percent])
+
         
         
         '''for i in range(10):
@@ -310,7 +338,7 @@ class ResultsMetrics:
                         'within_6': '0.0 %'
                     })
         
-        return [perfect_guess_percent, within_one_percent, within_two_percent, within_three_percent, within_four_percent, within_five_percent, within_six_percent]
+        return [perfect_guess_percent, within_one_percent, within_two_percent, within_three_percent, within_four_percent, within_five_percent, within_six_percent], breakeven_odds
 
 
 

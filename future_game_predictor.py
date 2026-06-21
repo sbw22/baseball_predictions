@@ -177,13 +177,13 @@ def predict_strikeouts(model, X, strikeout_scaler, future_stats, output_filename
     # loss, accuracy = model.evaluate(X, y)
 
     scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
-    rounded_guesses = np.round(scaled_up_guesses)
+    rounded_guesses = np.round(scaled_up_guesses, 3)
 
     results = []
     for i in range(1, len(rounded_guesses)):  #  Skip the first element because it is the boilerplate stats
         pitcher_name = future_stats[i][0]
         team = future_stats[i][5] if len(future_stats[i]) > 5 else ""
-        guess = round(float(rounded_guesses[i].item()), 2)
+        guess = round(float(rounded_guesses[i].item()), 3)
         print(f"\n{pitcher_name}'s predicted strikeouts: {guess}\n")
         results.append({"name": pitcher_name, "k": guess, "team": team})
     

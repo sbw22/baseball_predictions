@@ -107,6 +107,19 @@
       color: var(--text-primary);
     }
 
+    .metric-odds {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-odds-na {
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+
     .metric-ring {
       width: 60px;
       height: 60px;
@@ -436,11 +449,16 @@
     const cards = METRIC_LABELS.map((item, idx) => {
       const raw = data?.[item.key] || "0 %";
       const numeric = parseFloat(String(raw).replace(/[^\d.]/g, "")) || 0;
+      const oddsRaw = data?.[`${item.key}_breakeven_odds`];
+      const oddsHtml = oddsRaw
+        ? `<div class="metric-odds${oddsRaw === "N/A" ? " metric-odds-na" : ""}">${oddsRaw === "N/A" ? "N/A" : oddsRaw}</div>`
+        : "";
       return `
         <div class="metric-card">
           <div class="metric-content">
             <div class="metric-label">${item.label}</div>
             <div class="metric-percentage">${raw}</div>
+            ${oddsHtml}
           </div>
           ${renderMetricsRing(numeric, idx)}
         </div>`;
