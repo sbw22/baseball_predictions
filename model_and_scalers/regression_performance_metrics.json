@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"perfect_guess": "4.64 %", "within_1": "37.13 %", "within_2": "65.40 %", "within_3": "85.65 %", "within_4": "97.05 %", "within_5": "100.00 %", "within_6": "100.00 %", "perfect_guess_breakeven_odds": "-2054.55", "within_1_breakeven_odds": "-169.32", "within_2_breakeven_odds": "+189.02", "within_3_breakeven_odds": "+597.06", "within_4_breakeven_odds": "+3285.71", "within_5_breakeven_odds": "N/A", "within_6_breakeven_odds": "N/A"}
-=======
-{"perfect_guess": "12.78 %", "within_1": "42.48 %", "within_2": "67.67 %", "within_3": "83.83 %", "within_4": "96.62 %", "within_5": "99.62 %", "within_6": "100.00 %"}
->>>>>>> 8487f2bc5d6c4f99f3356d2e2976d7c2f6502444
+{"perfect_guess": "11.28 %", "within_1": "30.08 %", "within_2": "66.92 %", "within_3": "84.59 %", "within_4": "96.62 %", "within_5": "99.62 %", "within_6": "100.00 %", "perfect_guess_breakeven_odds": "+786.67", "within_1_breakeven_odds": "+232.5", "within_2_breakeven_odds": "-202.27", "within_3_breakeven_odds": "-548.78", "within_4_breakeven_odds": "-2855.56", "within_5_breakeven_odds": "-26500.0", "within_6_breakeven_odds": "N/A"}

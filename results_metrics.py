@@ -21,14 +21,18 @@ class ResultsMetrics:
                 breakeven_odds.append("N/A")  # Certain win, so odds are not applicable
             elif percent == 50.0:
                 breakeven_odds.append(f"100")  # Even odds
-            elif percent > 50.0: # + odds
-                odds = round((percent / (100 - percent)) * 100, 2)  # Negative odds for favorites
-                odds_str = f"+{odds}"
+            elif percent >= 50.0: # - odds
+                odds = round((percent / (100 - percent)) * 100, 2)  
+                odds_str = f"-{odds}"
                 breakeven_odds.append(odds_str)
-            else: # - odds
+            else: # + odds
                 odds = round(((100 - percent) / percent) * 100, 2)
-                odds_str = f"-{abs(odds)}"
+                odds_str = f"+{abs(odds)}"
                 breakeven_odds.append(odds_str)
+            
+            print(f"Percent: {percent:.2f}%, Breakeven Odds: {breakeven_odds[-1]}")
+        
+        
 
         return breakeven_odds
 

@@ -513,7 +513,10 @@
       renderModelData(activeModel);
     } catch (err) {
       document.getElementById("metrics-sidebar-body").innerHTML = '<div class="metric-card" style="color: var(--text-secondary); font-size: 12px;">Metrics unavailable</div>';
-      showError("Cannot load the model data files. Make sure both prediction files exist.");
+      const hint = window.location.protocol === "file:"
+        ? "Open this page through a local server (e.g. python -m http.server 10000), not as a file."
+        : "Make sure all four JSON files exist and contain valid JSON.";
+      showError(err?.message ? `${err.message} — ${hint}` : hint);
     }
   }
 
