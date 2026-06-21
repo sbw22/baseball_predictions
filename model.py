@@ -138,8 +138,11 @@ def run_model(model, X, y, strikeout_scaler, results_metrics):
     scaled_up_guesses = strikeout_scaler.inverse_transform(predictions)
     rounded_guesses = np.round(scaled_up_guesses)
     scaled_up_actual_strikeouts = strikeout_scaler.inverse_transform(y.reshape(-1, 1))
+    '''print(f"scaled_up_actual_strikeouts: {scaled_up_actual_strikeouts[:10]}")
+    print(f"scaled_up_guesses: {scaled_up_guesses[:10]}")
+    sguhj'''
 
-    return results_metrics.print_and_save_results(rounded_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
+    return results_metrics.print_and_save_results(scaled_up_guesses, scaled_up_guesses, scaled_up_actual_strikeouts)
 
 
 def run_xgboost_model(model, X, y, strikeout_scaler, results_metrics):
