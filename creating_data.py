@@ -550,7 +550,7 @@ def main():
     end_month_and_day = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m/%d/") # This will set the end date to yesterday's date, which is useful for getting the most up to date data. I can change it to yesterday's date if I want to avoid any issues with incomplete data from today's games.
 
     # If you are getting errors with importing the csv files, table_scraper.py might not have run before this
-    start_year = 2026
+    start_year = 2024
     end_year = 2026
 
     total_stats = historic_player_data.get_names_and_strikeouts(start_month_and_day, end_month_and_day, start_year, end_year)  # Gets names and strikouts from pitchers, and names from batters
