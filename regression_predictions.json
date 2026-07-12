@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-07-12T14:31:59.090489+00:00", "predictions": [{"name": "Lugo", "k": 6.542, "team": "Royals"}, {"name": "Hancock", "k": 3.49, "team": "Mariners"}]}
+{"status": "ok", "updated_at": "2026-07-12T14:46:30.351828+00:00", "predictions": [{"name": "Lugo", "k": 5.235, "team": "Royals"}, {"name": "Warren", "k": 4.955, "team": "Yankees"}, {"name": "Boyd", "k": 4.746, "team": "Cubs"}, {"name": "Abbott", "k": 4.318, "team": "Reds"}, {"name": "Hancock", "k": 3.614, "team": "Mariners"}, {"name": "Cantillo", "k": 5.343, "team": "Guardians"}]}
