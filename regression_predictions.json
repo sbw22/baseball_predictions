@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-07-26T14:31:41.573169+00:00", "predictions": [{"name": "Rasmussen", "k": 3.711, "team": "Rays"}, {"name": "Valdez", "k": 5.227, "team": "Tigers"}]}
+{"status": "ok", "updated_at": "2026-07-26T14:46:39.936914+00:00", "predictions": [{"name": "Rasmussen", "k": 5.625, "team": "Rays"}, {"name": "Mikolas", "k": 3.733, "team": "Nationals"}, {"name": "Valdez", "k": 4.986, "team": "Tigers"}, {"name": "Buehler", "k": 4.405, "team": "Padres"}, {"name": "Junk", "k": 4.896, "team": "Marlins"}, {"name": "Abbott", "k": 5.221, "team": "Reds"}]}
