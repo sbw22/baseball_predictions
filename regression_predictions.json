@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-07-28T19:16:41.842838+00:00", "predictions": [{"name": "Burns", "k": 4.1, "team": "Reds"}]}
+{"status": "ok", "updated_at": "2026-07-28T19:31:40.769257+00:00", "predictions": [{"name": "Burns", "k": 5.498, "team": "Reds"}, {"name": "Quantrill", "k": 3.275, "team": "Rangers"}, {"name": "Jax", "k": 5.557, "team": "Rays"}, {"name": "Nola", "k": 4.076, "team": "Phillies"}]}
