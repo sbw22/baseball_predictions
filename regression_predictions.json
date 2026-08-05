@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-08-05T18:17:16.758877+00:00", "predictions": [{"name": "Lauer", "k": 5.973, "team": "Dodgers"}, {"name": "Imanaga", "k": 8.03, "team": "Cubs"}, {"name": "Whisenhunt", "k": 4.969, "team": "Giants"}, {"name": "Martinez", "k": 4.828, "team": "Rays"}]}
+{"status": "ok", "updated_at": "2026-08-05T18:32:09.964264+00:00", "predictions": [{"name": "Imanaga", "k": 7.689, "team": "Cubs"}, {"name": "Whisenhunt", "k": 4.699, "team": "Giants"}, {"name": "Martinez", "k": 4.752, "team": "Rays"}]}
