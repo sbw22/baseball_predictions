@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-08-13T18:31:34.886429+00:00", "predictions": [{"name": "Abbott", "k": 4.624, "team": "Reds"}, {"name": "Fried", "k": 5.931, "team": "Yankees"}, {"name": "Scherzer", "k": 5.178, "team": "Blue"}]}
+{"status": "ok", "updated_at": "2026-08-13T18:46:38.399628+00:00", "predictions": [{"name": "Abbott", "k": 5.018, "team": "Reds"}, {"name": "Fried", "k": 5.869, "team": "Yankees"}, {"name": "Scherzer", "k": 4.976, "team": "Blue"}, {"name": "Gausman", "k": 4.299, "team": "Cubs"}, {"name": "Cavalli", "k": 3.88, "team": "Nationals"}]}
