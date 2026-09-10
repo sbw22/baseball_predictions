@@ -1,1 +1,1 @@
-{"status": "ok", "updated_at": "2026-09-10T23:01:44.798586+00:00", "predictions": [{"name": "Javier", "k": 1.622, "team": "Astros"}, {"name": "Wheeler", "k": 3.653, "team": "Phillies"}, {"name": "deGrom", "k": 5.324, "team": "Rangers"}, {"name": "Feltner", "k": 4.82, "team": "Rockies"}, {"name": "Fried", "k": 2.25, "team": "Yankees"}]}
+{"status": "ok", "updated_at": "2026-09-10T23:16:44.021912+00:00", "predictions": [{"name": "Javier", "k": 2.758, "team": "Astros"}, {"name": "Wheeler", "k": 3.346, "team": "Phillies"}, {"name": "deGrom", "k": 3.765, "team": "Rangers"}]}
